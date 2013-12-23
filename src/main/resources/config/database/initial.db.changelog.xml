@@ -1,0 +1,1012 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.0.xsd">
+    <changeSet author="marcin (generated)" id="1387836412218-1">
+        <createSequence sequenceName="DEMO_CUST_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-2">
+        <createSequence sequenceName="DEMO_ORDER_ITEMS_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-3">
+        <createSequence sequenceName="DEMO_ORD_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-4">
+        <createSequence sequenceName="DEMO_PROD_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-5">
+        <createSequence sequenceName="DEMO_USERS_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-6">
+        <createSequence sequenceName="DOK_P_N_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-7">
+        <createSequence sequenceName="DOK_P_P_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-8">
+        <createSequence sequenceName="DOK_W_N_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-9">
+        <createSequence sequenceName="DOK_W_P_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-10">
+        <createSequence sequenceName="FV_N_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-11">
+        <createSequence sequenceName="FV_P_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-12">
+        <createSequence sequenceName="FZ_N_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-13">
+        <createSequence sequenceName="FZ_P_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-14">
+        <createSequence sequenceName="GRUPA_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-15">
+        <createSequence sequenceName="GRUPA_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-16">
+        <createSequence sequenceName="HIBERNATE_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-17">
+        <createSequence sequenceName="JEDNOSTKA_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-18">
+        <createSequence sequenceName="JEDNOSTKA_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-19">
+        <createSequence sequenceName="KASA_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-20">
+        <createSequence sequenceName="KONTRAHENT_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-21">
+        <createSequence sequenceName="ROLA_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-22">
+        <createSequence sequenceName="SKLEP_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-23">
+        <createSequence sequenceName="SPOSOB_ZAPLATY_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-24">
+        <createSequence sequenceName="TOWAR_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-25">
+        <createSequence sequenceName="TOWAR_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-26">
+        <createSequence sequenceName="TYP_DOKUMENTU_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-27">
+        <createSequence sequenceName="UZYTKOWNIK_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-28">
+        <createSequence sequenceName="VAT_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-29">
+        <createSequence sequenceName="VAT_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-30">
+        <createSequence sequenceName="WALUTA_SEQ"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-31">
+        <createSequence sequenceName="WALUTA_SEQUENCE"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-32">
+        <createTable tableName="APEX$_ACL">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="USERNAME" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="PRIV" type="VARCHAR2(1)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-33">
+        <createTable tableName="APEX$_WS_FILES">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)"/>
+            <column name="ROW_ID" type="NUMBER(38)"/>
+            <column name="WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="COMPONENT_LEVEL" type="VARCHAR2(30)"/>
+            <column name="NAME" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="IMAGE_ALIAS" type="VARCHAR2(255)"/>
+            <column name="IMAGE_ATTRIBUTES" type="VARCHAR2(255)"/>
+            <column name="CONTENT" type="BLOB"/>
+            <column name="CONTENT_LAST_UPDATE" type="date"/>
+            <column name="MIME_TYPE" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CONTENT_CHARSET" type="VARCHAR2(255)"/>
+            <column name="CONTENT_FILENAME" type="VARCHAR2(500)"/>
+            <column name="DESCRIPTION" type="VARCHAR2(4000)"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-34">
+        <createTable tableName="APEX$_WS_HISTORY">
+            <column name="ROW_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="COLUMN_NAME" type="VARCHAR2(255)"/>
+            <column name="OLD_VALUE" type="VARCHAR2(4000)"/>
+            <column name="NEW_VALUE" type="VARCHAR2(4000)"/>
+            <column name="APPLICATION_USER_ID" type="VARCHAR2(255)"/>
+            <column name="CHANGE_DATE" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-35">
+        <createTable tableName="APEX$_WS_LINKS">
+            <column name="LINK_DESCRIPTION" type="VARCHAR2(4000)"/>
+            <column name="DISPLAY_SEQUENCE" type="NUMBER(38)"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)"/>
+            <column name="ROW_ID" type="NUMBER(38)"/>
+            <column name="WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="COMPONENT_LEVEL" type="VARCHAR2(30)"/>
+            <column name="TAGS" type="VARCHAR2(4000)"/>
+            <column name="SHOW_ON_HOMEPAGE" type="VARCHAR2(1)"/>
+            <column name="LINK_NAME" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="URL" type="VARCHAR2(4000)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-36">
+        <createTable tableName="APEX$_WS_NOTES">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)"/>
+            <column name="ROW_ID" type="NUMBER(38)"/>
+            <column name="WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="COMPONENT_LEVEL" type="VARCHAR2(30)"/>
+            <column name="CONTENT" type="CLOB"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-37">
+        <createTable tableName="APEX$_WS_ROWS">
+            <column name="N010" type="NUMBER(38)"/>
+            <column name="N011" type="NUMBER(38)"/>
+            <column name="N012" type="NUMBER(38)"/>
+            <column name="N013" type="NUMBER(38)"/>
+            <column name="N014" type="NUMBER(38)"/>
+            <column name="N015" type="NUMBER(38)"/>
+            <column name="N016" type="NUMBER(38)"/>
+            <column name="N017" type="NUMBER(38)"/>
+            <column name="N018" type="NUMBER(38)"/>
+            <column name="N019" type="NUMBER(38)"/>
+            <column name="N020" type="NUMBER(38)"/>
+            <column name="N021" type="NUMBER(38)"/>
+            <column name="N022" type="NUMBER(38)"/>
+            <column name="N023" type="NUMBER(38)"/>
+            <column name="N024" type="NUMBER(38)"/>
+            <column name="N025" type="NUMBER(38)"/>
+            <column name="N026" type="NUMBER(38)"/>
+            <column name="N027" type="NUMBER(38)"/>
+            <column name="N028" type="NUMBER(38)"/>
+            <column name="N029" type="NUMBER(38)"/>
+            <column name="N030" type="NUMBER(38)"/>
+            <column name="N031" type="NUMBER(38)"/>
+            <column name="N032" type="NUMBER(38)"/>
+            <column name="N033" type="NUMBER(38)"/>
+            <column name="N034" type="NUMBER(38)"/>
+            <column name="N035" type="NUMBER(38)"/>
+            <column name="N036" type="NUMBER(38)"/>
+            <column name="N037" type="NUMBER(38)"/>
+            <column name="N038" type="NUMBER(38)"/>
+            <column name="N039" type="NUMBER(38)"/>
+            <column name="N040" type="NUMBER(38)"/>
+            <column name="N041" type="NUMBER(38)"/>
+            <column name="N042" type="NUMBER(38)"/>
+            <column name="N043" type="NUMBER(38)"/>
+            <column name="N044" type="NUMBER(38)"/>
+            <column name="N045" type="NUMBER(38)"/>
+            <column name="N046" type="NUMBER(38)"/>
+            <column name="N047" type="NUMBER(38)"/>
+            <column name="N048" type="NUMBER(38)"/>
+            <column name="N049" type="NUMBER(38)"/>
+            <column name="N050" type="NUMBER(38)"/>
+            <column name="D001" type="date"/>
+            <column name="D002" type="date"/>
+            <column name="D003" type="date"/>
+            <column name="D004" type="date"/>
+            <column name="D005" type="date"/>
+            <column name="D006" type="date"/>
+            <column name="D007" type="date"/>
+            <column name="D008" type="date"/>
+            <column name="D009" type="date"/>
+            <column name="D010" type="date"/>
+            <column name="D011" type="date"/>
+            <column name="D012" type="date"/>
+            <column name="D013" type="date"/>
+            <column name="D014" type="date"/>
+            <column name="D015" type="date"/>
+            <column name="D016" type="date"/>
+            <column name="D017" type="date"/>
+            <column name="D018" type="date"/>
+            <column name="D019" type="date"/>
+            <column name="D020" type="date"/>
+            <column name="D021" type="date"/>
+            <column name="D022" type="date"/>
+            <column name="D023" type="date"/>
+            <column name="D024" type="date"/>
+            <column name="D025" type="date"/>
+            <column name="D026" type="date"/>
+            <column name="D027" type="date"/>
+            <column name="D028" type="date"/>
+            <column name="D029" type="date"/>
+            <column name="D030" type="date"/>
+            <column name="D031" type="date"/>
+            <column name="D032" type="date"/>
+            <column name="D033" type="date"/>
+            <column name="D034" type="date"/>
+            <column name="D035" type="date"/>
+            <column name="D036" type="date"/>
+            <column name="D037" type="date"/>
+            <column name="D038" type="date"/>
+            <column name="D039" type="date"/>
+            <column name="D040" type="date"/>
+            <column name="D041" type="date"/>
+            <column name="D042" type="date"/>
+            <column name="D043" type="date"/>
+            <column name="D044" type="date"/>
+            <column name="D045" type="date"/>
+            <column name="D046" type="date"/>
+            <column name="D047" type="date"/>
+            <column name="D048" type="date"/>
+            <column name="D049" type="date"/>
+            <column name="D050" type="date"/>
+            <column name="CLOB001" type="CLOB"/>
+            <column name="SEARCH_CLOB" type="CLOB"/>
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UNIQUE_VALUE" type="VARCHAR2(255)"/>
+            <column name="TAGS" type="VARCHAR2(4000)"/>
+            <column name="PARENT_ROW_ID" type="NUMBER(38)"/>
+            <column name="OWNER" type="VARCHAR2(255)"/>
+            <column name="GEOCODE" type="VARCHAR2(512)"/>
+            <column name="LOAD_ORDER" type="NUMBER(38)"/>
+            <column name="CHANGE_COUNT" type="NUMBER(38)"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+            <column name="C001" type="VARCHAR2(4000)"/>
+            <column name="C002" type="VARCHAR2(4000)"/>
+            <column name="C003" type="VARCHAR2(4000)"/>
+            <column name="C004" type="VARCHAR2(4000)"/>
+            <column name="C005" type="VARCHAR2(4000)"/>
+            <column name="C006" type="VARCHAR2(4000)"/>
+            <column name="C007" type="VARCHAR2(4000)"/>
+            <column name="C008" type="VARCHAR2(4000)"/>
+            <column name="C009" type="VARCHAR2(4000)"/>
+            <column name="C010" type="VARCHAR2(4000)"/>
+            <column name="C011" type="VARCHAR2(4000)"/>
+            <column name="C012" type="VARCHAR2(4000)"/>
+            <column name="C013" type="VARCHAR2(4000)"/>
+            <column name="C014" type="VARCHAR2(4000)"/>
+            <column name="C015" type="VARCHAR2(4000)"/>
+            <column name="C016" type="VARCHAR2(4000)"/>
+            <column name="C017" type="VARCHAR2(4000)"/>
+            <column name="C018" type="VARCHAR2(4000)"/>
+            <column name="C019" type="VARCHAR2(4000)"/>
+            <column name="C020" type="VARCHAR2(4000)"/>
+            <column name="C021" type="VARCHAR2(4000)"/>
+            <column name="C022" type="VARCHAR2(4000)"/>
+            <column name="C023" type="VARCHAR2(4000)"/>
+            <column name="C024" type="VARCHAR2(4000)"/>
+            <column name="C025" type="VARCHAR2(4000)"/>
+            <column name="C026" type="VARCHAR2(4000)"/>
+            <column name="C027" type="VARCHAR2(4000)"/>
+            <column name="C028" type="VARCHAR2(4000)"/>
+            <column name="C029" type="VARCHAR2(4000)"/>
+            <column name="C030" type="VARCHAR2(4000)"/>
+            <column name="C031" type="VARCHAR2(4000)"/>
+            <column name="C032" type="VARCHAR2(4000)"/>
+            <column name="C033" type="VARCHAR2(4000)"/>
+            <column name="C034" type="VARCHAR2(4000)"/>
+            <column name="C035" type="VARCHAR2(4000)"/>
+            <column name="C036" type="VARCHAR2(4000)"/>
+            <column name="C037" type="VARCHAR2(4000)"/>
+            <column name="C038" type="VARCHAR2(4000)"/>
+            <column name="C039" type="VARCHAR2(4000)"/>
+            <column name="C040" type="VARCHAR2(4000)"/>
+            <column name="C041" type="VARCHAR2(4000)"/>
+            <column name="C042" type="VARCHAR2(4000)"/>
+            <column name="C043" type="VARCHAR2(4000)"/>
+            <column name="C044" type="VARCHAR2(4000)"/>
+            <column name="C045" type="VARCHAR2(4000)"/>
+            <column name="C046" type="VARCHAR2(4000)"/>
+            <column name="C047" type="VARCHAR2(4000)"/>
+            <column name="C048" type="VARCHAR2(4000)"/>
+            <column name="C049" type="VARCHAR2(4000)"/>
+            <column name="C050" type="VARCHAR2(4000)"/>
+            <column name="N001" type="NUMBER(38)"/>
+            <column name="N002" type="NUMBER(38)"/>
+            <column name="N003" type="NUMBER(38)"/>
+            <column name="N004" type="NUMBER(38)"/>
+            <column name="N005" type="NUMBER(38)"/>
+            <column name="N006" type="NUMBER(38)"/>
+            <column name="N007" type="NUMBER(38)"/>
+            <column name="N008" type="NUMBER(38)"/>
+            <column name="N009" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-38">
+        <createTable tableName="APEX$_WS_TAGS">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DATA_GRID_ID" type="NUMBER(38)"/>
+            <column name="ROW_ID" type="NUMBER(38)"/>
+            <column name="WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="COMPONENT_LEVEL" type="VARCHAR2(30)"/>
+            <column name="TAG" type="VARCHAR2(4000)"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-39">
+        <createTable tableName="APEX$_WS_WEBPG_SECTIONS">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="DISPLAY_SEQUENCE" type="NUMBER(38)"/>
+            <column name="SECTION_TYPE" type="VARCHAR2(30)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="TITLE" type="VARCHAR2(4000)"/>
+            <column name="CONTENT" type="CLOB"/>
+            <column name="CONTENT_UPPER" type="CLOB"/>
+            <column name="NAV_START_WEBPAGE_ID" type="NUMBER(38)"/>
+            <column name="NAV_MAX_LEVEL" type="NUMBER(38)"/>
+            <column name="NAV_INCLUDE_LINK" type="VARCHAR2(1)"/>
+            <column name="DATA_GRID_ID" type="NUMBER(38)"/>
+            <column name="REPORT_ID" type="NUMBER(38)"/>
+            <column name="DATA_SECTION_STYLE" type="NUMBER(38)"/>
+            <column name="CHART_TYPE" type="VARCHAR2(255)"/>
+            <column name="CHART_3D" type="VARCHAR2(1)"/>
+            <column name="CHART_LABEL" type="VARCHAR2(255)"/>
+            <column name="LABEL_AXIS_TITLE" type="VARCHAR2(255)"/>
+            <column name="CHART_VALUE" type="VARCHAR2(255)"/>
+            <column name="VALUE_AXIS_TITLE" type="VARCHAR2(255)"/>
+            <column name="CHART_AGGREGATE" type="VARCHAR2(255)"/>
+            <column name="CHART_SORTING" type="VARCHAR2(255)"/>
+            <column name="CREATED_ON" type="date">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CREATED_BY" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="UPDATED_ON" type="date"/>
+            <column name="UPDATED_BY" type="VARCHAR2(255)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-40">
+        <createTable tableName="APEX$_WS_WEBPG_SECTION_HISTORY">
+            <column name="SECTION_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WS_APP_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="WEBPAGE_ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="OLD_DISPLAY_SEQUENCE" type="NUMBER(38)"/>
+            <column name="NEW_DISPLAY_SEQUENCE" type="NUMBER(38)"/>
+            <column name="OLD_TITLE" type="VARCHAR2(4000)"/>
+            <column name="NEW_TITLE" type="VARCHAR2(4000)"/>
+            <column name="OLD_CONTENT" type="CLOB"/>
+            <column name="NEW_CONTENT" type="CLOB"/>
+            <column name="APPLICATION_USER_ID" type="VARCHAR2(255)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="CHANGE_DATE" type="date">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-41">
+        <createTable tableName="DOK_P_N">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMER" type="VARCHAR2(20)"/>
+            <column name="DATA_WYSTAWIENIA" type="date"/>
+            <column name="SKLEP" type="NUMBER(38)"/>
+            <column name="UZYTKOWNIK" type="NUMBER(38)"/>
+            <column name="TYP_DOKUMENTU" type="NUMBER(38)"/>
+            <column name="KOMENTARZ" type="VARCHAR2(200)"/>
+            <column name="DATA_UTWORZENIA" type="date"/>
+            <column name="DATA_MODYFIKACJI" type="date"/>
+            <column name="FZ" type="NUMBER(38)"/>
+            <column name="KONTRAHENT" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-42">
+        <createTable tableName="DOK_P_P">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOK_P_N" type="NUMBER(38)"/>
+            <column name="TOWAR" type="NUMBER(38)"/>
+            <column name="ILOSC_CALOSC" type="NUMBER(38)"/>
+            <column name="ILOSC_POZOSTALA" type="NUMBER(38)"/>
+            <column name="ILOSC_DO_SCIAGNIECIA" type="NUMBER(38)"/>
+            <column name="CENA_ZAKUPU_NETTO" type="NUMBER(38)"/>
+            <column name="AKT" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-43">
+        <createTable tableName="DOK_W_N">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMER" type="VARCHAR2(20)"/>
+            <column name="KONTRAHENT" type="NUMBER(38)"/>
+            <column name="DATA_WYSTAWIENIA" type="date"/>
+            <column name="UZYTKOWNIK" type="NUMBER(38)"/>
+            <column name="TYP_DOKUMENTU" type="NUMBER(38)"/>
+            <column name="KOMENTARZ" type="VARCHAR2(200)"/>
+            <column name="DATA_UTWORZENIA" type="date"/>
+            <column name="DATA_MODYFIKACJI" type="date"/>
+            <column name="FV" type="NUMBER(38)"/>
+            <column name="SKLEP" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-44">
+        <createTable tableName="DOK_W_P">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="DOK_W_N" type="NUMBER(38)"/>
+            <column name="TOWAR" type="NUMBER(38)"/>
+            <column name="ILOSC" type="NUMBER(38)"/>
+            <column name="CENA_SPRZEDAZY_NETTO" type="NUMBER(38)"/>
+            <column name="CENA_ZAKUPU_NETTO" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-45">
+        <createTable tableName="FV_N">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMER" type="VARCHAR2(20)"/>
+            <column name="KONTRAHENT" type="NUMBER(38)"/>
+            <column name="DATA_WYSTAWIENIA" type="date"/>
+            <column name="DATA_SPRZEDAZY" type="date"/>
+            <column name="TERMIN_PLATNOSCI" type="date"/>
+            <column name="SPOSOB_ZAPLATY" type="NUMBER(38)"/>
+            <column name="UZYTKOWNIK" type="NUMBER(38)"/>
+            <column name="KOMENTARZ" type="VARCHAR2(200)"/>
+            <column name="WALUTA" type="NUMBER(38)"/>
+            <column name="ZAPLACONO" type="NUMBER(38)"/>
+            <column name="SKLEP" type="NUMBER(38)"/>
+            <column name="DATA_UTWORZENIA" type="date"/>
+            <column name="DATA_MODYFIKACJI" type="date"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-46">
+        <createTable tableName="FV_P">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FV_N" type="NUMBER(38)"/>
+            <column name="TOWAR" type="NUMBER(38)"/>
+            <column name="ILOSC" type="NUMBER(38)"/>
+            <column name="CENA_SPRZEDAZY_NETTO" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-47">
+        <createTable tableName="FZ_N">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NUMER" type="VARCHAR2(20)"/>
+            <column name="KONTRAHENT" type="NUMBER(38)"/>
+            <column name="DATA_WYSTAWIENIA" type="date"/>
+            <column name="DATA_ZAKUPU" type="date"/>
+            <column name="SKLEP" type="NUMBER(38)"/>
+            <column name="SPOSOB_ZAPLATY" type="NUMBER(38)"/>
+            <column name="UZYTKOWNIK" type="NUMBER(38)"/>
+            <column name="KOMENTARZ" type="VARCHAR2(200)"/>
+            <column name="WALUTA" type="NUMBER(38)"/>
+            <column name="DATA_UTWORZENIA" type="date"/>
+            <column name="DATA_MODYFIKACJI" type="date"/>
+            <column name="TERMIN_PLATNOSCI" type="date"/>
+            <column name="ZAPLACONO" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-48">
+        <createTable tableName="FZ_P">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="FZ_N" type="NUMBER(38)"/>
+            <column name="TOWAR" type="NUMBER(38)"/>
+            <column name="ILOSC" type="NUMBER(38)"/>
+            <column name="CENA_ZAKUPU_NETTO" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-49">
+        <createTable tableName="GRUPA">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(50)"/>
+            <column name="RODZIC" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-50">
+        <createTable tableName="JEDNOSTKA">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(10)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-51">
+        <createTable tableName="KASA">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="SKLEP" type="NUMBER(38)"/>
+            <column name="SYMBOL" type="VARCHAR2(5)"/>
+            <column name="ADRES" type="VARCHAR2(200)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-52">
+        <createTable tableName="KONTRAHENT">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(200)"/>
+            <column name="NIP" type="VARCHAR2(20)"/>
+            <column name="KONTO_BANKOWE" type="VARCHAR2(30)"/>
+            <column name="EMAIL" type="VARCHAR2(40)"/>
+            <column name="KRAJ" type="VARCHAR2(40)"/>
+            <column name="MIASTO" type="VARCHAR2(100)"/>
+            <column name="ULICA" type="VARCHAR2(100)"/>
+            <column name="NUMER_MIESZKANIA" type="VARCHAR2(10)"/>
+            <column name="KOD_POCZTOWY" type="VARCHAR2(6)"/>
+            <column name="REGON" type="VARCHAR2(20)"/>
+            <column name="TELEFON" type="VARCHAR2(20)"/>
+            <column name="NAZWA_SKROCONA" type="VARCHAR2(30)"/>
+            <column name="LICZBA_DNI" type="NUMBER(38)"/>
+            <column name="AKTYWNY" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-53">
+        <createTable tableName="ROLA">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-54">
+        <createTable tableName="SKLEP">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(50)"/>
+            <column name="SYMBOL" type="VARCHAR2(5)"/>
+            <column name="KRAJ" type="VARCHAR2(50)"/>
+            <column name="MIASTO" type="VARCHAR2(100)"/>
+            <column name="ULICA" type="VARCHAR2(100)"/>
+            <column name="KOD_POCZTOWY" type="VARCHAR2(6)"/>
+            <column name="EMAIL" type="VARCHAR2(50)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-55">
+        <createTable tableName="SPOSOB_ZAPLATY">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-56">
+        <createTable tableName="TOWAR">
+            <column name="GRUPA" type="NUMBER(38)"/>
+            <column name="KOD_KRESKOWY" type="VARCHAR2(20)"/>
+            <column name="STAN" type="NUMBER(38)"/>
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(100)"/>
+            <column name="CENA_NETTO" type="NUMBER(38)"/>
+            <column name="VAT" type="NUMBER(38)"/>
+            <column name="PKWIU" type="VARCHAR2(30)"/>
+            <column name="JEDNOSTKA" type="NUMBER(38)"/>
+            <column name="WALUTA" type="NUMBER(38)"/>
+            <column name="CENA_ZAKUPU" type="NUMBER(38)"/>
+            <column name="ZMODYFIKOWANY" type="NUMBER(38)"/>
+            <column name="PYTAJ_O_CENE" type="NUMBER(38)"/>
+            <column name="AKTYWNY" type="NUMBER(38)"/>
+            <column name="PROMOCJA" type="NUMBER(38)"/>
+            <column name="PROMOCJA_OD" type="date"/>
+            <column name="PROMOCJA_DO" type="date"/>
+            <column name="CENA_PROMOCYJNA" type="NUMBER(38)"/>
+            <column name="CENA_PRZED_PROMOCJA" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-57">
+        <createTable tableName="TYP_DOKUMENTU">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="NAZWA" type="VARCHAR2(20)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-58">
+        <createTable tableName="USTAWIENIA">
+            <column name="NAZWA" type="VARCHAR2(100)"/>
+            <column name="NIP" type="VARCHAR2(20)"/>
+            <column name="REGON" type="VARCHAR2(20)"/>
+            <column name="KRAJ" type="VARCHAR2(50)"/>
+            <column name="MIASTO" type="VARCHAR2(50)"/>
+            <column name="ULICA" type="VARCHAR2(60)"/>
+            <column name="KOD_POCZTOWY" type="VARCHAR2(6)"/>
+            <column name="EMAIL" type="VARCHAR2(50)"/>
+            <column name="EMAIL_LOGIN" type="VARCHAR2(50)"/>
+            <column name="EMAIL_HASLO" type="VARCHAR2(50)"/>
+            <column name="TELEFON" type="VARCHAR2(20)"/>
+            <column name="BANK" type="VARCHAR2(50)"/>
+            <column name="KONTO_BANKOWE" type="VARCHAR2(30)"/>
+            <column name="LOGO" type="BLOB"/>
+            <column name="PZ" type="VARCHAR2(25)"/>
+            <column name="WZ" type="VARCHAR2(25)"/>
+            <column name="FV" type="VARCHAR2(25)"/>
+            <column name="FZ" type="VARCHAR2(25)"/>
+            <column name="PR_PLUS" type="VARCHAR2(25)"/>
+            <column name="PR_MINUS" type="VARCHAR2(25)"/>
+            <column name="MM_PLUS" type="VARCHAR2(25)"/>
+            <column name="MM_MINUS" type="VARCHAR2(25)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-59">
+        <createTable tableName="UZYTKOWNIK">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="LOGIN" type="VARCHAR2(50)"/>
+            <column name="HASLO" type="VARCHAR2(200)"/>
+            <column name="IMIE" type="VARCHAR2(50)"/>
+            <column name="NAZWISKO" type="VARCHAR2(50)"/>
+            <column name="ROLA" type="NUMBER(38)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-60">
+        <createTable tableName="VAT">
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+            <column name="STAWKA" type="NUMBER(38)"/>
+            <column name="TEKST" type="VARCHAR2(10)"/>
+            <column name="NAZWA" type="VARCHAR2(30)"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-61">
+        <createTable tableName="WALUTA">
+            <column name="NAZWA" type="VARCHAR2(20)"/>
+            <column name="SYMBOL" type="VARCHAR2(5)"/>
+            <column name="WARTOSC" type="NUMBER(38)"/>
+            <column name="GLOWNA" type="NUMBER(38)"/>
+            <column name="ID" type="NUMBER(38)">
+                <constraints nullable="false"/>
+            </column>
+        </createTable>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-62">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_ACL_PK" tableName="APEX$_ACL"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-63">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_FILES_PK" tableName="APEX$_WS_FILES"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-64">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_LINKS_PK" tableName="APEX$_WS_LINKS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-65">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_NOTES_PK" tableName="APEX$_WS_NOTES"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-66">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_ROWS_PK" tableName="APEX$_WS_ROWS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-67">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_TAGS_PK" tableName="APEX$_WS_TAGS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-68">
+        <addPrimaryKey columnNames="ID" constraintName="APEX$_WS_WEBPG_SECTIONS_PK" tableName="APEX$_WS_WEBPG_SECTIONS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-69">
+        <addPrimaryKey columnNames="ID" constraintName="DOK_P_N_PK" tableName="DOK_P_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-70">
+        <addPrimaryKey columnNames="ID" constraintName="DOK_P_P_PK" tableName="DOK_P_P"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-71">
+        <addPrimaryKey columnNames="ID" constraintName="DOK_W_N_PK" tableName="DOK_W_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-72">
+        <addPrimaryKey columnNames="ID" constraintName="DOK_W_P_PK" tableName="DOK_W_P"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-73">
+        <addPrimaryKey columnNames="ID" constraintName="FV_N_PK" tableName="FV_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-74">
+        <addPrimaryKey columnNames="ID" constraintName="FV_P_PK" tableName="FV_P"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-75">
+        <addPrimaryKey columnNames="ID" constraintName="FZ_N_PK" tableName="FZ_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-76">
+        <addPrimaryKey columnNames="ID" constraintName="FZ_P_PK" tableName="FZ_P"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-77">
+        <addPrimaryKey columnNames="ID" constraintName="GRUPA_PK" tableName="GRUPA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-78">
+        <addPrimaryKey columnNames="ID" constraintName="JEDNOSTKA_PK" tableName="JEDNOSTKA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-79">
+        <addPrimaryKey columnNames="ID" constraintName="KASA_PK" tableName="KASA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-80">
+        <addPrimaryKey columnNames="ID" constraintName="KONTRAHENT_PK" tableName="KONTRAHENT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-81">
+        <addPrimaryKey columnNames="ID" constraintName="ROLA_PK" tableName="ROLA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-82">
+        <addPrimaryKey columnNames="ID" constraintName="SKLEP_PK" tableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-83">
+        <addPrimaryKey columnNames="ID" constraintName="SPOSOB_ZAPLATY_PK" tableName="SPOSOB_ZAPLATY"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-84">
+        <addPrimaryKey columnNames="ID" constraintName="TOWAR_PK" tableName="TOWAR"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-85">
+        <addPrimaryKey columnNames="ID" constraintName="TYP_DOKUMENTU_PK" tableName="TYP_DOKUMENTU"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-86">
+        <addPrimaryKey columnNames="ID" constraintName="UZYTKOWNIK_PK" tableName="UZYTKOWNIK"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-87">
+        <addPrimaryKey columnNames="ID" constraintName="VAT_PK" tableName="VAT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-88">
+        <addPrimaryKey columnNames="ID" constraintName="WALUTA_PK" tableName="WALUTA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-89">
+        <addForeignKeyConstraint baseColumnNames="ROW_ID" baseTableName="APEX$_WS_FILES" constraintName="APEX$_WS_FILES_FK" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="APEX$_WS_ROWS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-90">
+        <addForeignKeyConstraint baseColumnNames="ROW_ID" baseTableName="APEX$_WS_LINKS" constraintName="APEX$_WS_LINKS_FK" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="APEX$_WS_ROWS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-91">
+        <addForeignKeyConstraint baseColumnNames="ROW_ID" baseTableName="APEX$_WS_NOTES" constraintName="APEX$_WS_NOTES_FK" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="APEX$_WS_ROWS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-92">
+        <addForeignKeyConstraint baseColumnNames="ROW_ID" baseTableName="APEX$_WS_TAGS" constraintName="APEX$_WS_TAGS_FK" deferrable="false" initiallyDeferred="false" onDelete="CASCADE" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="APEX$_WS_ROWS"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-93">
+        <addForeignKeyConstraint baseColumnNames="TYP_DOKUMENTU" baseTableName="DOK_P_N" constraintName="DOK_P_N_CON" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TYP_DOKUMENTU"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-94">
+        <addForeignKeyConstraint baseColumnNames="SKLEP" baseTableName="DOK_P_N" constraintName="DOK_P_N_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-95">
+        <addForeignKeyConstraint baseColumnNames="UZYTKOWNIK" baseTableName="DOK_P_N" constraintName="DOK_P_N_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="UZYTKOWNIK"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-96">
+        <addForeignKeyConstraint baseColumnNames="KONTRAHENT" baseTableName="DOK_P_N" constraintName="DOK_P_N_FK3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KONTRAHENT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-97">
+        <addForeignKeyConstraint baseColumnNames="FZ" baseTableName="DOK_P_N" constraintName="DOK_P_N_FK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="FZ_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-98">
+        <addForeignKeyConstraint baseColumnNames="DOK_P_N" baseTableName="DOK_P_P" constraintName="DOK_P_P_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DOK_P_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-99">
+        <addForeignKeyConstraint baseColumnNames="TOWAR" baseTableName="DOK_P_P" constraintName="DOK_P_P_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TOWAR"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-100">
+        <addForeignKeyConstraint baseColumnNames="KONTRAHENT" baseTableName="DOK_W_N" constraintName="DOK_W_N_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KONTRAHENT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-101">
+        <addForeignKeyConstraint baseColumnNames="UZYTKOWNIK" baseTableName="DOK_W_N" constraintName="DOK_W_N_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="UZYTKOWNIK"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-102">
+        <addForeignKeyConstraint baseColumnNames="TYP_DOKUMENTU" baseTableName="DOK_W_N" constraintName="DOK_W_N_FK3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TYP_DOKUMENTU"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-103">
+        <addForeignKeyConstraint baseColumnNames="FV" baseTableName="DOK_W_N" constraintName="DOK_W_N_FK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="FV_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-104">
+        <addForeignKeyConstraint baseColumnNames="SKLEP" baseTableName="DOK_W_N" constraintName="DOK_W_N_FK_S" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-105">
+        <addForeignKeyConstraint baseColumnNames="DOK_W_N" baseTableName="DOK_W_P" constraintName="DOK_W_P_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="DOK_W_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-106">
+        <addForeignKeyConstraint baseColumnNames="TOWAR" baseTableName="DOK_W_P" constraintName="DOK_W_P_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TOWAR"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-107">
+        <addForeignKeyConstraint baseColumnNames="KONTRAHENT" baseTableName="FV_N" constraintName="FV_N_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KONTRAHENT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-108">
+        <addForeignKeyConstraint baseColumnNames="SPOSOB_ZAPLATY" baseTableName="FV_N" constraintName="FV_N_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPOSOB_ZAPLATY"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-109">
+        <addForeignKeyConstraint baseColumnNames="UZYTKOWNIK" baseTableName="FV_N" constraintName="FV_N_FK3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="UZYTKOWNIK"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-110">
+        <addForeignKeyConstraint baseColumnNames="WALUTA" baseTableName="FV_N" constraintName="FV_N_FK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WALUTA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-111">
+        <addForeignKeyConstraint baseColumnNames="SKLEP" baseTableName="FV_N" constraintName="FV_N_FK5" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-112">
+        <addForeignKeyConstraint baseColumnNames="FV_N" baseTableName="FV_P" constraintName="FV_P_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="FV_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-113">
+        <addForeignKeyConstraint baseColumnNames="TOWAR" baseTableName="FV_P" constraintName="FV_P_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TOWAR"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-114">
+        <addForeignKeyConstraint baseColumnNames="KONTRAHENT" baseTableName="FZ_N" constraintName="FZ_N_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="KONTRAHENT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-115">
+        <addForeignKeyConstraint baseColumnNames="SKLEP" baseTableName="FZ_N" constraintName="FZ_N_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-116">
+        <addForeignKeyConstraint baseColumnNames="SPOSOB_ZAPLATY" baseTableName="FZ_N" constraintName="FZ_N_FK3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SPOSOB_ZAPLATY"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-117">
+        <addForeignKeyConstraint baseColumnNames="UZYTKOWNIK" baseTableName="FZ_N" constraintName="FZ_N_FK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="UZYTKOWNIK"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-118">
+        <addForeignKeyConstraint baseColumnNames="WALUTA" baseTableName="FZ_N" constraintName="FZ_N_FK5" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WALUTA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-119">
+        <addForeignKeyConstraint baseColumnNames="FZ_N" baseTableName="FZ_P" constraintName="FZ_P_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="FZ_N"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-120">
+        <addForeignKeyConstraint baseColumnNames="TOWAR" baseTableName="FZ_P" constraintName="FZ_P_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="TOWAR"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-121">
+        <addForeignKeyConstraint baseColumnNames="RODZIC" baseTableName="GRUPA" constraintName="GRUPA_CON" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GRUPA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-122">
+        <addForeignKeyConstraint baseColumnNames="SKLEP" baseTableName="KASA" constraintName="KASA_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="SKLEP"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-123">
+        <addForeignKeyConstraint baseColumnNames="WALUTA" baseTableName="TOWAR" constraintName="TOWAR_FK1" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="WALUTA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-124">
+        <addForeignKeyConstraint baseColumnNames="VAT" baseTableName="TOWAR" constraintName="TOWAR_FK2" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="VAT"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-125">
+        <addForeignKeyConstraint baseColumnNames="JEDNOSTKA" baseTableName="TOWAR" constraintName="TOWAR_FK3" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="JEDNOSTKA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-126">
+        <addForeignKeyConstraint baseColumnNames="GRUPA" baseTableName="TOWAR" constraintName="TOWAR_FK4" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="GRUPA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-127">
+        <addForeignKeyConstraint baseColumnNames="ROLA" baseTableName="UZYTKOWNIK" constraintName="UZYTKOWNIK_FK" deferrable="false" initiallyDeferred="false" onDelete="RESTRICT" onUpdate="RESTRICT" referencedColumnNames="ID" referencedTableName="ROLA"/>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-128">
+        <createIndex indexName="APEX$_WS_HISTORY_IDX" tableName="APEX$_WS_HISTORY" unique="false">
+            <column name="WS_APP_ID"/>
+            <column name="DATA_GRID_ID"/>
+            <column name="ROW_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-129">
+        <createIndex indexName="APEX$_WS_LINKS_IDX1" tableName="APEX$_WS_LINKS" unique="false">
+            <column name="WS_APP_ID"/>
+            <column name="DATA_GRID_ID"/>
+            <column name="ROW_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-130">
+        <createIndex indexName="APEX$_WS_LINKS_IDX2" tableName="APEX$_WS_LINKS" unique="false">
+            <column name="WS_APP_ID"/>
+            <column name="WEBPAGE_ID"/>
+        </createIndex>
+    </changeSet>
+    <changeSet author="marcin (generated)" id="1387836412218-131">
+        <createIndex indexName="APEX$_WS_ROWS_IDX" tableName="APEX$_WS_ROWS" unique="false">
+            <column name="WS_APP_ID"/>
+            <column name="DATA_GRID_ID"/>
+        </createIndex>
+    </changeSet>
+</databaseChangeLog>
