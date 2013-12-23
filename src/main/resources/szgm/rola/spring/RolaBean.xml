@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+   	<bean id="rolaBo" 
+         class="szgm.rola.bo.RolaBoImpl" >
+   		<property name="rolaDao" ref="rolaDao" />
+   	</bean>
+ 
+   	<bean id="rolaDao" 
+         class="szgm.rola.dao.RolaDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+   	<bean id="rolaConverter" 
+         class="szgm.converters.RolaConverter" >
+   		<property name="rolaDao" ref="rolaDao" />
+   	</bean>
+   	
+</beans>

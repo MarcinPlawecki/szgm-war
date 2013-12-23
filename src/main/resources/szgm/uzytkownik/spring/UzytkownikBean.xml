@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+   	<bean id="uzytkownikBo" 
+         class="szgm.uzytkownik.bo.UzytkownikBoImpl" >
+   		<property name="uzytkownikDao" ref="uzytkownikDao" />
+   	</bean>
+ 
+   	<bean id="uzytkownikDao" 
+         class="szgm.uzytkownik.dao.UzytkownikDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+   	<bean id="uzytkownikConverter" 
+         class="szgm.converters.UzytkownikConverter" >
+   		<property name="uzytkownikDao" ref="uzytkownikDao" />
+   	</bean>
+   	
+</beans>

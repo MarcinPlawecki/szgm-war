@@ -1,0 +1,20 @@
+<beans xmlns="http://www.springframework.org/schema/beans"
+xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+xsi:schemaLocation="http://www.springframework.org/schema/beans
+http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+	<!-- Database Configuration -->
+	<import resource="classes/config/spring/beans/DataSource.xml"/>
+	<import resource="classes/config/spring/beans/HibernateSessionFactory.xml"/>
+ 
+	<!-- Beans Declaration -->
+	<import resource="classes/szgm/towar/spring/TowarBean.xml"/>
+	<import resource="classes/szgm/vat/spring/VatBean.xml"/>
+	<import resource="classes/szgm/jednostka/spring/JednostkaBean.xml"/>
+	<import resource="classes/szgm/waluta/spring/WalutaBean.xml"/>
+	<import resource="classes/szgm/grupa/spring/GrupaBean.xml"/>
+ 	<import resource="classes/szgm/sklep/spring/SklepBean.xml"/>
+ 	<import resource="classes/szgm/uzytkownik/spring/UzytkownikBean.xml"/>
+ 	<import resource="classes/szgm/rola/spring/RolaBean.xml"/>
+ 	<import resource="classes/szgm/typDokumentu/spring/TypDokumentuBean.xml"/>
+</beans>

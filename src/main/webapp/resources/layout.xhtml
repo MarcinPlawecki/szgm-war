@@ -1,0 +1,50 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+<h:head>
+	<title>System Zarządzania Gospodarką Magazynową</title>
+    <h:outputStylesheet library="css" name="style.css"  />
+</h:head>
+ 
+<h:body>
+	
+<div id="wrapper">
+	<header id="top">
+		<div id="topBtns">
+			<a href="#" title="Ustawienia">Ustawienia<h:graphicImage class="image" url="/resources/img/ustawienia.png" width="16" height="16" /></a>
+			<a href="#" title="Wyloguj">Wyloguj<h:graphicImage class="image" url="/resources/img/logout.png" width="16" height="16" /></a>
+		</div>
+	</header>
+	
+	<header id="header">
+		<div id="logo">
+			<h:outputLink value="/SZGM/index.xhtml"><h:graphicImage class="image" url="/resources/img/logo.png" height="60" /></h:outputLink>
+		</div>
+		<div id="mainMenu">
+			<a href="#" title="Faktury Sprzedaży"><h:graphicImage class="image" url="/resources/img/fv.png" /></a>
+			<a href="#" title="Faktury Zakupu"><h:graphicImage class="image" url="/resources/img/fz.png" /></a>
+			<a href="#" title="Dokumenty Wychodzące"><h:graphicImage class="image" url="/resources/img/dw.png" /></a>
+			<h:outputLink value="/SZGM/dokp/index.xhtml"><h:graphicImage class="image" url="/resources/img/dp.png" /></h:outputLink>
+			<h:outputLink value="/SZGM/towary/index.xhtml"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
+			<a href="#" title="Kontrahenci"><h:graphicImage class="image" url="/resources/img/kontr.png" /></a>
+			<a href="#" title="Statystyki"><h:graphicImage class="image" url="/resources/img/stat.png" /></a>
+		</div>
+	</header><!-- #header-->
+
+	<section id="middle">
+		<ui:insert name="body_content" />  
+	</section><!-- #middle-->
+</div><!-- #wrapper -->
+
+<footer id="footer">
+	&copy; 2013 Marcin Pławecki
+</footer><!-- #footer -->
+
+</h:body>
+ 
+</html>

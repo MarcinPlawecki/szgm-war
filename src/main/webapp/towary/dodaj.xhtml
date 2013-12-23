@@ -1,0 +1,77 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+<ui:composition template="/resources/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+			<h:form>
+			<h:panelGrid columns="2">
+				Nazwa: <h:inputText value="#{towar.nazwa}" />
+				Cena Netto: <h:inputText value="#{towar.cenaNetto}" />
+				Vat: <h:selectOneMenu value="#{towar.vat}">
+   						<f:selectItems value="#{vat.getVatList()}" var="v"
+   						itemLabel="#{v.stawka}" itemValue="#{v}" />
+   						<f:converter converterId="vatConverter" />
+   					</h:selectOneMenu>
+				PKWiU: <h:inputText value="#{towar.pkwiu}" />
+				Jednostka: <h:selectOneMenu value="#{towar.jednostka}">
+   						<f:selectItems value="#{jednostka.getJednostkaList()}" var="j"
+   						itemLabel="#{j.nazwa}" itemValue="#{j}" />
+   						<f:converter converterId="jednostkaConverter" />
+   					</h:selectOneMenu>
+				Waluta: <h:selectOneMenu value="#{towar.waluta}">
+   						<f:selectItems value="#{waluta.getWalutaList()}" var="w"
+   						itemLabel="#{w.nazwa}" itemValue="#{w}" />
+   						<f:converter converterId="walutaConverter" />
+   					</h:selectOneMenu>
+				Cena Zakupu: <h:inputText value="#{towar.cenaZakupu}" />
+				Pytaj O Cenę: <h:selectOneMenu value="#{towar.pytajOCene}">
+   						<f:selectItem itemValue="1" itemLabel="Tak" />
+					   	<f:selectItem itemValue="0" itemLabel="Nie" />
+					</h:selectOneMenu>
+				Aktywny: <h:selectOneMenu value="#{towar.aktywny}">
+   						<f:selectItem itemValue="1" itemLabel="Tak" />
+					   	<f:selectItem itemValue="0" itemLabel="Nie" />
+					</h:selectOneMenu>
+				Promocja: <h:selectOneMenu value="#{towar.promocja}">
+   						<f:selectItem itemValue="1" itemLabel="Tak" />
+					   	<f:selectItem itemValue="0" itemLabel="Nie" />
+					</h:selectOneMenu>
+				Grupa: <h:selectOneMenu value="#{towar.grupa}">
+   						<f:selectItems value="#{grupa.getGrupaList()}" var="g"
+   						itemLabel="#{g.nazwa}" itemValue="#{g}" />
+   						<f:converter converterId="grupaConverter" />
+   					</h:selectOneMenu>
+				Kod Kreskowy: <h:inputText value="#{towar.kodKreskowy}" />
+    			<h:commandButton value="Zatwierdź" action="#{towar.addTowar}" />
+    	  	</h:panelGrid>
+    	  	</h:form>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/towary/index.xhtml">Lista Towarów</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/dodaj.xhtml">Dodaj Nowy</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/etykiety.xhtml">Wydruk Etykiet</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
+		</ul>
+		</aside><!-- #sideLeft -->
+    </ui:define>
+
+</ui:composition>
+
+</html>

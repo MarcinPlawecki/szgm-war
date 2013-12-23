@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
+ 
+   	<bean id="vatBo" 
+         class="szgm.vat.bo.VatBoImpl" >
+   		<property name="vatDao" ref="vatDao" />
+   	</bean>
+ 
+   	<bean id="vatDao" 
+         class="szgm.vat.dao.VatDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+   	<bean id="vatConverter" 
+         class="szgm.converters.VatConverter" >
+   		<property name="vatDao" ref="vatDao" />
+   	</bean>
+   	
+</beans>

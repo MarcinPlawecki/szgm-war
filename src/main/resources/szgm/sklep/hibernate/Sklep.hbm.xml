@@ -1,0 +1,37 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.sklep.model.Sklep" 
+        table="sklep" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">sklep_seq</param>
+            </generator>
+        </id>
+        <property name="nazwa" type="string">
+            <column name="NAZWA" length="50" not-null="true" />
+        </property>
+        <property name="symbol" type="string">
+            <column name="SYMBOL" length="5" not-null="true" />
+        </property>
+        <property name="kraj" type="string">
+            <column name="KRAJ" length="50" not-null="true" />
+        </property>
+        <property name="miasto" type="string">
+            <column name="MIASTO" length="100" not-null="true" />
+        </property>
+        <property name="ulica" type="string">
+            <column name="ULICA" length="100" not-null="true" />
+        </property>
+        <property name="kodPocztowy" type="string">
+            <column name="KOD_POCZTOWY" length="6" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="50" />
+        </property>
+    </class>
+</hibernate-mapping>

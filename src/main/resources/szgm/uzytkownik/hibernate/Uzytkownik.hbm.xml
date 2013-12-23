@@ -1,0 +1,31 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.uzytkownik.model.Uzytkownik" 
+        table="uzytkownik" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">uzytkownik_seq</param>
+            </generator>
+        </id>
+        <property name="login" type="string">
+            <column name="LOGIN" length="50" not-null="true" />
+        </property>
+        <property name="haslo" type="string">
+            <column name="HASLO" length="200" not-null="true" />
+        </property>
+        <property name="imie" type="string">
+            <column name="IMIE" length="50" not-null="true" />
+        </property>
+        <property name="nazwisko" type="string">
+            <column name="NAZWISKO" length="50" not-null="true" />
+        </property>
+        <many-to-one name="rola" class="szgm.rola.model.Rola" fetch="select" lazy="false">
+			<column name="ROLA" not-null="true" />
+		</many-to-one>
+    </class>
+</hibernate-mapping>
