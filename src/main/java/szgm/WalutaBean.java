@@ -3,6 +3,7 @@ package szgm;
 import java.io.Serializable;
 import java.util.List;
 
+import collections.CollectionUtils;
 import szgm.waluta.bo.WalutaBo;
 import szgm.waluta.model.Waluta;
 
