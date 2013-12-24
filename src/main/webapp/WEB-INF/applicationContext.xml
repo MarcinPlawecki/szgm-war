@@ -8,13 +8,13 @@ http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
 	<import resource="classes/config/spring/beans/HibernateSessionFactory.xml"/>
  
 	<!-- Beans Declaration -->
-	<import resource="classes/szgm/towar/spring/TowarBean.xml"/>
-	<import resource="classes/szgm/vat/spring/VatBean.xml"/>
-	<import resource="classes/szgm/jednostka/spring/JednostkaBean.xml"/>
-	<import resource="classes/szgm/waluta/spring/WalutaBean.xml"/>
-	<import resource="classes/szgm/grupa/spring/GrupaBean.xml"/>
- 	<import resource="classes/szgm/sklep/spring/SklepBean.xml"/>
- 	<import resource="classes/szgm/uzytkownik/spring/UzytkownikBean.xml"/>
- 	<import resource="classes/szgm/rola/spring/RolaBean.xml"/>
- 	<import resource="classes/szgm/typDokumentu/spring/TypDokumentuBean.xml"/>
+	<import resource="classpath:szgm/towar/spring/TowarBean.xml"/>
+	<import resource="classpath:szgm/vat/spring/VatBean.xml"/>
+	<import resource="classpath:szgm/jednostka/spring/JednostkaBean.xml"/>
+	<import resource="classpath:szgm/waluta/spring/WalutaBean.xml"/>
+	<import resource="classpath:szgm/grupa/spring/GrupaBean.xml"/>
+ 	<import resource="classpath:szgm/sklep/spring/SklepBean.xml"/>
+ 	<import resource="classpath:szgm/uzytkownik/spring/UzytkownikBean.xml"/>
+ 	<import resource="classpath:szgm/rola/spring/RolaBean.xml"/>
+ 	<import resource="classpath:szgm/typDokumentu/spring/TypDokumentuBean.xml"/>
 </beans>
