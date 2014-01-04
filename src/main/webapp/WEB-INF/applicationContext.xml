@@ -4,8 +4,8 @@ xsi:schemaLocation="http://www.springframework.org/schema/beans
 http://www.springframework.org/schema/beans/spring-beans-2.5.xsd">
  
 	<!-- Database Configuration -->
-	<import resource="classes/config/spring/beans/DataSource.xml"/>
-	<import resource="classes/config/spring/beans/HibernateSessionFactory.xml"/>
+	<import resource="classpath:szgm/config/spring/beans/DataSource.xml"/>
+	<import resource="classpath:szgm/config/spring/beans/HibernateSessionFactory.xml"/>
  
 	<!-- Beans Declaration -->
 	<import resource="classpath:szgm/towar/spring/TowarBean.xml"/>
