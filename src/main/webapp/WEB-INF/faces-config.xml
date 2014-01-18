@@ -13,15 +13,6 @@
   	</application>
  	
 	<managed-bean>
-		<managed-bean-name>towar</managed-bean-name>
-		<managed-bean-class>szgm.towar.TowarBean</managed-bean-class>
-		<managed-bean-scope>session</managed-bean-scope>
-		<managed-property>
-			<property-name>towarBo</property-name>
-			<value>#{towarBo}</value>
-		</managed-property>
-	</managed-bean>
-	<managed-bean>
 		<managed-bean-name>vat</managed-bean-name>
 		<managed-bean-class>szgm.vat.VatBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
@@ -93,6 +84,32 @@
 			<value>#{typDokumentuBo}</value>
 		</managed-property>
 	</managed-bean>
+	
+	
+	
+	<!-- Simple Navigation Rule -->
+    <!-- If  user keys in ToSecure, move to /pages/secure/secured.xhtml-->
+    <!-- Else If user keys in ToUnSecure, move to /pages/unsecure/unsecured.xhtml-->
+    <navigation-rule>
+        <display-name>pages/home/home.xhtml</display-name>
+        <from-view-id>/pages/home/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{navigator.navigateTo}</from-action>
+            <from-outcome>Secured</from-outcome>
+            <to-view-id>/pages/secure/secured.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
+    <navigation-rule>
+        <display-name>pages/home/home.xhtml</display-name>
+        <from-view-id>/pages/home/home.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{navigator.navigateTo}</from-action>
+            <from-outcome>UnSecured</from-outcome>
+            <to-view-id>/pages/unsecure/unsecured.xhtml</to-view-id>
+            <redirect></redirect>
+        </navigation-case>
+    </navigation-rule>
 	
 	
 	<navigation-rule>

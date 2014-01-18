@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.vat.model.Vat" 
+        table="vat" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">vat_seq</param>
+            </generator>
+        </id>
+        <property name="stawka" type="double">
+            <column name="STAWKA" not-null="true" />
+        </property>
+        <property name="tekst" type="string">
+            <column name="TEKST" length="10" not-null="true" />
+        </property>
+        <property name="nazwa" type="string">
+            <column name="NAZWA" length="30" not-null="true" />
+        </property>
+    </class>
+</hibernate-mapping>
