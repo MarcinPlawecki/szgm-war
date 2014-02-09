@@ -1,0 +1,25 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.konfiguracja.model.Konfiguracja" 
+        table="konfiguracja" catalog="gm">
+ 
+        <id name="nazwa" type="string">
+            <column name="NAZWA" length="100" not-null="true" />
+            <generator class="sequence" >
+                <param name="sequence">konfiguracja_seq</param>
+            </generator>
+        </id>
+
+        <property name="opis" type="string">
+            <column name="OPIS" length="100" not-null="true" />
+        </property>
+        
+        <property name="wartosc" type="string">
+            <column name="WARTOSC" length="100" not-null="true" />
+        </property>
+        
+    </class>
+</hibernate-mapping>

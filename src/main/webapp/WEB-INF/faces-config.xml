@@ -85,42 +85,33 @@
 		</managed-property>
 	</managed-bean>
 	
-	
-	
-	<!-- Simple Navigation Rule -->
-    <!-- If  user keys in ToSecure, move to /pages/secure/secured.xhtml-->
-    <!-- Else If user keys in ToUnSecure, move to /pages/unsecure/unsecured.xhtml-->
-    <navigation-rule>
-        <display-name>pages/home/home.xhtml</display-name>
-        <from-view-id>/pages/home/home.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{navigator.navigateTo}</from-action>
-            <from-outcome>Secured</from-outcome>
-            <to-view-id>/pages/secure/secured.xhtml</to-view-id>
-            <redirect></redirect>
-        </navigation-case>
-    </navigation-rule>
-    <navigation-rule>
-        <display-name>pages/home/home.xhtml</display-name>
-        <from-view-id>/pages/home/home.xhtml</from-view-id>
-        <navigation-case>
-            <from-action>#{navigator.navigateTo}</from-action>
-            <from-outcome>UnSecured</from-outcome>
-            <to-view-id>/pages/unsecure/unsecured.xhtml</to-view-id>
-            <redirect></redirect>
-        </navigation-case>
-    </navigation-rule>
-	
-	
 	<navigation-rule>
     	<from-view-id>/towary/dodaj.xhtml</from-view-id>
-    <navigation-case>
-        <from-outcome>success</from-outcome>
-        <to-view-id>/towary/index.xhtml</to-view-id>
-    </navigation-case>
+    	<navigation-case>
+        	<from-outcome>success</from-outcome>
+        	<to-view-id>/towary/index.xhtml</to-view-id>
+    	</navigation-case>
 	</navigation-rule>
 	
-	
+	<navigation-rule>
+        <display-name>common/login.xhtml</display-name>
+        <from-view-id>/common/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginMgmtBean.login}</from-action>
+            <from-outcome>success</from-outcome>
+            <to-view-id>/index.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
+    
+    <navigation-rule>
+        <display-name>common/login.xhtml</display-name>
+        <from-view-id>/common/login.xhtml</from-view-id>
+        <navigation-case>
+            <from-action>#{loginMgmtBean.login}</from-action>
+            <from-outcome>error</from-outcome>
+            <to-view-id>/common/login.xhtml</to-view-id>
+        </navigation-case>
+    </navigation-rule>
 	<converter>
     	<converter-id>vatConverter</converter-id>
     	<converter-class>szgm.vat.VatConverter</converter-class>

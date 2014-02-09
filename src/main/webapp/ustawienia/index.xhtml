@@ -1,0 +1,29 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+	  xmlns:ui="http://java.sun.com/jsf/facelets"
+      >
+
+<ui:composition template="/resources/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="body_content">
+    
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/konfiguracja/lista.xhtml">Konfiguracja</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/etykiety.xhtml">Wydruk Etykiet</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
+		</ul>
+		</aside><!-- #sideLeft -->
+		
+    </ui:define>
+
+</ui:composition>
+
+</html>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+ 
+   	<bean id="konfiguracjaBo" 
+         class="szgm.konfiguracja.bo.KonfiguracjaBoImpl" >
+   		<property name="konfiguracjaDao" ref="konfiguracjaDao" />
+   	</bean>
+ 
+   	<bean id="konfiguracjaDao" 
+         class="szgm.konfiguracja.dao.KonfiguracjaDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+   	<bean id="konfiguracjaConverter" 
+         class="szgm.konfiguracja.KonfiguracjaConverter" >
+   		<property name="konfiguracjaDao" ref="konfiguracjaDao" />
+   	</bean>
+   	
+</beans>

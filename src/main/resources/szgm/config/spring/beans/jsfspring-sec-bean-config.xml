@@ -1,12 +1,63 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <beans:beans xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
-    xmlns:beans="http://www.springframework.org/schema/beans"
-    xmlns:sec="http://www.springframework.org/schema/security"
-    xsi:schemaLocation="http://www.springframework.org/schema/beans
+	xmlns:beans="http://www.springframework.org/schema/beans" xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
     http://www.springframework.org/schema/beans/spring-beans-3.1.xsd
     http://www.springframework.org/schema/security
     http://www.springframework.org/schema/security/spring-security-3.1.xsd">
- 
-    <beans:bean id="navigator" name="navigator" class="szgm.web.naviagation.Navigator" scope="session" />
-    
+
+	<beans:bean id="loginBean" name="loginBean" class="szgm.login.LoginBean"
+		scope="prototype">
+		<beans:property name="authenticationManager" ref="authenticationManager"></beans:property>
+		<beans:property name="userDetailsService" ref="customjdbcUserService"></beans:property>
+	</beans:bean>
+
+	<beans:import resource="classpath:szgm/config/spring/beans/DataSource.xml" />
+
+	<beans:bean id="customjdbcUserService" class="szgm.login.CustomJDBCDaoImpl">
+		<beans:property name="dataSource" ref="dataSource" />
+		<beans:property name="enableAuthorities" value="true" />
+		<beans:property name="usersByUsernameQuery">
+			<beans:value>
+				SELECT login, haslo, 1
+				FROM uzytkownik
+				WHERE login = ?
+			</beans:value>
+		</beans:property>
+		<beans:property name="authoritiesByUsernameQuery">
+			<beans:value>
+				SELECT u.login, r.nazwa
+				FROM uzytkownik u LEFT JOIN rola r ON u.rola = r.id
+				WHERE u.login = ?
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+
+	<beans:bean
+		class="org.springframework.security.authentication.encoding.ShaPasswordEncoder"
+		id="passwordEncoder">
+	</beans:bean>
+
+	<beans:bean id="databasePasswordEncrypter"
+		class="szgm.login.DBPasswordEncrypterBean"
+		init-method="encryptDBPassword" depends-on="dataSource">
+		<beans:property name="passwordEncoder" ref="passwordEncoder"></beans:property>
+		<beans:property name="dataSource" ref="dataSource"></beans:property>
+		<beans:property name="selectQuery">
+			<beans:value>
+				SELECT login, haslo, zaszyfrowany 
+				FROM uzytkownik
+				WHERE (zaszyfrowany=0 OR zaszyfrowany IS NULL)
+			</beans:value>
+		</beans:property>
+		<beans:property name="updateQuery">
+			<beans:value>
+				UPDATE uzytkownik SET
+				haslo = ?, 
+				zaszyfrowany=1
+				WHERE login = ?
+			</beans:value>
+		</beans:property>
+	</beans:bean>
+
 </beans:beans>
