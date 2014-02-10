@@ -1,14 +1,8 @@
 package szgm.konfiguracja.bo;
  
-import java.util.List;
-
+import szgm.core.BaseBo;
 import szgm.konfiguracja.model.Konfiguracja;
-import szgm.towar.model.Towar;
  
- 
-public interface KonfiguracjaBo{
+public interface KonfiguracjaBo extends BaseBo<Konfiguracja> {
 
-	List<Konfiguracja> findAllKonfiguracja();
-	
-	void addTowar(Towar towar);
 }

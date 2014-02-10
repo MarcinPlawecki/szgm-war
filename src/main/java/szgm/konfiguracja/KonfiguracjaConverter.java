@@ -4,21 +4,19 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import szgm.grupa.dao.GrupaDao;
-import szgm.grupa.model.Grupa;
-import szgm.konfiguracja.dao.KonfiguracjaDao;
+import szgm.core.BaseDao;
 import szgm.konfiguracja.model.Konfiguracja;
 
 public class KonfiguracjaConverter implements Converter {
 
-    private static KonfiguracjaDao konfiguracjaDao;
+    private static BaseDao<Konfiguracja> konfiguracjaDao;
 
-    public static void setKonfiguracjaDao(KonfiguracjaDao konfiguracjaDao) {
+    public static void setKonfiguracjaDao(BaseDao<Konfiguracja> konfiguracjaDao) {
 		KonfiguracjaConverter.konfiguracjaDao = konfiguracjaDao;
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Konfiguracja v =  (Konfiguracja) konfiguracjaDao.find(value);
+		Konfiguracja v =  (Konfiguracja) konfiguracjaDao.findAllByNazwa(Konfiguracja.class);
         return v;
     }
 

@@ -7,9 +7,8 @@ import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 
-import szgm.konfiguracja.bo.KonfiguracjaBo;
+import szgm.core.BaseBo;
 import szgm.konfiguracja.model.Konfiguracja;
-import szgm.towar.model.Towar;
 
 @ManagedBean(name="konfiguracja")
 @SessionScoped
@@ -18,7 +17,7 @@ public class KonfiguracjaBean implements Serializable{
 	private static final long serialVersionUID = 1L;
 	
 	@ManagedProperty(value="#{konfiguracjaBo}")
-	KonfiguracjaBo konfiguracjaBo;
+	BaseBo<Konfiguracja> konfiguracjaBo;
 	
 	public String nazwa;
 	public String opis;
@@ -48,12 +47,12 @@ public class KonfiguracjaBean implements Serializable{
 		this.wartosc = wartosc;
 	}
 
-	public void setKonfiguracjaBo(KonfiguracjaBo konfiguracjaBo) {
+	public void setKonfiguracjaBo(BaseBo<Konfiguracja> konfiguracjaBo) {
 		this.konfiguracjaBo = konfiguracjaBo;
 	}
 
 	public List<Konfiguracja> getKonfiguracjaList(){
-		return konfiguracjaBo.findAllKonfiguracja();
+		return konfiguracjaBo.findAllByNazwa(Konfiguracja.class);
 	}
 	
 	public String addKonfiguracja(){
@@ -61,10 +60,16 @@ public class KonfiguracjaBean implements Serializable{
 		k.setNazwa(nazwa);
 		k.setOpis(opis);
 		k.setWartosc(wartosc);		
-		konfiguracjaBo.addKonfiguracja(k);
+		konfiguracjaBo.add(k);
 		
 		clearForm();
 		
 		return "success";
+	}
+
+	private void clearForm(){
+		setNazwa("");
+		setOpis("");
+		setWartosc("");
 	}
 }

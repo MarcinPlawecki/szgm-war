@@ -30,6 +30,7 @@ private static final long serialVersionUID = 1L;
 	@Override
 	public void add(T t) {
 		getHibernateTemplate().save(t);
+		
 	}
 
 }

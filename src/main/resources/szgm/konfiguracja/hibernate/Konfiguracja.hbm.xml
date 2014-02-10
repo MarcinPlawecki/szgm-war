@@ -8,9 +8,6 @@
  
         <id name="nazwa" type="string">
             <column name="NAZWA" length="100" not-null="true" />
-            <generator class="sequence" >
-                <param name="sequence">konfiguracja_seq</param>
-            </generator>
         </id>
 
         <property name="opis" type="string">
