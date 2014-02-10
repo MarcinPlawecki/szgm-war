@@ -4,11 +4,11 @@
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
  
-   	<bean id="towarBo" class="szgm.towar.bo.TowarBoImpl" parent="baseBo">
-   		<property name="dao" ref="towarDao" />
+   	<bean id="baseBo" class="szgm.core.BaseBoImpl" >
+   		<property name="dao" ref="baseDao" />
    	</bean>
  
-   	<bean id="towarDao" class="szgm.towar.dao.TowarDaoImpl" >
+   	<bean id="baseDao" class="szgm.core.BaseDaoImpl" >
    		<property name="sessionFactory" ref="sessionFactory" />
    	</bean>
  

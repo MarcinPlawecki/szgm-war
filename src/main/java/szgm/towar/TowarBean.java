@@ -11,6 +11,7 @@ import javax.faces.bean.SessionScoped;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
+import szgm.core.BaseBo;
 import szgm.grupa.model.Grupa;
 import szgm.jednostka.model.Jednostka;
 import szgm.towar.bo.TowarBo;
@@ -25,7 +26,7 @@ public class TowarBean implements Serializable, InitializingBean {
 	private static final long serialVersionUID = 1L;
 
 	@ManagedProperty(value="#{towarBo}")
-	TowarBo towarBo;
+	BaseBo<Towar> towarBo;
 	
 	public String nazwa;
 	public double cenaNetto;
@@ -161,13 +162,19 @@ public class TowarBean implements Serializable, InitializingBean {
 		this.stan = stan;
 	}
 	
-	public void setTowarBo(TowarBo towarBo) {
-		this.towarBo = towarBo;
-	}
+	public void setTowarBo(BaseBo towarBo) {
+		try {
+			this.towarBo = towarBo;
+		} catch (com.sun.faces.mgbean.ManagedBeanCreationException e) {
+			System.out.println("Sdfsdfsd");
+			System.out.println(towarBo.getClass().getName());
+			System.out.println("Sdfsdfsd");
+		}
+		}
  
 	public List<Towar> getTowarList(){
 		Assert.notNull(towarBo);
-		return towarBo.findAllTowar();
+		return towarBo.findAllByNazwa(Towar.class);
 	}
 	
 	public String addTowar(){
@@ -191,7 +198,7 @@ public class TowarBean implements Serializable, InitializingBean {
 		t.setWaluta(waluta);
 		t.setZmodyfikowany(1);
 		
-		towarBo.addTowar(t);
+		towarBo.add(t);
 		
 		clearForm();
 		

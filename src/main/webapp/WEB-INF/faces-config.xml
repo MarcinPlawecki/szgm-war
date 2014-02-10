@@ -84,12 +84,28 @@
 			<value>#{typDokumentuBo}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>konfiguracja</managed-bean-name>
+		<managed-bean-class>szgm.konfiguracja.KonfiguracjaBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>konfiguracjaBo</property-name>
+			<value>#{konfiguracjaBo}</value>
+		</managed-property>
+	</managed-bean>
 	
 	<navigation-rule>
     	<from-view-id>/towary/dodaj.xhtml</from-view-id>
     	<navigation-case>
         	<from-outcome>success</from-outcome>
         	<to-view-id>/towary/index.xhtml</to-view-id>
+    	</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+    	<from-view-id>/konfiguracja/dodaj.xhtml</from-view-id>
+    	<navigation-case>
+        	<from-outcome>success</from-outcome>
+        	<to-view-id>/konfiguracja/lista.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	
@@ -144,6 +160,9 @@
     	<converter-id>typDokumentuConverter</converter-id>
     	<converter-class>szgm.typDokumentu.TypDokumentuConverter</converter-class>
 	</converter>
-	
+	<converter>
+    	<converter-id>konfiguracjaConverter</converter-id>
+    	<converter-class>szgm.konfiguracja.KonfiguracjaConverter</converter-class>
+	</converter>
 	
 </faces-config>

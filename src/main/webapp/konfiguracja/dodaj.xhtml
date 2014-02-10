@@ -12,13 +12,25 @@
     xmlns:ui="http://java.sun.com/jsf/facelets">
     
     <ui:define name="body_content">
-    
+		<div id="container">
+			<div id="content">
+    		
+			<h:form>
+				<h:panelGrid columns="2">
+					Nazwa: <h:inputText value="#{konfiguracja.nazwa}" />
+					Wartość: <h:inputText value="#{konfiguracja.wartosc}" />
+					Opis: <h:inputText value="#{konfiguracja.opis}" />
+    	  		</h:panelGrid>
+    	  	</h:form>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
 		<aside id="sideLeft">
-		<ul>
-			<li><h:outputLink value="/SZGM/konfiguracja/lista.xhtml">Konfiguracja</h:outputLink></li>
-		</ul>
+			<ul>
+				<li><h:outputLink value="/SZGM/konfiguracja/lista.xhtml">Konfiguracja</h:outputLink></li>
+			</ul>
 		</aside><!-- #sideLeft -->
-		
     </ui:define>
 
 </ui:composition>

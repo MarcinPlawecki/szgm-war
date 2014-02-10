@@ -17,4 +17,6 @@ http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
  	<import resource="classpath:szgm/uzytkownik/spring/UzytkownikBean.xml"/>
  	<import resource="classpath:szgm/rola/spring/RolaBean.xml"/>
  	<import resource="classpath:szgm/typDokumentu/spring/TypDokumentuBean.xml"/>
+ 	<import resource="classpath:szgm/konfiguracja/spring/KonfiguracjaBean.xml"/>
+ 	<import resource="classpath:szgm/core/CoreBean.xml"/>
 </beans>

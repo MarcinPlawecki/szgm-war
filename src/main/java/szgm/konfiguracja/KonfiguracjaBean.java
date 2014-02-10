@@ -3,14 +3,21 @@ package szgm.konfiguracja;
 import java.io.Serializable;
 import java.util.List;
 
+import javax.faces.bean.ManagedBean;
+import javax.faces.bean.ManagedProperty;
+import javax.faces.bean.SessionScoped;
+
 import szgm.konfiguracja.bo.KonfiguracjaBo;
 import szgm.konfiguracja.model.Konfiguracja;
+import szgm.towar.model.Towar;
 
-
+@ManagedBean(name="konfiguracja")
+@SessionScoped
 public class KonfiguracjaBean implements Serializable{
 
 	private static final long serialVersionUID = 1L;
-
+	
+	@ManagedProperty(value="#{konfiguracjaBo}")
 	KonfiguracjaBo konfiguracjaBo;
 	
 	public String nazwa;
@@ -49,4 +56,15 @@ public class KonfiguracjaBean implements Serializable{
 		return konfiguracjaBo.findAllKonfiguracja();
 	}
 	
+	public String addKonfiguracja(){
+		Konfiguracja k = new Konfiguracja();
+		k.setNazwa(nazwa);
+		k.setOpis(opis);
+		k.setWartosc(wartosc);		
+		konfiguracjaBo.addKonfiguracja(k);
+		
+		clearForm();
+		
+		return "success";
+	}
 }

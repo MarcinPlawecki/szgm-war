@@ -1,112 +1,112 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
 
 <ui:composition template="/resources/layout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
-    
-    <ui:define name="body_content">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:ui="http://java.sun.com/jsf/facelets">
+
+	<ui:define name="body_content">
 		<div id="container">
 			<div id="content">
-			
-    		<h:dataTable value="#{towar.getTowarList()}" var="t"
-    			styleClass="table"
-    			headerClass="table-header"
-    			rowClasses="table-odd-row, table-even-row">
-    		<h:column>
-    			<f:facet name="header">
+
+				<h:dataTable value="#{towar.getTowarList()}" var="t"
+					styleClass="table" headerClass="table-header"
+					rowClasses="table-odd-row, table-even-row">
+					<h:column>
+						<f:facet name="header">
     				Nazwa
 				</f:facet>
     				#{t.nazwa}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Cena netto
 				</f:facet>
     				#{t.cenaNetto}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Vat
 				</f:facet>
     				#{t.vat.stawka}
     		</h:column>
-    		    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Grupa
 				</f:facet>
     				#{t.grupa.nazwa}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Kod kreskowy
 				</f:facet>
     				#{t.kodKreskowy}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Stan
 				</f:facet>
     				#{t.stan}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				PKWiU
 				</f:facet>
     				#{t.pkwiu}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Jednostka
 				</f:facet>
     				#{t.jednostka.nazwa}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Waluta
 				</f:facet>
     				#{t.waluta.symbol}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Cena zakupu
 				</f:facet>
     				#{t.cenaZakupu}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Zmodyfikowany
 				</f:facet>
     				#{t.zmodyfikowany}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Pytaj o cenę
 				</f:facet>
     				#{t.pytajOCene}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Aktywny
 				</f:facet>
     				#{t.aktywny}
     		</h:column>
-    		<h:column>
-    			<f:facet name="header">
+					<h:column>
+						<f:facet name="header">
     				Promocja
 				</f:facet>
     				#{t.promocja}
     		</h:column>
-    		</h:dataTable>
-    		
-			</div><!-- #content-->
-		</div><!-- #container-->
+				</h:dataTable>
+
+			</div>
+			<!-- #content-->
+		</div>
+		<!-- #container-->
 
 		<aside id="sideLeft">
 		<ul>
@@ -116,8 +116,9 @@
 			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
 			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
 		</ul>
-		</aside><!-- #sideLeft -->
-    </ui:define>
+		</aside>
+		<!-- #sideLeft -->
+	</ui:define>
 
 </ui:composition>
 
