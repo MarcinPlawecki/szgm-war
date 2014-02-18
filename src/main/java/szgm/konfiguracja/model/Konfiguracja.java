@@ -2,7 +2,9 @@ package szgm.konfiguracja.model;
 
 import java.io.Serializable;
 
-public class Konfiguracja implements Serializable {
+import szgm.core.BaseBean;
+
+public class Konfiguracja extends BaseBean implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 	

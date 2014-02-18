@@ -8,7 +8,14 @@ public interface BaseBo<T> {
 	
 	public List<T> findAllByNazwa(Class<T> clazz);
 	
-	public T modify(T t);
+	public T update(T t);
 	
-	public void add (T t);
+	public void add(T t);
+
+	public void delete(T t);
+	
+	public void delete(List<T> ts);
+	
+	public T update(T t, Object id);
+	
 }

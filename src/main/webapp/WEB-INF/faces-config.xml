@@ -95,17 +95,17 @@
 	</managed-bean>
 	
 	<navigation-rule>
-    	<from-view-id>/towary/dodaj.xhtml</from-view-id>
+    	<from-view-id>/towary/add.xhtml</from-view-id>
     	<navigation-case>
         	<from-outcome>success</from-outcome>
-        	<to-view-id>/towary/index.xhtml</to-view-id>
+        	<to-view-id>/towary/list.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-    	<from-view-id>/konfiguracja/dodaj.xhtml</from-view-id>
+    	<from-view-id>/konfiguracja/add.xhtml</from-view-id>
     	<navigation-case>
         	<from-outcome>success</from-outcome>
-        	<to-view-id>/konfiguracja/lista.xhtml</to-view-id>
+        	<to-view-id>/konfiguracja/list.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	

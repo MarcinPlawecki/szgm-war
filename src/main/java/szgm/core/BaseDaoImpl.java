@@ -3,6 +3,7 @@ package szgm.core;
 import java.io.Serializable;
 import java.util.List;
 
+import org.hibernate.ReplicationMode;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
@@ -22,7 +23,13 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	@Override
-	public T modify(T t) {
+	public T update(T t) {
+		getHibernateTemplate().merge(t);
+		return t;
+	}
+	
+	@Override
+	public T update(T t, Object id) {
 		getHibernateTemplate().update(t);
 		return t;
 	}
@@ -31,6 +38,16 @@ private static final long serialVersionUID = 1L;
 	public void add(T t) {
 		getHibernateTemplate().save(t);
 		
+	}
+
+	@Override
+	public void delete(T t) {
+		getHibernateTemplate().delete(t);
+	}
+
+	@Override
+	public void delete(List<T> ts) {
+		getHibernateTemplate().deleteAll(ts);
 	}
 
 }

@@ -1,0 +1,39 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+    xmlns="http://www.w3.org/1999/xhtml"
+    xmlns:ui="http://java.sun.com/jsf/facelets">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+			<h:form>
+				<h:panelGrid columns="2">
+					Nazwa: <h:inputText value="#{konfiguracja.nazwa}" />
+					Wartość: <h:inputText value="#{konfiguracja.wartosc}" />
+					Opis: <h:inputText value="#{konfiguracja.opis}" />
+					<p:commandButton value="Zatwierdź" action="#{konfiguracja.addKonfiguracja}" />
+    	  		</h:panelGrid>
+    	  	</h:form>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+			<ul>
+				<li><h:outputLink value="/SZGM/konfiguracja/list.xhtml">Konfiguracja</h:outputLink></li>
+			</ul>
+		</aside><!-- #sideLeft -->
+    </ui:define>
+
+</ui:composition>
+
+</html>

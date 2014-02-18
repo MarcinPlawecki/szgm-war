@@ -19,15 +19,15 @@ import szgm.towar.model.Towar;
 import szgm.vat.model.Vat;
 import szgm.waluta.model.Waluta;
 
-@ManagedBean(name="towar")
+@ManagedBean(name = "towar")
 @SessionScoped
 public class TowarBean implements Serializable, InitializingBean {
- 
+
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value="#{towarBo}")
+	@ManagedProperty(value = "#{towarBo}")
 	BaseBo<Towar> towarBo;
-	
+
 	public String nazwa;
 	public double cenaNetto;
 	public Vat vat;
@@ -46,138 +46,169 @@ public class TowarBean implements Serializable, InitializingBean {
 	public Grupa grupa;
 	public String kodKreskowy;
 	public double stan;
-	
+
 	public String getNazwa() {
 		return nazwa;
 	}
+
 	public void setNazwa(String nazwa) {
 		this.nazwa = nazwa;
 	}
+
 	public double getCenaNetto() {
 		return cenaNetto;
 	}
+
 	public void setCenaNetto(double cenaNetto) {
 		this.cenaNetto = cenaNetto;
 	}
+
 	public Vat getVat() {
 		return vat;
 	}
+
 	public void setVat(Vat vat) {
 		this.vat = vat;
 	}
+
 	public String getPkwiu() {
 		return pkwiu;
 	}
+
 	public void setPkwiu(String pkwiu) {
 		this.pkwiu = pkwiu;
 	}
+
 	public Jednostka getJednostka() {
 		return jednostka;
 	}
+
 	public void setJednostka(Jednostka jednostka) {
 		this.jednostka = jednostka;
 	}
+
 	public Waluta getWaluta() {
 		return waluta;
 	}
+
 	public void setWaluta(Waluta waluta) {
 		this.waluta = waluta;
 	}
+
 	public double getCenaZakupu() {
 		return cenaZakupu;
 	}
+
 	public void setCenaZakupu(double cenaZakupu) {
 		this.cenaZakupu = cenaZakupu;
 	}
+
 	public Integer getZmodyfikowany() {
 		return zmodyfikowany;
 	}
+
 	public void setZmodyfikowany(Integer zmodyfikowany) {
 		this.zmodyfikowany = zmodyfikowany;
 	}
+
 	public Integer getPytajOCene() {
 		return pytajOCene;
 	}
+
 	public void setPytajOCene(Integer pytajOCene) {
 		this.pytajOCene = pytajOCene;
 	}
+
 	public void setPytajOCene(boolean pytajOCene) {
 		this.pytajOCene = pytajOCene ? 1 : 0;
 	}
+
 	public Integer getAktywny() {
 		return aktywny;
 	}
+
 	public void setAktywny(Integer aktywny) {
 		this.aktywny = aktywny;
 	}
+
 	public void setAktywny(boolean aktywny) {
 		this.aktywny = aktywny ? 1 : 0;
 	}
+
 	public Integer getPromocja() {
 		return promocja;
 	}
+
 	public void setPromocja(Integer promocja) {
 		this.promocja = promocja;
 	}
+
 	public Date getPromocjaOd() {
 		return promocjaOd;
 	}
+
 	public void setPromocjaOd(Date promocjaOd) {
 		this.promocjaOd = promocjaOd;
 	}
+
 	public Date getPromocjaDo() {
 		return promocjaDo;
 	}
+
 	public void setPromocjaDo(Date promocjaDo) {
 		this.promocjaDo = promocjaDo;
 	}
+
 	public double getCenaPromocyjna() {
 		return cenaPromocyjna;
 	}
+
 	public void setCenaPromocyjna(double cenaPromocyjna) {
 		this.cenaPromocyjna = cenaPromocyjna;
 	}
+
 	public double getCenaPrzedPromocja() {
 		return cenaPrzedPromocja;
 	}
+
 	public void setCenaPrzedPromocja(double cenaPrzedPromocja) {
 		this.cenaPrzedPromocja = cenaPrzedPromocja;
 	}
+
 	public Grupa getGrupa() {
 		return grupa;
 	}
+
 	public void setGrupa(Grupa grupa) {
 		this.grupa = grupa;
 	}
+
 	public String getKodKreskowy() {
 		return kodKreskowy;
 	}
+
 	public void setKodKreskowy(String kodKreskowy) {
 		this.kodKreskowy = kodKreskowy;
 	}
+
 	public double getStan() {
 		return stan;
 	}
+
 	public void setStan(double stan) {
 		this.stan = stan;
 	}
-	
+
 	public void setTowarBo(BaseBo towarBo) {
-		try {
-			this.towarBo = towarBo;
-		} catch (com.sun.faces.mgbean.ManagedBeanCreationException e) {
-			System.out.println("Sdfsdfsd");
-			System.out.println(towarBo.getClass().getName());
-			System.out.println("Sdfsdfsd");
-		}
-		}
- 
-	public List<Towar> getTowarList(){
+		this.towarBo = towarBo;
+	}
+
+	public List<Towar> getTowarList() {
 		Assert.notNull(towarBo);
 		return towarBo.findAllByNazwa(Towar.class);
 	}
-	
-	public String addTowar(){
+
+	public String addTowar() {
 		Towar t = new Towar();
 		t.setNazwa(nazwa);
 		t.setAktywny(aktywny);
@@ -197,15 +228,15 @@ public class TowarBean implements Serializable, InitializingBean {
 		t.setVat(vat);
 		t.setWaluta(waluta);
 		t.setZmodyfikowany(1);
-		
+
 		towarBo.add(t);
-		
+
 		clearForm();
-		
+
 		return "success";
 	}
-	
-	private void clearForm(){
+
+	private void clearForm() {
 		setNazwa("");
 		setAktywny(0);
 		setCenaNetto(0);
@@ -225,10 +256,10 @@ public class TowarBean implements Serializable, InitializingBean {
 		setWaluta(null);
 		setZmodyfikowany(1);
 	}
-	
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		Assert.notNull(towarBo, "towarBo can't be null");
 	}
-	
+
 }

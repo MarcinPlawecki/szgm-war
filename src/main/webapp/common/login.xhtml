@@ -16,19 +16,18 @@
         <h:form  id="loginFormId" prependId="false">
                 <div id="loginFieldsPnlId">
                     <div id="loginFieldUsrContId">
-                        <h:outputText id="outTxtUserNameId" value="Username:" name="outTxtUserNameNm"></h:outputText>
-                        <h:inputText id="userName" required="true" value="#{loginMgmtBean.userName}" requiredMessage="Please enter username"></h:inputText>
+                        <h:outputText id="outTxtUserNameId" value="Login: " name="outTxtUserNameNm"></h:outputText>
+                        <h:inputText id="userName" required="true" value="#{loginMgmtBean.userName}" requiredMessage="Proszę podać login"></h:inputText>
                         <h:outputLabel id="outLblUserNameId" for="userName" name="outLblUserNameNm"></h:outputLabel>
                     </div>
                     <div id="loginFieldPassContId">
-                        <h:outputText id="outTxtPasswordId" value="Password:" name="outTxtPasswordNm"></h:outputText>
-                        <h:inputSecret id="password"  required="true" value="#{loginMgmtBean.password}" requiredMessage="Please enter password" name="inTxtPasswordNm"></h:inputSecret>
+                        <h:outputText id="outTxtPasswordId" value="Hasło: " name="outTxtPasswordNm"></h:outputText>
+                        <h:inputSecret id="password"  required="true" value="#{loginMgmtBean.password}" requiredMessage="Proszę podać hasło" name="inTxtPasswordNm"></h:inputSecret>
                         <h:outputLabel id="outLblPasswordId" for="password" name="outLblPasswordNm"></h:outputLabel>
                     </div>
                 </div>
                 <div id="loginBtnPanelId">
                     <h:commandButton id="btnLoginId" value="Login" action="#{loginMgmtBean.login}" styleClass="loginPanelBtn"></h:commandButton>
-                    <h:commandButton id="btnCancelId" value="Cancel" action="#{loginMgmtBean.cancel}" styleClass="loginPanelBtn" immediate="true" update="loginFormId"></h:commandButton>
                 </div>
         </h:form>
     </div>

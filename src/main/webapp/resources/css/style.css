@@ -156,6 +156,10 @@ input {
 }
 
 
+.ui-growl {
+	padding-top: 80px;
+}
+
 /* Sidebar Left
 -----------------------------------------------------------------------------*/
 #sideLeft {
@@ -206,16 +210,4 @@ input {
 	filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#4c4c4c', endColorstr='#131313',GradientType=0 ); /* IE6-9 */
 }
 
-/* Login
------------------------------------------------------------------------------*/
-.login_background {
-	height: 100%;
-	width: 100%;
-}
 
-.login_form {
-	vertical-align: middle;
-	background: white;
-	
-	
-}

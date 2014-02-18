@@ -1,11 +1,11 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/resources/layout.xhtml"
     xmlns="http://www.w3.org/1999/xhtml"
@@ -17,9 +17,9 @@
     		
 			<h:form>
 				<h:panelGrid columns="2">
-					Nazwa: <h:inputText value="#{konfiguracja.nazwa}" />
-					Wartość: <h:inputText value="#{konfiguracja.wartosc}" />
-					Opis: <h:inputText value="#{konfiguracja.opis}" />
+					Nazwa: <h:inputText value="#{konfiguracja.selectedKonfiguracja.nazwa}" />
+					Wartość: <h:inputText value="#{konfiguracja.selectedKonfiguracja.wartosc}" />
+					Opis: <h:inputText value="#{konfiguracja.selectedKonfiguracja.opis}" />
 					<h:commandButton value="Zatwierdź" action="#{konfiguracja.addKonfiguracja}" />
     	  		</h:panelGrid>
     	  	</h:form>
@@ -29,7 +29,7 @@
 
 		<aside id="sideLeft">
 			<ul>
-				<li><h:outputLink value="/SZGM/konfiguracja/lista.xhtml">Konfiguracja</h:outputLink></li>
+				<li><h:outputLink value="/SZGM/konfiguracja/list.xhtml">Konfiguracja</h:outputLink></li>
 			</ul>
 		</aside><!-- #sideLeft -->
     </ui:define>

@@ -1,0 +1,109 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="cloneDialogForm">
+					<p:dialog id="cloneDialog" header="Modal Dialog"
+						widgetVar="cloneDialog" modal="true" height="100">
+						<h:outputText value="Podaj nazwę nowej Konfiguracji" />
+						<p:inputText value="#{konfiguracja.newName}" style="width:100%" />
+						<br />
+						<p:commandButton value="OK"
+							actionListener="#{konfiguracja.cloneItem}" ajax="false" />
+					</p:dialog>
+				</h:form>
+
+				<h:form id="form">
+					<h:outputLink
+						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+						value="/SZGM/konfiguracja/add.xhtml"
+						onmouseover="$(this).addClass('ui-state-hover')"
+						onmouseout="$(this).removeClass('ui-state-hover')">
+						<h:outputText styleClass="ui-button-text" value="Dodaj" />
+					</h:outputLink>
+					<p:commandButton value="Usuń" id="deleteBtn" disabled="#{konfiguracja.selectedItem == null}"
+						actionListener="#{konfiguracja.delete}" ajax="false" />
+					<p:commandButton id="cloneDialogButton" value="Klonuj" disabled="#{konfiguracja.selectedItem == null}"
+						onclick="cloneDialog.show();" type="button" />
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dataTable" var="k" value="#{konfiguracja.list}"
+						rows="25" paginator="true" sortMode="multiple"
+						filteredValue="#{konfiguracja.filteredList}"
+						selection="#{konfiguracja.selectedItem}" rowKey="#{k.nazwa}"
+						selectionMode="single" editable="true"
+						emptyMessage="Brak danych" styleClass="table"
+						headerClass="table-header"
+						rowClasses="table-odd-row, table-even-row">
+
+						<p:ajax event="rowEdit" listener="#{konfiguracja.onEdit}"
+							update=":form:messages" />
+						<p:ajax event="rowEditCancel" listener="#{konfiguracja.onCancel}"
+							update=":form:messages" />
+						<p:ajax event="rowSelect" update=":form:deleteBtn,:form:cloneDialogButton" />
+						<p:ajax event="rowUnselect" update=":form:deleteBtn,:form:cloneDialogButton" />
+
+						<p:column sortBy="#{k.nazwa}" filterBy="#{k.nazwa}"
+							filterMatchMode="contains" headerText="Nazwa">
+								<h:outputText value="#{k.nazwa}" />
+						</p:column>
+
+						<p:column sortBy="#{k.wartosc}" filterBy="#{k.wartosc}"
+							filterMatchMode="contains" headerText="Wartość">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.wartosc}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.wartosc}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.opis}" filterBy="#{k.opis}"
+							filterMatchMode="contains" headerText="Opis">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.opis}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.opis}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/konfiguracja/list.xhtml">Konfiguracja</h:outputLink></li>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

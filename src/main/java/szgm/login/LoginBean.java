@@ -10,6 +10,7 @@ import javax.faces.bean.RequestScoped;
 
 
 
+
 import org.springframework.security.authentication.AuthenticationManager;
 import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
@@ -18,6 +19,8 @@ import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
 import org.springframework.security.web.util.RedirectUrlBuilder;
 import org.springframework.web.servlet.view.RedirectView;
+
+import szgm.uzytkownik.bo.UzytkownikBoImpl;
  
 @ManagedBean(name="loginMgmtBean")
 @RequestScoped
@@ -37,6 +40,10 @@ public class LoginBean {
             Authentication request = new UsernamePasswordAuthenticationToken(this.getUserName(), this.getPassword());
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
+//            UzytkownikBoImpl x;
+//            result.getName();
+//            LoggedUserBean user = new LoggedUserBean();
+//            user.setUser(user);
         } catch (AuthenticationException e) {
             e.printStackTrace();
             this.setUserName(null);

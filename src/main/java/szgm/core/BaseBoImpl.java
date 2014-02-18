@@ -20,8 +20,13 @@ public class BaseBoImpl<T>  implements BaseBo<T>, InitializingBean {
 	}
 
 	@Override
-	public T modify(T t) {
-		return dao.modify(t);
+	public T update(T t) {
+		return dao.update(t);
+	}
+	
+	@Override
+	public T update(T t, Object id) {
+		return dao.update(t, id);
 	}
 
 	@Override
@@ -36,6 +41,16 @@ public class BaseBoImpl<T>  implements BaseBo<T>, InitializingBean {
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		Assert.notNull(dao, "daoBean is not set!");
+	}
+
+	@Override
+	public void delete(T t) {
+		dao.delete(t);
+	}
+
+	@Override
+	public void delete(List<T> ts) {
+		dao.delete(ts);
 	}
 
 }
