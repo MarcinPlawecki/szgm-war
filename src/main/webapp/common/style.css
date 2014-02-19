@@ -11,17 +11,23 @@ body {
 	font: 12px/18px Arial, Tahoma, Verdana, sans-serif;
 	height: 100%;
 	color: black;
-background: rgb(122,122,122);
-background: -moz-radial-gradient(center, ellipse cover,  rgba(122,122,122,1) 0%, rgba(122,122,122,1) 25%, rgba(184,184,184,1) 37%);
-background: -webkit-gradient(radial, center center, 0px, center center, 100%, color-stop(0%,rgba(122,122,122,1)), color-stop(25%,rgba(122,122,122,1)), color-stop(37%,rgba(184,184,184,1)));
-background: -webkit-radial-gradient(center, ellipse cover,  rgba(122,122,122,1) 0%,rgba(122,122,122,1) 25%,rgba(184,184,184,1) 37%);
-background: -o-radial-gradient(center, ellipse cover,  rgba(122,122,122,1) 0%,rgba(122,122,122,1) 25%,rgba(184,184,184,1) 37%);
-background: -ms-radial-gradient(center, ellipse cover,  rgba(122,122,122,1) 0%,rgba(122,122,122,1) 25%,rgba(184,184,184,1) 37%);
-background: radial-gradient(ellipse at center,  rgba(122,122,122,1) 0%,rgba(122,122,122,1) 25%,rgba(184,184,184,1) 37%);
-filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#7a7a7a', endColorstr='#b8b8b8',GradientType=1 );
-
-
-	
+	background: rgb(122, 122, 122);
+	background: -moz-radial-gradient(center, ellipse cover, rgba(122, 122, 122, 1)
+		0%, rgba(122, 122, 122, 1) 25%, rgba(184, 184, 184, 1) 37%);
+	background: -webkit-gradient(radial, center center, 0px, center center, 100%,
+		color-stop(0%, rgba(122, 122, 122, 1)),
+		color-stop(25%, rgba(122, 122, 122, 1)),
+		color-stop(37%, rgba(184, 184, 184, 1)));
+	background: -webkit-radial-gradient(center, ellipse cover, rgba(122, 122, 122, 1)
+		0%, rgba(122, 122, 122, 1) 25%, rgba(184, 184, 184, 1) 37%);
+	background: -o-radial-gradient(center, ellipse cover, rgba(122, 122, 122, 1)
+		0%, rgba(122, 122, 122, 1) 25%, rgba(184, 184, 184, 1) 37%);
+	background: -ms-radial-gradient(center, ellipse cover, rgba(122, 122, 122, 1)
+		0%, rgba(122, 122, 122, 1) 25%, rgba(184, 184, 184, 1) 37%);
+	background: radial-gradient(ellipse at center, rgba(122, 122, 122, 1) 0%,
+		rgba(122, 122, 122, 1) 25%, rgba(184, 184, 184, 1) 37%);
+	filter: progid:DXImageTransform.Microsoft.gradient(  startColorstr='#7a7a7a',
+		endColorstr='#b8b8b8', GradientType=1);
 }
 
 .login_form {

@@ -2,9 +2,9 @@ package szgm.konfiguracja.model;
 
 import java.io.Serializable;
 
-import szgm.core.BaseBean;
+import szgm.core.BaseModel;
 
-public class Konfiguracja extends BaseBean implements Serializable {
+public class Konfiguracja extends BaseModel implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 	
@@ -43,5 +43,15 @@ public class Konfiguracja extends BaseBean implements Serializable {
     public int hashCode() {
         return this.getClass().hashCode() + ((String)nazwa).hashCode();
     }
+
+	@Override
+	public Object getIdentifier() {
+		return this.getNazwa();
+	}
+
+	@Override
+	public String getIdentifierAsString() {
+		return this.getNazwa();
+	}
     
 }
