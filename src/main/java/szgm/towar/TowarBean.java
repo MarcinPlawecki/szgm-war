@@ -2,24 +2,19 @@ package szgm.towar;
 
 import java.io.Serializable;
 import java.util.Date;
-import java.util.List;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
 import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
-import szgm.core.BaseBo;
 import szgm.core.BaseFacesBean;
 import szgm.grupa.model.Grupa;
 import szgm.jednostka.model.Jednostka;
-import szgm.konfiguracja.model.Konfiguracja;
-import szgm.towar.bo.TowarBo;
 import szgm.towar.model.Towar;
 import szgm.vat.model.Vat;
 import szgm.waluta.model.Waluta;

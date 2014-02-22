@@ -1,0 +1,52 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+			<h:form>
+			<h:panelGrid columns="2">
+				Nazwa: <h:inputText value="#{kontrahent.nazwa}" />
+				NIP: <h:inputText value="#{kontrahent.nip}" />
+				Konto bankowe: <h:inputText value="#{kontrahent.kontoBankowe}" />
+				Email: <h:inputText value="#{kontrahent.email}" />
+				Kraj: <h:inputText value="#{kontrahent.kraj}" />
+				Miasto: <h:inputText value="#{kontrahent.miasto}" />
+				Ulica: <h:inputText value="#{kontrahent.ulica}" />
+				Nr mieszkania: <h:inputText value="#{kontrahent.numerMieszkania}" />
+				Kod pocztowy: <h:inputText value="#{kontrahent.kodPocztowy}" />
+				REGON: <h:inputText value="#{kontrahent.regon}" />
+				Telefon: <h:inputText value="#{kontrahent.telefon}" />
+				Nazwa Skrócona: <h:inputText value="#{kontrahent.nazwaSkrocona}" />
+				Liczba dni: <h:inputText value="#{kontrahent.liczbaDni}" />
+				Aktywny: <h:inputText value="#{kontrahent.aktywny}" />
+
+    			<h:commandButton value="Zatwierdź" action="#{kontrahent.addTowar}" />
+    	  	</h:panelGrid>
+    	  	</h:form>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/kontrahenci/list.xhtml" rendered="#{p:ifGranted('KONTRAHENT_LISTA')}">Lista kontrahentów</h:outputLink></li>
+		</ul>
+		</aside>
+    </ui:define>
+
+</ui:composition>
+
+</html>

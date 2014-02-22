@@ -1,0 +1,60 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.kontrahent.model.Kontrahent" 
+        table="kontrahent" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">kontrahent_seq</param>
+            </generator>
+        </id>
+        <property name="nazwa" type="string">
+            <column name="NAZWA" length="200" not-null="true" />
+        </property>
+        <property name="nip" type="string">
+            <column name="NIP" length="20" not-null="true" />
+        </property>
+        <property name="kontoBankowe" type="string">
+            <column name="KONTO_BANKOWE" length="30" not-null="true" />
+        </property>
+        <property name="email" type="string">
+            <column name="EMAIL" length="40" not-null="true" />
+        </property>
+        <property name="kraj" type="string">
+            <column name="KRAJ" length="40" not-null="true" />
+        </property>
+        <property name="miasto" type="string">
+            <column name="MIASTO" length="100" not-null="true" />
+        </property>
+        <property name="ulica" type="string">
+            <column name="ULICA" length="100" not-null="true" />
+        </property>
+        <property name="numerMieszkania" type="string">
+            <column name="NUMER_MIESZKANIA" length="10" not-null="true" />
+        </property>
+        <property name="kodPocztowy" type="string">
+            <column name="KOD_POCZTOWY" length="6" not-null="true" />
+        </property>
+        <property name="regon" type="string">
+            <column name="REGON" length="20" not-null="true" />
+        </property>
+        <property name="telefon" type="string">
+            <column name="TELEFON" length="20" not-null="true" />
+        </property>
+        <property name="nazwaSkrocona" type="string">
+            <column name="NAZWA_SKROCONA" length="30" not-null="true" />
+        </property>
+
+        <property name="liczbaDni" type="int">
+            <column name="LICZBA_DNI" not-null="true" />
+        </property>
+        <property name="aktywny" type="int">
+            <column name="AKTYWNY" not-null="true" />
+        </property>
+
+    </class>
+</hibernate-mapping>

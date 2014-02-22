@@ -1,0 +1,255 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="cloneDialogForm">
+					<p:dialog id="cloneDialog" header="Modal Dialog"
+						widgetVar="cloneDialog" modal="true" height="100">
+						<h:outputText value="Podaj nazwę nowego kontrahenta" />
+						<p:inputText value="#{kontrahent.newName}" style="width:100%" />
+						<br />
+						<p:commandButton value="OK"
+							actionListener="#{kontrahent.cloneItem}" ajax="false" />
+					</p:dialog>
+				</h:form>
+
+				<h:form id="form">
+					<h:outputLink
+						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+						value="/SZGM/kontrahenci/add.xhtml"
+						onmouseover="$(this).addClass('ui-state-hover')"
+						onmouseout="$(this).removeClass('ui-state-hover')">
+						<h:outputText styleClass="ui-button-text" value="Dodaj"
+							rendered="#{p:ifGranted('KONTRAHENT_DODAWANIE')}" />
+					</h:outputLink>
+					<p:commandButton value="Usuń" id="deleteBtn"
+						disabled="#{kontrahent.selectedItem == null}"
+						actionListener="#{kontrahent.delete}" ajax="false"
+						rendered="#{p:ifGranted('KONTRAHENT_EDYCJA')}" />
+					<p:commandButton id="cloneDialogButton" value="Klonuj"
+						disabled="#{kontrahent.selectedItem == null}"
+						onclick="cloneDialog.show();" type="button"
+						rendered="#{p:ifGranted('KONTRAHENT_DODAWANIE')}" />
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dataTable" var="k" value="#{kontrahent.list}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{kontrahent.filteredList}"
+						selection="#{kontrahent.selectedItem}" rowKey="#{k.id}"
+						selectionMode="single"
+						editable="#{p:ifGranted('KONTRAHENT_EDYCJA')}"
+						emptyMessage="Brak danych" styleClass="table">
+
+						<p:ajax event="rowEdit" listener="#{kontrahent.onEdit}"
+							update=":form:messages" />
+						<p:ajax event="rowEditCancel" listener="#{kontrahent.onCancel}"
+							update=":form:messages" />
+						<p:ajax event="rowSelect"
+							update=":form:deleteBtn,:form:cloneDialogButton" />
+						<p:ajax event="rowUnselect"
+							update=":form:deleteBtn,:form:cloneDialogButton" />
+
+						<p:column sortBy="#{k.nazwa}" filterBy="#{k.nazwa}"
+							filterMatchMode="contains" headerText="Nazwa">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.nazwa}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.nip}" filterBy="#{k.nip}"
+							filterMatchMode="contains" headerText="NIP">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.nip}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.nip}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.kontoBankowe}" filterBy="#{k.kontoBankowe}"
+							filterMatchMode="contains" headerText="Konto bankowe">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.kontoBankowe}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.kontoBankowe}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.email}" filterBy="#{k.email}"
+							filterMatchMode="contains" headerText="e-mail">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.email}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.email}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.kraj}" filterBy="#{k.kraj}"
+							filterMatchMode="contains" headerText="Kraj">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.kraj}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.kraj}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.miasto}" filterBy="#{k.miasto}"
+							filterMatchMode="contains" headerText="Miasto">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.miasto}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.miasto}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.ulica}" filterBy="#{k.ulica}"
+							filterMatchMode="contains" headerText="Ulica">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.ulica}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.ulica}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.numerMieszkania}" filterBy="#{k.numerMieszkania}"
+							filterMatchMode="contains" headerText="Nr mieszkania">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.numerMieszkania}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.numerMieszkania}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.kodPocztowy}" filterBy="#{k.kodPocztowy}"
+							filterMatchMode="contains" headerText="Kod pocztowy">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.kodPocztowy}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.kodPocztowy}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.regon}" filterBy="#{k.regon}"
+							filterMatchMode="contains" headerText="REGON">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.regon}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.regon}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.telefon}" filterBy="#{k.telefon}"
+							filterMatchMode="contains" headerText="Telefon">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.telefon}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.telefon}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.nazwaSkrocona}" filterBy="#{k.nazwaSkrocona}"
+							filterMatchMode="contains" headerText="Nazwa Skr.">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.nazwaSkrocona}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.nazwaSkrocona}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.liczbaDni}" filterBy="#{k.liczbaDni}"
+							filterMatchMode="contains" headerText="Liczba dni">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.liczbaDni}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.liczbaDni}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{k.aktywny}" filterBy="#{k.aktywny}"
+							filterMatchMode="contains" headerText="Aktywny">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{k.aktywny}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{k.aktywny}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%"
+							rendered="#{p:ifGranted('KONTRAHENT_EDYCJA')}">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/kontrahenci/list.xhtml" rendered="#{p:ifGranted('KONTRAHENT_LISTA')}">Lista kontrahentów</h:outputLink></li>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

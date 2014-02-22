@@ -102,6 +102,15 @@
 			<value>#{towarBo}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>kontrahent</managed-bean-name>
+		<managed-bean-class>szgm.kontrahent.KontrahentBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>bo</property-name>
+			<value>#{kontrahentBo}</value>
+		</managed-property>
+	</managed-bean>
 	
 	
 	<navigation-rule>
@@ -116,6 +125,13 @@
     	<navigation-case>
         	<from-outcome>success</from-outcome>
         	<to-view-id>/ustawienia/konfiguracja/list.xhtml</to-view-id>
+    	</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+    	<from-view-id>/kontrahenci/add.xhtml</from-view-id>
+    	<navigation-case>
+        	<from-outcome>success</from-outcome>
+        	<to-view-id>/kontrahenci/list.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	
@@ -138,6 +154,8 @@
             <to-view-id>/common/login.xhtml</to-view-id>
         </navigation-case>
     </navigation-rule>
+    
+    
 	<converter>
     	<converter-id>vatConverter</converter-id>
     	<converter-class>szgm.vat.VatConverter</converter-class>
@@ -173,6 +191,10 @@
 	<converter>
     	<converter-id>konfiguracjaConverter</converter-id>
     	<converter-class>szgm.konfiguracja.KonfiguracjaConverter</converter-class>
+	</converter>
+	<converter>
+    	<converter-id>kontrahentConverter</converter-id>
+    	<converter-class>szgm.kontrahent.KontrahentConverter</converter-class>
 	</converter>
 	
 </faces-config>

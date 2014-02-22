@@ -5,6 +5,6 @@ import szgm.core.BaseDao;
 import szgm.towar.model.Towar;
  
  
-public interface TowarDao<Towar> extends BaseDao<Towar> {
+public interface TowarDao extends BaseDao<Towar> {
  
 }
