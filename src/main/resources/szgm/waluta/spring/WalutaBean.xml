@@ -6,7 +6,7 @@
  
    	<bean id="walutaBo" 
          class="szgm.waluta.bo.WalutaBoImpl" >
-   		<property name="walutaDao" ref="walutaDao" />
+   		<property name="dao" ref="walutaDao" />
    	</bean>
  
    	<bean id="walutaDao" 

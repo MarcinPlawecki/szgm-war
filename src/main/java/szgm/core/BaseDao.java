@@ -1,5 +1,6 @@
 package szgm.core;
 
+import java.io.Serializable;
 import java.util.List;
 
 public interface BaseDao<T> {
@@ -8,9 +9,11 @@ public interface BaseDao<T> {
 	
 	public List<T> findAllByNazwa(Class<T> clazz);
 	
+	public T find(Class<T> clazz, Serializable id);
+	
 	public T update(T t);
 	
-	public void add (T t);
+	public void add(T t);
 	
 	public void delete(T t);
 	

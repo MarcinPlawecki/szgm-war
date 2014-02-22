@@ -1,26 +1,14 @@
 package szgm.login;
 
-import java.lang.ProcessBuilder.Redirect;
-
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.RequestScoped;
  
-
-
-
-
-
 import org.springframework.security.authentication.AuthenticationManager;
-import org.springframework.security.authentication.BadCredentialsException;
 import org.springframework.security.authentication.UsernamePasswordAuthenticationToken;
 import org.springframework.security.core.Authentication;
 import org.springframework.security.core.AuthenticationException;
 import org.springframework.security.core.context.SecurityContextHolder;
-import org.springframework.security.web.util.RedirectUrlBuilder;
-import org.springframework.web.servlet.view.RedirectView;
-
-import szgm.uzytkownik.bo.UzytkownikBoImpl;
  
 @ManagedBean(name="loginMgmtBean")
 @RequestScoped
@@ -31,6 +19,9 @@ public class LoginBean {
     private String password = null;
     
     private String error = null;
+    
+    @ManagedProperty(value="#{loggedUser}")
+    private LoggedUserBean user;
  
     @ManagedProperty(value="#{authenticationManager}")
     private AuthenticationManager authenticationManager = null;
@@ -40,10 +31,9 @@ public class LoginBean {
             Authentication request = new UsernamePasswordAuthenticationToken(this.getUserName(), this.getPassword());
             Authentication result = authenticationManager.authenticate(request);
             SecurityContextHolder.getContext().setAuthentication(result);
-//            UzytkownikBoImpl x;
-//            result.getName();
-//            LoggedUserBean user = new LoggedUserBean();
-//            user.setUser(user);
+            
+            String x = SecurityContextHolder.getContext().getAuthentication().getName();
+            user.setLogin(x);
         } catch (AuthenticationException e) {
             e.printStackTrace();
             this.setUserName(null);
@@ -93,6 +83,10 @@ public class LoginBean {
 
 	public void setError(String error) {
 		this.error = error;
+	}
+
+	public void setUser(LoggedUserBean user) {
+		this.user = user;
 	}
     
 }

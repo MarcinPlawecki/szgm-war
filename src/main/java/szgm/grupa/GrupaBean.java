@@ -1,15 +1,16 @@
 package szgm.grupa;
 
 import java.io.Serializable;
-import java.util.List;
 
-import szgm.grupa.bo.GrupaBo;
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.grupa.model.Grupa;
 
 
-public class GrupaBean implements Serializable{
+public class GrupaBean extends BaseFacesBean<Grupa> implements Serializable, InitializingBean {
 
-	GrupaBo grupaBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String nazwa;
 	public Grupa rodzic;
@@ -30,12 +31,19 @@ public class GrupaBean implements Serializable{
 		this.rodzic = rodzic;
 	}
 
-	public void setGrupaBo(GrupaBo grupaBo) {
-		this.grupaBo = grupaBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Grupa> getGrupaList(){
-		return grupaBo.findAllGrupa();
+
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Grupa.class);
+	}
+
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

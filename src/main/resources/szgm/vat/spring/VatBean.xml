@@ -6,7 +6,7 @@
  
    	<bean id="vatBo" 
          class="szgm.vat.bo.VatBoImpl" >
-   		<property name="vatDao" ref="vatDao" />
+   		<property name="dao" ref="vatDao" />
    	</bean>
  
    	<bean id="vatDao" 

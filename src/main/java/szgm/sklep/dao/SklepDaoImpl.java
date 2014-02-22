@@ -1,18 +1,12 @@
 package szgm.sklep.dao;
  
-import java.util.List;
- 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.io.Serializable;
 
+import szgm.core.BaseDaoImpl;
 import szgm.sklep.model.Sklep;
  
-public class SklepDaoImpl extends HibernateDaoSupport implements SklepDao{
- 
-	public List<Sklep> findAllSklep(){
-		return getHibernateTemplate().find("from Sklep order by nazwa");
-	}
+public class SklepDaoImpl extends BaseDaoImpl<Sklep> implements Serializable {
+	   
+	private static final long serialVersionUID = 1L;
 	
-	public Object find(String value) {
-		return getHibernateTemplate().find("from Sklep where id = " + value).get(0);
-	}
 }

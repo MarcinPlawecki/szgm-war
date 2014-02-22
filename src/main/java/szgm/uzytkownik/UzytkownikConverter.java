@@ -4,20 +4,20 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import szgm.uzytkownik.dao.UzytkownikDao;
+import szgm.core.BaseDao;
 import szgm.uzytkownik.model.Uzytkownik;
 
 public class UzytkownikConverter implements Converter {
 
 
-    private static UzytkownikDao uzytkownikDao;
+    private static BaseDao<Uzytkownik> uzytkownikDao;
 
-    public static void setUzytkownikDao(UzytkownikDao uzytkownikDao) {
+    public static void setUzytkownikDao(BaseDao<Uzytkownik> uzytkownikDao) {
 		UzytkownikConverter.uzytkownikDao = uzytkownikDao;
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Uzytkownik v =  (Uzytkownik)uzytkownikDao.find(value);
+		Uzytkownik v =  (Uzytkownik)uzytkownikDao.find(Uzytkownik.class, Long.parseLong(value));
         return v;
     }
 

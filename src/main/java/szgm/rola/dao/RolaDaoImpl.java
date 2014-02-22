@@ -1,18 +1,12 @@
 package szgm.rola.dao;
  
-import java.util.List;
- 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.io.Serializable;
 
+import szgm.core.BaseDaoImpl;
 import szgm.rola.model.Rola;
  
-public class RolaDaoImpl extends HibernateDaoSupport implements RolaDao{
- 
-	public List<Rola> findAllRola(){
-		return getHibernateTemplate().find("from Rola order by nazwa");
-	}
+public class RolaDaoImpl extends BaseDaoImpl<Rola> implements Serializable {
+	   
+	private static final long serialVersionUID = 1L;
 	
-	public Object find(String value) {
-		return getHibernateTemplate().find("from Rola where id = " + value).get(0);
-	}
 }

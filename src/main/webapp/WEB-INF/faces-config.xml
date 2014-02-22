@@ -93,6 +93,16 @@
 			<value>#{konfiguracjaBo}</value>
 		</managed-property>
 	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>towar</managed-bean-name>
+		<managed-bean-class>szgm.towar.TowarBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>bo</property-name>
+			<value>#{towarBo}</value>
+		</managed-property>
+	</managed-bean>
+	
 	
 	<navigation-rule>
     	<from-view-id>/towary/add.xhtml</from-view-id>
@@ -102,10 +112,10 @@
     	</navigation-case>
 	</navigation-rule>
 	<navigation-rule>
-    	<from-view-id>/konfiguracja/add.xhtml</from-view-id>
+    	<from-view-id>/ustawienia/konfiguracja/add.xhtml</from-view-id>
     	<navigation-case>
         	<from-outcome>success</from-outcome>
-        	<to-view-id>/konfiguracja/list.xhtml</to-view-id>
+        	<to-view-id>/ustawienia/konfiguracja/list.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	

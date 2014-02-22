@@ -6,7 +6,7 @@
  
    	<bean id="rolaBo" 
          class="szgm.rola.bo.RolaBoImpl" >
-   		<property name="rolaDao" ref="rolaDao" />
+   		<property name="dao" ref="rolaDao" />
    	</bean>
  
    	<bean id="rolaDao" 

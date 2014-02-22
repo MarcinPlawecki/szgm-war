@@ -1,21 +1,13 @@
 package szgm.typDokumentu.bo;
  
-import java.util.List;
+import java.io.Serializable;
 
-import szgm.typDokumentu.dao.TypDokumentuDao;
+import szgm.core.BaseBoImpl;
 import szgm.typDokumentu.model.TypDokumentu;
  
  
-public class TypDokumentuBoImpl implements TypDokumentuBo{
- 
-	TypDokumentuDao typDokumentuDao;
- 
-	public void setTypDokumentuDao(TypDokumentuDao typDokumentuDao) {
-		this.typDokumentuDao = typDokumentuDao;
-	}
- 
-	public List<TypDokumentu> findAllTypDokumentu(){
- 
-		return typDokumentuDao.findAllTypDokumentu();
-	}
+public class TypDokumentuBoImpl extends BaseBoImpl<TypDokumentu> implements Serializable {
+
+	private static final long serialVersionUID = 1L;
+
 }

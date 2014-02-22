@@ -4,20 +4,20 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import szgm.grupa.dao.GrupaDao;
+import szgm.core.BaseDao;
 import szgm.grupa.model.Grupa;
 
 public class GrupaConverter implements Converter {
 
 
-    private static GrupaDao grupaDao;
+    private static BaseDao<Grupa> grupaDao;
 
-    public static void setGrupaDao(GrupaDao grupaDao) {
+    public static void setGrupaDao(BaseDao<Grupa> grupaDao) {
 		GrupaConverter.grupaDao = grupaDao;
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Grupa v =  (Grupa)grupaDao.find(value);
+		Grupa v =  (Grupa)grupaDao.find(Grupa.class, Long.parseLong(value));
         return v;
     }
 

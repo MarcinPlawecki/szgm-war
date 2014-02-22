@@ -1,16 +1,17 @@
 package szgm.uzytkownik;
 
 import java.io.Serializable;
-import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.rola.model.Rola;
-import szgm.uzytkownik.bo.UzytkownikBo;
 import szgm.uzytkownik.model.Uzytkownik;
 
 
-public class UzytkownikBean implements Serializable{
+public class UzytkownikBean extends BaseFacesBean<Uzytkownik> implements Serializable, InitializingBean {
 
-	UzytkownikBo uzytkownikBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String login;
 	public String haslo;
@@ -57,13 +58,20 @@ public class UzytkownikBean implements Serializable{
 	public void setRola(Rola rola) {
 		this.rola = rola;
 	}
-	
-	public void setUzytkownikBo(UzytkownikBo uzytkownikBo) {
-		this.uzytkownikBo = uzytkownikBo;
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Uzytkownik> getUzytkownikList(){
-		return uzytkownikBo.findAllUzytkownik();
+
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Uzytkownik.class);
+	}
+
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

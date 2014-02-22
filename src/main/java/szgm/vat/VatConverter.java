@@ -4,20 +4,19 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import szgm.vat.dao.VatDao;
+import szgm.core.BaseDao;
 import szgm.vat.model.Vat;
 
 public class VatConverter implements Converter {
 
+    private static BaseDao<Vat> vatDao;
 
-    private static VatDao vatDao;
-
-    public static void setVatDao(VatDao vatDao) {
+    public static void setVatDao(BaseDao<Vat> vatDao) {
 		VatConverter.vatDao = vatDao;
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Vat v =  (Vat)vatDao.find(value);
+		Vat v =  (Vat)vatDao.find(Vat.class, Long.parseLong(value));
         return v;
     }
 

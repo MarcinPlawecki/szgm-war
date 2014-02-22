@@ -5,7 +5,8 @@
       xmlns:h="http://java.sun.com/jsf/html"
       xmlns:f="http://java.sun.com/jsf/core"
 	  xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+	  >
+      
 <h:head>
 	<title>System Zarządzania Gospodarką Magazynową</title>
     <h:outputStylesheet library="css" name="style.css"  />
@@ -16,6 +17,8 @@
 <div id="wrapper">
 	<header id="top">
 		<div id="topBtns">
+			Zalogowany jako: <h:outputText value="#{loggedUser.login}" />
+		
 			<a href="/SZGM/ustawienia/index.xhtml" title="Ustawienia">
 				Ustawienia
 				<h:graphicImage class="image" url="/resources/img/ustawienia.png" width="16" height="16" />
@@ -36,7 +39,7 @@
 			<a href="#" title="Faktury Zakupu"><h:graphicImage class="image" url="/resources/img/fz.png" /></a>
 			<a href="#" title="Dokumenty Wychodzące"><h:graphicImage class="image" url="/resources/img/dw.png" /></a>
 			<h:outputLink value="/SZGM/dokp/index.xhtml"><h:graphicImage class="image" url="/resources/img/dp.png" /></h:outputLink>
-			<h:outputLink value="/SZGM/towary/index.xhtml"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
+			<h:outputLink value="/SZGM/towary/list.xhtml"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
 			<a href="#" title="Kontrahenci"><h:graphicImage class="image" url="/resources/img/kontr.png" /></a>
 			<a href="#" title="Statystyki"><h:graphicImage class="image" url="/resources/img/stat.png" /></a>
 		</div>
@@ -47,9 +50,9 @@
 	</section><!-- #middle-->
 </div><!-- #wrapper -->
 
-<footer id="footer">
+<div id="footer">
 	&copy; 2014 Marcin Pławecki
-</footer><!-- #footer -->
+</div>
 
 </h:body>
  

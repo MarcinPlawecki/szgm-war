@@ -3,12 +3,13 @@ package szgm.towar.model;
 import java.io.Serializable;
 import java.util.Date;
 
+import szgm.core.BaseModel;
 import szgm.grupa.model.Grupa;
 import szgm.jednostka.model.Jednostka;
 import szgm.vat.model.Vat;
 import szgm.waluta.model.Waluta;
 
-public class Towar implements Serializable {
+public class Towar extends BaseModel implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 
@@ -145,6 +146,14 @@ public class Towar implements Serializable {
 	}
 	public void setStan(Double stan) {
 		this.stan = stan;
+	}
+	@Override
+	public Object getIdentifier() {
+		return getNazwa();
+	}
+	@Override
+	public String getIdentifierAsString() {
+		return getNazwa();
 	}
 	
 }

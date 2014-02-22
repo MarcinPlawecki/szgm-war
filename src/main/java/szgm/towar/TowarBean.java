@@ -4,16 +4,21 @@ import java.io.Serializable;
 import java.util.Date;
 import java.util.List;
 
+import javax.annotation.PostConstruct;
+import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
 import javax.faces.bean.ManagedProperty;
 import javax.faces.bean.SessionScoped;
+import javax.faces.context.FacesContext;
 
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
 import szgm.core.BaseBo;
+import szgm.core.BaseFacesBean;
 import szgm.grupa.model.Grupa;
 import szgm.jednostka.model.Jednostka;
+import szgm.konfiguracja.model.Konfiguracja;
 import szgm.towar.bo.TowarBo;
 import szgm.towar.model.Towar;
 import szgm.vat.model.Vat;
@@ -21,13 +26,106 @@ import szgm.waluta.model.Waluta;
 
 @ManagedBean(name = "towar")
 @SessionScoped
-public class TowarBean implements Serializable, InitializingBean {
+public class TowarBean extends BaseFacesBean<Towar> implements Serializable, InitializingBean {
 
 	private static final long serialVersionUID = 1L;
 
-	@ManagedProperty(value = "#{towarBo}")
-	BaseBo<Towar> towarBo;
+	@PostConstruct
+	@Override
+	public void refreshList() {
+			list = bo.findAllByNazwa(Towar.class);
+	}
+	
+	public String addTowar() {
+		Towar t = new Towar();
+		t.setNazwa(nazwa);
+		t.setAktywny(aktywny);
+		t.setCenaNetto(cenaNetto);
+		t.setCenaPromocyjna(cenaPromocyjna);
+		t.setCenaPrzedPromocja(cenaPrzedPromocja);
+		t.setCenaZakupu(cenaZakupu);
+		t.setGrupa(grupa);
+		t.setJednostka(jednostka);
+		t.setKodKreskowy(kodKreskowy);
+		t.setNazwa(nazwa);
+		t.setPkwiu(pkwiu);
+		t.setPromocja(promocja);
+		t.setPromocjaDo(promocjaDo);
+		t.setPromocjaOd(promocjaOd);
+		t.setPytajOCene(pytajOCene);
+		t.setVat(vat);
+		t.setWaluta(waluta);
+		t.setZmodyfikowany(1);
 
+		bo.add(t);
+		refreshList();
+		clearForm();
+		return "success";
+	}
+	
+	@Override
+	protected void clearForm() {
+		setNazwa("");
+		setAktywny(0);
+		setCenaNetto(0);
+		setCenaPromocyjna(0);
+		setCenaPrzedPromocja(0);
+		setCenaZakupu(0);
+		setGrupa(null);
+		setJednostka(null);
+		setKodKreskowy("");
+		setNazwa("");
+		setPkwiu("");
+		setPromocja(0);
+		setPromocjaDo(null);
+		setPromocjaOd(null);
+		setPytajOCene(0);
+		setVat(null);
+		setWaluta(null);
+		setZmodyfikowany(1);
+		setNewName("");
+	}
+	
+    public void cloneItem() {
+    	FacesMessage msg;
+    	if(null != selectedItem) {
+    		Towar newT = new Towar();
+    		newT.setNazwa(this.getNewName());
+    		newT.setAktywny(selectedItem.getAktywny());
+    		newT.setCenaNetto(selectedItem.getCenaNetto());
+    		newT.setCenaPromocyjna(selectedItem.getCenaPromocyjna());
+    		newT.setCenaPrzedPromocja(selectedItem.getCenaPrzedPromocja());
+    		newT.setCenaZakupu(selectedItem.getCenaZakupu());
+    		newT.setGrupa(selectedItem.getGrupa());
+    		newT.setJednostka(selectedItem.getJednostka());
+    		newT.setKodKreskowy(selectedItem.getKodKreskowy());
+    		newT.setPkwiu(selectedItem.getPkwiu());
+    		newT.setPromocja(selectedItem.getPromocja());
+    		newT.setPromocjaDo(selectedItem.getPromocjaDo());
+    		newT.setPromocjaOd(selectedItem.getPromocjaOd());
+    		newT.setPytajOCene(selectedItem.getPytajOCene());
+    		newT.setVat(selectedItem.getVat());
+    		newT.setWaluta(selectedItem.getWaluta());
+    		newT.setZmodyfikowany(selectedItem.getZmodyfikowany());
+    		
+    		bo.add(newT);
+    		refreshList();
+    		clearForm();
+    		
+    		msg = new FacesMessage("Zmiany zosta³y anulowane");
+    	} else {
+    		msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
+    		
+    	}
+    	
+        FacesContext.getCurrentInstance().addMessage(null, msg);  
+    }
+
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		Assert.notNull(bo, "towarBo can't be null");
+	}
+	
 	public String nazwa;
 	public double cenaNetto;
 	public Vat vat;
@@ -197,69 +295,6 @@ public class TowarBean implements Serializable, InitializingBean {
 
 	public void setStan(double stan) {
 		this.stan = stan;
-	}
-
-	public void setTowarBo(BaseBo towarBo) {
-		this.towarBo = towarBo;
-	}
-
-	public List<Towar> getTowarList() {
-		Assert.notNull(towarBo);
-		return towarBo.findAllByNazwa(Towar.class);
-	}
-
-	public String addTowar() {
-		Towar t = new Towar();
-		t.setNazwa(nazwa);
-		t.setAktywny(aktywny);
-		t.setCenaNetto(cenaNetto);
-		t.setCenaPromocyjna(cenaPromocyjna);
-		t.setCenaPrzedPromocja(cenaPrzedPromocja);
-		t.setCenaZakupu(cenaZakupu);
-		t.setGrupa(grupa);
-		t.setJednostka(jednostka);
-		t.setKodKreskowy(kodKreskowy);
-		t.setNazwa(nazwa);
-		t.setPkwiu(pkwiu);
-		t.setPromocja(promocja);
-		t.setPromocjaDo(promocjaDo);
-		t.setPromocjaOd(promocjaOd);
-		t.setPytajOCene(pytajOCene);
-		t.setVat(vat);
-		t.setWaluta(waluta);
-		t.setZmodyfikowany(1);
-
-		towarBo.add(t);
-
-		clearForm();
-
-		return "success";
-	}
-
-	private void clearForm() {
-		setNazwa("");
-		setAktywny(0);
-		setCenaNetto(0);
-		setCenaPromocyjna(0);
-		setCenaPrzedPromocja(0);
-		setCenaZakupu(0);
-		setGrupa(null);
-		setJednostka(null);
-		setKodKreskowy("");
-		setNazwa("");
-		setPkwiu("");
-		setPromocja(0);
-		setPromocjaDo(null);
-		setPromocjaOd(null);
-		setPytajOCene(0);
-		setVat(null);
-		setWaluta(null);
-		setZmodyfikowany(1);
-	}
-
-	@Override
-	public void afterPropertiesSet() throws Exception {
-		Assert.notNull(towarBo, "towarBo can't be null");
 	}
 
 }

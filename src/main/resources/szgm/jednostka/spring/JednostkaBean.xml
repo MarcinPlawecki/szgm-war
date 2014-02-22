@@ -6,7 +6,7 @@
  
    	<bean id="jednostkaBo" 
          class="szgm.jednostka.bo.JednostkaBoImpl" >
-   		<property name="jednostkaDao" ref="jednostkaDao" />
+   		<property name="dao" ref="jednostkaDao" />
    	</bean>
  
    	<bean id="jednostkaDao" 

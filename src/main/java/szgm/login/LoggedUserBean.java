@@ -9,14 +9,16 @@ import szgm.uzytkownik.model.Uzytkownik;
 @ApplicationScoped
 public class LoggedUserBean {
 
-	private Uzytkownik user;
+	private String login;
 
-	public Uzytkownik getUser() {
-		return user;
+	public String getLogin() {
+		return login;
 	}
 
-	public void setUser(Uzytkownik user) {
-		this.user = user;
+	public void setLogin(String login) {
+		this.login = login;
 	}
+
+
 	
 }

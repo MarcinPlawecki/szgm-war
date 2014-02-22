@@ -23,4 +23,50 @@
         <createSequence sequenceName="KONFIGURACJA_SEQ"/>
     </changeSet>
     
+    
+    <changeSet author="marcin" id="201402181651">
+    	<createTable tableName="prawo">
+    		<column name="id" type="NUMBER(38)">
+				<constraints nullable="false"/>
+			</column>    
+			<column name="nazwa" type="VARCHAR2(100)">
+				<constraints nullable="false"/>
+			</column>    	
+			<column name="opis" type="VARCHAR2(100)">
+				<constraints nullable="false"/>
+			</column>    	   	
+    	</createTable>
+    </changeSet>
+    
+    <changeSet author="marcin" id="201402181652">
+        <addPrimaryKey columnNames="id" constraintName="prawo_PK" tableName="prawo"/>
+    </changeSet>
+    
+    <changeSet author="marcin" id="201402181653">
+        <createSequence sequenceName="PRAWO_SEQ"/>
+    </changeSet>
+    
+    
+    <changeSet author="marcin" id="201402181654">
+    	<createTable tableName="rola_prawo">
+			<column name="id" type="NUMBER(38)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="rola" type="NUMBER(38)">
+				<constraints nullable="false"/>
+			</column>
+			<column name="prawo" type="NUMBER(38)">
+				<constraints nullable="false"/>
+			</column>
+    	</createTable>
+    </changeSet>
+    
+    <changeSet author="marcin" id="201402181655">
+        <addPrimaryKey columnNames="id" constraintName="rola_prawo_PK" tableName="rola_prawo"/>
+    </changeSet>
+    
+    <changeSet author="marcin" id="201402181656">
+        <createSequence sequenceName="ROLA_PRAWO_SEQ"/>
+    </changeSet>
+    
 </databaseChangeLog>

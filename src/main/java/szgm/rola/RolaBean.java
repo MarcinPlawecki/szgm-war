@@ -1,15 +1,15 @@
 package szgm.rola;
 
 import java.io.Serializable;
-import java.util.List;
 
-import szgm.rola.bo.RolaBo;
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.rola.model.Rola;
 
+public class RolaBean extends BaseFacesBean<Rola> implements Serializable, InitializingBean {
 
-public class RolaBean implements Serializable{
-
-	RolaBo rolaBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String nazwa;
 
@@ -21,12 +21,19 @@ public class RolaBean implements Serializable{
 		this.nazwa = nazwa;
 	}
 	
-	public void setRolaBo(RolaBo rolaBo) {
-		this.rolaBo = rolaBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Rola> getRolaList(){
-		return rolaBo.findAllRola();
+	
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Rola.class);
+	}
+	
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

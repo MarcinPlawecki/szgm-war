@@ -1,8 +1,13 @@
 package szgm.uzytkownik.model;
 
+import java.io.Serializable;
+
+import szgm.core.BaseModel;
 import szgm.rola.model.Rola;
 
-public class Uzytkownik{
+public class Uzytkownik extends BaseModel implements Serializable {
+	 
+	private static final long serialVersionUID = 1L;
 	
 	public long id;
 	public String login;
@@ -66,4 +71,14 @@ public class Uzytkownik{
     public int hashCode() {
         return this.getClass().hashCode() + ((Long)id).hashCode();
     }
+
+	@Override
+	public Object getIdentifier() {
+		return this.getLogin();
+	}
+
+	@Override
+	public String getIdentifierAsString() {
+		return this.getLogin();
+	}
 }

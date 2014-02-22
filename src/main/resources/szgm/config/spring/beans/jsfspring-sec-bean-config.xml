@@ -26,8 +26,11 @@
 		</beans:property>
 		<beans:property name="authoritiesByUsernameQuery">
 			<beans:value>
-				SELECT u.login, r.nazwa
-				FROM uzytkownik u LEFT JOIN rola r ON u.rola = r.id
+				SELECT u.login, p.nazwa
+				FROM uzytkownik u
+				LEFT JOIN rola r ON u.rola = r.id
+				LEFT JOIN rola_prawo rp ON r.id = rp.rola
+				LEFT JOIN prawo p ON p.id = rp.prawo
 				WHERE u.login = ?
 			</beans:value>
 		</beans:property>

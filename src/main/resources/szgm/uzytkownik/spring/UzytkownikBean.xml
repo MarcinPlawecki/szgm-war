@@ -6,7 +6,7 @@
  
    	<bean id="uzytkownikBo" 
          class="szgm.uzytkownik.bo.UzytkownikBoImpl" >
-   		<property name="uzytkownikDao" ref="uzytkownikDao" />
+   		<property name="dao" ref="uzytkownikDao" />
    	</bean>
  
    	<bean id="uzytkownikDao" 

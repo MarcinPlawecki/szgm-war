@@ -23,6 +23,11 @@ private static final long serialVersionUID = 1L;
 	}
 	
 	@Override
+	public T find(Class<T> clazz, Serializable id) {
+		return getHibernateTemplate().get(clazz, id);
+	}
+	
+	@Override
 	public T update(T t) {
 		getHibernateTemplate().merge(t);
 		return t;

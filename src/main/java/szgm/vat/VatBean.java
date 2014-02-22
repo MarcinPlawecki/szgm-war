@@ -1,15 +1,15 @@
 package szgm.vat;
 
 import java.io.Serializable;
-import java.util.List;
 
-import szgm.vat.bo.VatBo;
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.vat.model.Vat;
 
+public class VatBean extends BaseFacesBean<Vat> implements Serializable, InitializingBean {
 
-public class VatBean implements Serializable{
-
-	VatBo vatBo;
+	private static final long serialVersionUID = 1L;
 	
 	public double stawka;
 	public String tekst;
@@ -39,12 +39,19 @@ public class VatBean implements Serializable{
 		this.nazwa = nazwa;
 	}
 
-	public void setVatBo(VatBo vatBo) {
-		this.vatBo = vatBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Vat> getVatList(){
-		return vatBo.findAllVat();
+
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Vat.class);
+	}
+
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

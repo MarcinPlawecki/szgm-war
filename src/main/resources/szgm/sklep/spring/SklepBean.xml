@@ -6,7 +6,7 @@
  
    	<bean id="sklepBo" 
          class="szgm.sklep.bo.SklepBoImpl" >
-   		<property name="sklepDao" ref="sklepDao" />
+   		<property name="dao" ref="sklepDao" />
    	</bean>
  
    	<bean id="sklepDao" 

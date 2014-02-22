@@ -1,15 +1,16 @@
 package szgm.waluta;
 
 import java.io.Serializable;
-import java.util.List;
 
-import szgm.waluta.bo.WalutaBo;
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.waluta.model.Waluta;
 
 
-public class WalutaBean implements Serializable{
+public class WalutaBean extends BaseFacesBean<Waluta> implements Serializable, InitializingBean {
 
-	WalutaBo walutaBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String nazwa;
 	public String symbol;
@@ -48,12 +49,19 @@ public class WalutaBean implements Serializable{
 		this.glowna = glowna;
 	}
 
-	public void setWalutaBo(WalutaBo walutaBo) {
-		this.walutaBo = walutaBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Waluta> getWalutaList(){
-		return walutaBo.findAllWaluta();
+
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Waluta.class);
+	}
+
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

@@ -1,0 +1,274 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="cloneDialogForm">
+					<p:dialog id="cloneDialog" header="Modal Dialog"
+						widgetVar="cloneDialog" modal="true" height="100">
+						<h:outputText value="Podaj nazwę nowego towaru" />
+						<p:inputText value="#{towar.newName}" style="width:100%" />
+						<br />
+						<p:commandButton value="OK"
+							actionListener="#{towar.cloneItem}" ajax="false" />
+					</p:dialog>
+				</h:form>
+
+				<h:form id="form">
+					<h:outputLink
+						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+						value="/SZGM/towary/add.xhtml"
+						onmouseover="$(this).addClass('ui-state-hover')"
+						onmouseout="$(this).removeClass('ui-state-hover')">
+						<h:outputText styleClass="ui-button-text" value="Dodaj"
+							rendered="#{p:ifGranted('TOWARY_DODAWANIE')}" />
+					</h:outputLink>
+					<p:commandButton value="Usuń" id="deleteBtn"
+						disabled="#{towar.selectedItem == null}"
+						actionListener="#{towar.delete}" ajax="false"
+						rendered="#{p:ifGranted('TOWARY_EDYCJA')}" />
+					<p:commandButton id="cloneDialogButton" value="Klonuj"
+						disabled="#{towar.selectedItem == null}"
+						onclick="cloneDialog.show();" type="button"
+						rendered="#{p:ifGranted('TOWARY_DODAWANIE')}" />
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dataTable" var="t" value="#{towar.list}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{towar.filteredList}"
+						selection="#{towar.selectedItem}" rowKey="#{t.id}"
+						selectionMode="single"
+						editable="#{p:ifGranted('TOWARY_EDYCJA')}"
+						emptyMessage="Brak danych" styleClass="table">
+
+						<p:ajax event="rowEdit" listener="#{towar.onEdit}"
+							update=":form:messages" />
+						<p:ajax event="rowEditCancel" listener="#{towar.onCancel}"
+							update=":form:messages" />
+						<p:ajax event="rowSelect"
+							update=":form:deleteBtn,:form:cloneDialogButton" />
+						<p:ajax event="rowUnselect"
+							update=":form:deleteBtn,:form:cloneDialogButton" />
+
+						<p:column sortBy="#{t.nazwa}" filterBy="#{t.nazwa}"
+							filterMatchMode="contains" headerText="Nazwa">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.nazwa}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{t.cenaNetto}" filterBy="#{t.cenaNetto}"
+							filterMatchMode="contains" headerText="Cena netto">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.cenaNetto}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.cenaNetto}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{t.vat.stawka}" filterBy="#{t.vat.stawka}"
+							filterMatchMode="contains" headerText="Stawka VAT">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.vat.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.vat}">
+   										<f:selectItems value="#{vat.getList()}" var="v"
+   											itemLabel="#{v.nazwa}" itemValue="#{v}" />
+   										<f:converter converterId="vatConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.grupa.nazwa}" filterBy="#{t.grupa.nazwa}"
+							filterMatchMode="contains" headerText="Grupa">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.grupa.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.grupa}">
+   										<f:selectItems value="#{grupa.getList()}" var="g"
+   											itemLabel="#{g.nazwa}" itemValue="#{g}" />
+   										<f:converter converterId="grupaConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.kodKreskowy}" filterBy="#{t.kodKreskowy}"
+							filterMatchMode="contains" headerText="Kod kreskowy">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.kodKreskowy}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.kodKreskowy}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.stan}" filterBy="#{t.stan}"
+							filterMatchMode="contains" headerText="Stan">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.stan}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.stan}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+    				
+    					<p:column sortBy="#{t.pkwiu}" filterBy="#{t.pkwiu}"
+							filterMatchMode="contains" headerText="PKWIU">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.pkwiu}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.pkwiu}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.jednostka.nazwa}" filterBy="#{t.jednostka.nazwa}"
+							filterMatchMode="contains" headerText="Jednostka">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.jednostka.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.jednostka}">
+   										<f:selectItems value="#{jednostka.getList()}" var="j"
+   											itemLabel="#{j.nazwa}" itemValue="#{j}" />
+   										<f:converter converterId="jednostkaConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.waluta.symbol}" filterBy="#{t.waluta.symbol}"
+							filterMatchMode="contains" headerText="Waluta">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.waluta.symbol}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{towar.waluta}">
+   										<f:selectItems value="#{waluta.getList()}" var="w"
+   											itemLabel="#{w.nazwa}" itemValue="#{w}" />
+   										<f:converter converterId="walutaConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+    					<p:column sortBy="#{t.cenaZakupu}" filterBy="#{t.cenaZakupu}"
+							filterMatchMode="contains" headerText="Cena zakupu">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{t.cenaZakupu}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{t.cenaZakupu}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.pytajOCene}" filterBy="#{t.pytajOCene}"
+							filterMatchMode="contains" headerText="Pytaj o cenę">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputLabel value="Tak" rendered="#{t.pytajOCene == 1}" /> 
+ 									<h:outputLabel value="Nie" rendered="#{t.pytajOCene == 0}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.pytajOCene}">
+   										<f:selectItem itemValue="1" itemLabel="Tak" />
+					   					<f:selectItem itemValue="0" itemLabel="Nie" />
+									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+    				
+    					<p:column sortBy="#{t.aktywny}" filterBy="#{t.aktywny}"
+							filterMatchMode="contains" headerText="Aktywny">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputLabel value="Tak" rendered="#{t.aktywny == 1}" /> 
+ 									<h:outputLabel value="Nie" rendered="#{t.aktywny == 0}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.aktywny}">
+   										<f:selectItem itemValue="1" itemLabel="Tak" />
+					   					<f:selectItem itemValue="0" itemLabel="Nie" />
+									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{t.promocja}" filterBy="#{t.promocja}"
+							filterMatchMode="contains" headerText="Promocja">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputLabel value="Tak" rendered="#{t.promocja == 1}" /> 
+ 									<h:outputLabel value="Nie" rendered="#{t.promocja == 0}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{t.promocja}">
+   										<f:selectItem itemValue="1" itemLabel="Tak" />
+					   					<f:selectItem itemValue="0" itemLabel="Nie" />
+									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%"
+							rendered="#{p:ifGranted('TOWARY_EDYCJA')}">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<li><h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}">Lista Towarów</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/etykiety.xhtml">Wydruk Etykiet</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

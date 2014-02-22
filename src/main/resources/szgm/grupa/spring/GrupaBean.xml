@@ -6,7 +6,7 @@
  
    	<bean id="grupaBo" 
          class="szgm.grupa.bo.GrupaBoImpl" >
-   		<property name="grupaDao" ref="grupaDao" />
+   		<property name="dao" ref="grupaDao" />
    	</bean>
  
    	<bean id="grupaDao" 

@@ -10,7 +10,8 @@
 	<sec:http auto-config="true" use-expressions="true">
 		<sec:intercept-url pattern="/common/login.xhtml" access="permitAll" />
 		<sec:intercept-url pattern="/common/style.css" access="permitAll" />
-		<sec:intercept-url pattern="/**" access="hasRole('Administrator')" />
+		<sec:intercept-url pattern="/common/style.css" access="permitAll" />
+		<sec:intercept-url pattern="/**" access="isAuthenticated()" />
 		<sec:form-login login-page="/common/login.xhtml" authentication-failure-url="/loginfailed" />
 		<sec:logout invalidate-session="true" delete-cookies="true" logout-success-url="/common/login.xhtml" />
 	</sec:http>

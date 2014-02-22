@@ -30,26 +30,24 @@
 				<h:form id="form">
 					<h:outputLink
 						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
-						value="/SZGM/konfiguracja/add.xhtml"
+						value="/SZGM/ustawienia/konfiguracja/add.xhtml"
 						onmouseover="$(this).addClass('ui-state-hover')"
 						onmouseout="$(this).removeClass('ui-state-hover')">
-						<h:outputText styleClass="ui-button-text" value="Dodaj" />
+						<h:outputText styleClass="ui-button-text" value="Dodaj" rendered="#{p:ifGranted('KONFIGURACJA_DODAWANIE')}" />
 					</h:outputLink>
 					<p:commandButton value="Usuń" id="deleteBtn" disabled="#{konfiguracja.selectedItem == null}"
-						actionListener="#{konfiguracja.delete}" ajax="false" />
+						actionListener="#{konfiguracja.delete}" ajax="false" rendered="#{p:ifGranted('KONFIGURACJA_EDYCJA')}" />
 					<p:commandButton id="cloneDialogButton" value="Klonuj" disabled="#{konfiguracja.selectedItem == null}"
-						onclick="cloneDialog.show();" type="button" />
+						onclick="cloneDialog.show();" type="button" rendered="#{p:ifGranted('KONFIGURACJA_DODAWANIE')}" />
 
 					<p:growl id="messages" showDetail="true" />
 
 					<p:dataTable id="dataTable" var="k" value="#{konfiguracja.list}"
-						rows="25" paginator="true" sortMode="multiple"
+						rows="15" paginator="true" sortMode="multiple"
 						filteredValue="#{konfiguracja.filteredList}"
 						selection="#{konfiguracja.selectedItem}" rowKey="#{k.nazwa}"
-						selectionMode="single" editable="true"
-						emptyMessage="Brak danych" styleClass="table"
-						headerClass="table-header"
-						rowClasses="table-odd-row, table-even-row">
+						selectionMode="single" editable="#{p:ifGranted('KONFIGURACJA_EDYCJA')}"
+						emptyMessage="Brak danych" styleClass="table">
 
 						<p:ajax event="rowEdit" listener="#{konfiguracja.onEdit}"
 							update=":form:messages" />
@@ -87,7 +85,7 @@
 							</p:cellEditor>
 						</p:column>
 
-						<p:column style="width:2%">
+						<p:column style="width:2%" rendered="#{p:ifGranted('KONFIGURACJA_EDYCJA')}">
 							<p:rowEditor />
 						</p:column>
 
@@ -98,7 +96,7 @@
 
 		<aside id="sideLeft">
 		<ul>
-			<li><h:outputLink value="/SZGM/konfiguracja/list.xhtml">Konfiguracja</h:outputLink></li>
+			<li><h:outputLink value="/SZGM/ustawienia/konfiguracja/list.xhtml" rendered="#{p:ifGranted('KONFIGURACJA_LISTA')}">Konfiguracja</h:outputLink></li>
 		</ul>
 		</aside>
 

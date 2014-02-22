@@ -16,7 +16,7 @@ public class KonfiguracjaConverter implements Converter {
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Konfiguracja v =  (Konfiguracja) konfiguracjaDao.findAllByNazwa(Konfiguracja.class);
+		Konfiguracja v =  (Konfiguracja) konfiguracjaDao.find(Konfiguracja.class, value);
         return v;
     }
 

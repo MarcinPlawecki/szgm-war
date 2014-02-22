@@ -1,18 +1,12 @@
 package szgm.typDokumentu.dao;
  
-import java.util.List;
- 
-import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
+import java.io.Serializable;
 
+import szgm.core.BaseDaoImpl;
 import szgm.typDokumentu.model.TypDokumentu;
  
-public class TypDokumentuDaoImpl extends HibernateDaoSupport implements TypDokumentuDao{
- 
-	public List<TypDokumentu> findAllTypDokumentu(){
-		return getHibernateTemplate().find("from TypDokumentu order by nazwa");
-	}
+public class TypDokumentuDaoImpl extends BaseDaoImpl<TypDokumentu> implements Serializable {
+	   
+	private static final long serialVersionUID = 1L;
 	
-	public Object find(String value) {
-		return getHibernateTemplate().find("from TypDokumentu where id = " + value).get(0);
-	}
 }

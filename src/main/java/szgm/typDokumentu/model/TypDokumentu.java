@@ -1,6 +1,12 @@
 package szgm.typDokumentu.model;
 
-public class TypDokumentu{
+import java.io.Serializable;
+
+import szgm.core.BaseModel;
+
+public class TypDokumentu extends BaseModel implements Serializable {
+	 
+	private static final long serialVersionUID = 1L;
 	
 	public long id;
 	public String nazwa;
@@ -25,4 +31,12 @@ public class TypDokumentu{
     public int hashCode() {
         return this.getClass().hashCode() + ((Long)id).hashCode();
     }
+	@Override
+	public Object getIdentifier() {
+		return this.getNazwa();
+	}
+	@Override
+	public String getIdentifierAsString() {
+		return this.getNazwa();
+	}
 }

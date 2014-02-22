@@ -3,13 +3,17 @@ package szgm.sklep;
 import java.io.Serializable;
 import java.util.List;
 
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.sklep.bo.SklepBo;
 import szgm.sklep.model.Sklep;
+import szgm.towar.model.Towar;
 
 
-public class SklepBean implements Serializable{
+public class SklepBean extends BaseFacesBean<Sklep> implements Serializable, InitializingBean {
 
-	SklepBo sklepBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String nazwa;
 	public String kraj;
@@ -62,12 +66,19 @@ public class SklepBean implements Serializable{
 		this.symbol = symbol;
 	}
 	
-	public void setSklepBo(SklepBo sklepBo) {
-		this.sklepBo = sklepBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Sklep> getSklepList(){
-		return sklepBo.findAllSklep();
+	
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Sklep.class);
+	}
+	
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

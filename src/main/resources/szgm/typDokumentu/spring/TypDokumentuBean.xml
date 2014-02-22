@@ -6,7 +6,7 @@
  
    	<bean id="typDokumentuBo" 
          class="szgm.typDokumentu.bo.TypDokumentuBoImpl" >
-   		<property name="typDokumentuDao" ref="typDokumentuDao" />
+   		<property name="dao" ref="typDokumentuDao" />
    	</bean>
  
    	<bean id="typDokumentuDao" 

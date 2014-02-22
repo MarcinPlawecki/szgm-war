@@ -4,20 +4,20 @@ import javax.faces.component.UIComponent;
 import javax.faces.context.FacesContext;
 import javax.faces.convert.Converter;
 
-import szgm.sklep.dao.SklepDao;
+import szgm.core.BaseDao;
 import szgm.sklep.model.Sklep;
 
 public class SklepConverter implements Converter {
 
 
-    private static SklepDao sklepDao;
+    private static BaseDao<Sklep> sklepDao;
 
-    public static void setSklepDao(SklepDao sklepDao) {
+    public static void setSklepDao(BaseDao<Sklep> sklepDao) {
 		SklepConverter.sklepDao = sklepDao;
 	}
 
 	public Object getAsObject(FacesContext context, UIComponent component, String value) {
-		Sklep v =  (Sklep)sklepDao.find(value);
+		Sklep v =  (Sklep)sklepDao.find(Sklep.class, Long.parseLong(value));
         return v;
     }
 

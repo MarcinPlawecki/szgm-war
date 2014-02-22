@@ -1,15 +1,16 @@
 package szgm.jednostka;
 
 import java.io.Serializable;
-import java.util.List;
 
-import szgm.jednostka.bo.JednostkaBo;
+import org.springframework.beans.factory.InitializingBean;
+
+import szgm.core.BaseFacesBean;
 import szgm.jednostka.model.Jednostka;
 
 
-public class JednostkaBean implements Serializable{
+public class JednostkaBean extends BaseFacesBean<Jednostka> implements Serializable, InitializingBean {
 
-	JednostkaBo jednostkaBo;
+	private static final long serialVersionUID = 1L;
 	
 	public String nazwa;
 
@@ -21,12 +22,19 @@ public class JednostkaBean implements Serializable{
 		this.nazwa = nazwa;
 	}
 
-	public void setJednostkaBo(JednostkaBo jednostkaBo) {
-		this.jednostkaBo = jednostkaBo;
+	@Override
+	public void afterPropertiesSet() throws Exception {
+		// TODO Auto-generated method stub
 	}
- 
-	public List<Jednostka> getJednostkaList(){
-		return jednostkaBo.findAllJednostka();
+
+	@Override
+	public void refreshList() {
+		list = bo.findAllByNazwa(Jednostka.class);
+	}
+
+	@Override
+	protected void clearForm() {
+		// TODO Auto-generated method stub
 	}
 	
 }

@@ -2,7 +2,9 @@ package szgm.waluta.model;
 
 import java.io.Serializable;
 
-public class Waluta implements Serializable {
+import szgm.core.BaseModel;
+
+public class Waluta extends BaseModel implements Serializable {
 	 
 	private static final long serialVersionUID = 1L;
 		
@@ -50,5 +52,15 @@ public class Waluta implements Serializable {
     public int hashCode() {
         return this.getClass().hashCode() + ((Long)id).hashCode();
     }
+    
+	@Override
+	public Object getIdentifier() {
+		return this.getNazwa();
+	}
+	
+	@Override
+	public String getIdentifierAsString() {
+		return this.getNazwa();
+	}
     
 }
