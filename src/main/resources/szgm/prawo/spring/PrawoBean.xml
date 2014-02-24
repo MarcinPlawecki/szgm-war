@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans 
+	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
+ 
+   	<bean id="prawoBo" 
+         class="szgm.prawo.bo.PrawoBoImpl" >
+   		<property name="dao" ref="prawoDao" />
+   	</bean>
+ 
+   	<bean id="prawoDao" 
+         class="szgm.prawo.dao.PrawoDaoImpl" >
+   		<property name="sessionFactory" ref="sessionFactory"></property>
+   	</bean>
+
+   	<bean id="prawoConverter" 
+         class="szgm.prawo.PrawoConverter" >
+   		<property name="dao" ref="prawoDao" />
+   	</bean>
+   	
+</beans>

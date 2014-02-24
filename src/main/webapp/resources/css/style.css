@@ -133,6 +133,10 @@ input {
 	padding: 0 10px 0 180px;
 }
 
+.table {
+	padding-top: 15px;
+	padding-bottom: 15px;
+}
 
 .ui-growl {
 	padding-top: 80px;

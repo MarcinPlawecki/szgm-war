@@ -1,13 +1,12 @@
 package szgm.rola.dao;
- 
+
 import java.util.List;
 
+import szgm.core.BaseDao;
+import szgm.prawo.model.Prawo;
 import szgm.rola.model.Rola;
- 
- 
-public interface RolaDao{
-	
-	List<Rola> findAllRola();
- 
-	public Object find(String value);
+
+public interface RolaDao extends BaseDao<Rola> {
+
+	List<Prawo> getGrantedRights(Rola selectedItem);
 }

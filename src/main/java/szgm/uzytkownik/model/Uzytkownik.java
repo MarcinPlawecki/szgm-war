@@ -6,16 +6,17 @@ import szgm.core.BaseModel;
 import szgm.rola.model.Rola;
 
 public class Uzytkownik extends BaseModel implements Serializable {
-	 
+
 	private static final long serialVersionUID = 1L;
-	
+
 	public long id;
 	public String login;
 	public String haslo;
 	public String imie;
 	public String nazwisko;
 	public Rola rola;
-	
+	public int zaszyfrowany;
+
 	public long getId() {
 		return id;
 	}
@@ -64,13 +65,24 @@ public class Uzytkownik extends BaseModel implements Serializable {
 		this.rola = rola;
 	}
 
-	public boolean equals(Object other) {
-        return other instanceof Uzytkownik ? id == (((Uzytkownik) other).getId()) : (other == this);
-    }
+	public int getZaszyfrowany() {
+		return zaszyfrowany;
+	}
 
-    public int hashCode() {
-        return this.getClass().hashCode() + ((Long)id).hashCode();
-    }
+	public void setZaszyfrowany(int zaszyfrowany) {
+		this.zaszyfrowany = zaszyfrowany;
+	}
+
+	@Override
+	public boolean equals(Object other) {
+		return other instanceof Uzytkownik ? id == (((Uzytkownik) other)
+				.getId()) : (other == this);
+	}
+
+	@Override
+	public int hashCode() {
+		return this.getClass().hashCode() + ((Long) id).hashCode();
+	}
 
 	@Override
 	public Object getIdentifier() {

@@ -32,6 +32,9 @@ http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
           <value>szgm/typDokumentu/hibernate/TypDokumentu.hbm.xml</value>
           <value>szgm/konfiguracja/hibernate/Konfiguracja.hbm.xml</value>
           <value>szgm/kontrahent/hibernate/Kontrahent.hbm.xml</value>
+          <value>szgm/dokp/poz/hibernate/DokPP.hbm.xml</value>
+          <value>szgm/dokp/nagl/hibernate/DokPN.hbm.xml</value>
+          <value>szgm/prawo/hibernate/Prawo.hbm.xml</value>
 	</list>
      </property>	
  

@@ -1,0 +1,247 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="form">
+					<p:commandButton value="Usuń" id="deleteBtn"
+						disabled="#{dokPN.selectedItem == null}"
+						actionListener="#{dokPN.delete}" ajax="false"
+						rendered="#{p:ifGranted('DOKP_EDYCJA')}" />
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dataTable" var="d" value="#{dokPN.list}"
+						rows="10" paginator="true" sortMode="multiple"
+						filteredValue="#{dokPN.filteredList}"
+						selection="#{dokPN.selectedItem}" rowKey="#{d.id}"
+						selectionMode="single"
+						editable="#{p:ifGranted('DOKP_EDYCJA')}"
+						emptyMessage="Brak danych" styleClass="table">
+
+						<p:ajax event="rowEdit" listener="#{dokPN.onEdit}"
+							update=":form:messages" />
+						<p:ajax event="rowEditCancel" listener="#{dokPN.onCancel}"
+							update=":form:messages" />
+						<p:ajax event="rowSelect"
+							update=":form:deleteBtn,:form:dataTablePoz" />
+						<p:ajax event="rowUnselect"
+							update=":form:deleteBtn,:form:dataTablePoz" />
+
+						<p:column sortBy="#{d.numer}" filterBy="#{d.numer}"
+							filterMatchMode="contains" headerText="Numer">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.numer}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{d.numer}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{d.dataWystawienia}" filterBy="#{d.dataWystawienia}"
+							filterMatchMode="contains" headerText="Data wystawienia">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.dataWystawienia}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{d.dataWystawienia}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{d.sklep.nazwa}" filterBy="#{d.sklep.nazwa}"
+							filterMatchMode="contains" headerText="Sklep">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.sklep.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{d.sklep}">
+   										<f:selectItems value="#{sklep.getList()}" var="s"
+   											itemLabel="#{s.nazwa}" itemValue="#{s}" />
+   										<f:converter converterId="sklepConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{d.uzytkownik.login}" filterBy="#{d.uzytkownik.login}"
+							filterMatchMode="contains" headerText="Użytkownik">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.uzytkownik.login}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{d.uzytkownik}">
+   										<f:selectItems value="#{uzytkownik.getList()}" var="u"
+   											itemLabel="#{u.login}" itemValue="#{u}" />
+   										<f:converter converterId="uzytkownikConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{d.typDokumentu.nazwa}" filterBy="#{d.typDokumentu.nazwa}"
+							filterMatchMode="contains" headerText="Typ dokumentu">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.typDokumentu.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{d.typDokumentu}">
+   										<f:selectItems value="#{typDokumentu.getList()}" var="t"
+   											itemLabel="#{t.nazwa}" itemValue="#{t}" />
+   										<f:converter converterId="typDokumentuConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+    					<p:column sortBy="#{d.komentarz}" filterBy="#{d.komentarz}"
+							filterMatchMode="contains" headerText="Komentarz">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.komentarz}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{d.komentarz}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+    					<p:column sortBy="#{d.dataUtworzenia}" filterBy="#{d.dataUtworzenia}"
+							filterMatchMode="contains" headerText="Data utworzenia">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.dataUtworzenia}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{d.dataUtworzenia}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+    					<p:column sortBy="#{d.dataModyfikacji}" filterBy="#{d.dataModyfikacji}"
+							filterMatchMode="contains" headerText="Data modyfikacji">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.dataModyfikacji}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{d.dataModyfikacji}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+    				
+    					<p:column sortBy="#{d.kontrahent.nazwa}" filterBy="#{d.kontrahent.nazwa}"
+							filterMatchMode="contains" headerText="Kontrahent">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{d.kontrahent.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{d.kontrahent}">
+   										<f:selectItems value="#{kontrahent.getList()}" var="k"
+   											itemLabel="#{k.nazwa}" itemValue="#{k}" />
+   										<f:converter converterId="kontrahentConverter" />
+   									</h:selectOneMenu>
+   								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%"
+							rendered="#{p:ifGranted('TOWARY_EDYCJA')}">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+					
+					
+					
+					<p:dataTable id="dataTablePoz" var="p" value="#{dokPP.listByDok(dokPN.selectedItem)}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{dokPP.filteredList}"
+						selection="#{dokPP.selectedItem}" rowKey="#{p.id}"
+						selectionMode="single"
+						editable="#{p:ifGranted('DOKP_EDYCJA')}"
+						emptyMessage="Brak pozycji" styleClass="table">
+
+						<p:column sortBy="#{p.towar.nazwa}" filterBy="#{p.towar.nazwa}"
+							filterMatchMode="contains" headerText="Towar">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.towar.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{p.towar}">
+   										<f:selectItems value="#{towar.getList()}" var="t"
+   											itemLabel="#{t.nazwa}" itemValue="#{t}" />
+   										<f:converter converterId="towarConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{p.iloscCalosc}" filterBy="#{p.iloscCalosc}"
+							filterMatchMode="contains" headerText="Ilość">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.iloscCalosc}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.iloscCalosc}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+						
+						<p:column sortBy="#{p.cenaZakupuNetto}" filterBy="#{p.cenaZakupuNetto}"
+							filterMatchMode="contains" headerText="Cena zakupu netto">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{p.cenaZakupuNetto}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{p.cenaZakupuNetto}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%"
+							rendered="#{p:ifGranted('TOWARY_EDYCJA')}">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+					
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/dokp/list.xhtml" rendered="#{p:ifGranted('DOKP_LISTA')}"><li>Lista dokumentów</li></h:outputLink>
+			<h:outputLink value="/SZGM/dokp/add.xhtml" rendered="#{p:ifGranted('DOKP_DODAWANIE')}"><li>Nowy dokument</li></h:outputLink>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

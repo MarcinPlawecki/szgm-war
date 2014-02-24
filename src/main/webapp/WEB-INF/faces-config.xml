@@ -65,13 +65,17 @@
 			<property-name>bo</property-name>
 			<value>#{uzytkownikBo}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>passwordEncoder</property-name>
+			<value>#{passwordEncoder}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>rola</managed-bean-name>
 		<managed-bean-class>szgm.rola.RolaBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-			<property-name>bo</property-name>
+			<property-name>rolaBo</property-name>
 			<value>#{rolaBo}</value>
 		</managed-property>
 	</managed-bean>
@@ -98,7 +102,7 @@
 		<managed-bean-class>szgm.towar.TowarBean</managed-bean-class>
 		<managed-bean-scope>session</managed-bean-scope>
 		<managed-property>
-			<property-name>bo</property-name>
+			<property-name>towarBo</property-name>
 			<value>#{towarBo}</value>
 		</managed-property>
 	</managed-bean>
@@ -109,6 +113,33 @@
 		<managed-property>
 			<property-name>bo</property-name>
 			<value>#{kontrahentBo}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dokPP</managed-bean-name>
+		<managed-bean-class>szgm.dokp.poz.DokPPBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>dokPPBo</property-name>
+			<value>#{dokPPBo}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>dokPN</managed-bean-name>
+		<managed-bean-class>szgm.dokp.nagl.DokPNBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>bo</property-name>
+			<value>#{dokPNBo}</value>
+		</managed-property>
+	</managed-bean>
+	<managed-bean>
+		<managed-bean-name>prawo</managed-bean-name>
+		<managed-bean-class>szgm.prawo.PrawoBean</managed-bean-class>
+		<managed-bean-scope>session</managed-bean-scope>
+		<managed-property>
+			<property-name>bo</property-name>
+			<value>#{prawoBo}</value>
 		</managed-property>
 	</managed-bean>
 	
@@ -132,6 +163,20 @@
     	<navigation-case>
         	<from-outcome>success</from-outcome>
         	<to-view-id>/kontrahenci/list.xhtml</to-view-id>
+    	</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+    	<from-view-id>/ustawienia/uzytkownik/add.xhtml</from-view-id>
+    	<navigation-case>
+        	<from-outcome>success</from-outcome>
+        	<to-view-id>/ustawienia/uzytkownik/list.xhtml</to-view-id>
+    	</navigation-case>
+	</navigation-rule>
+	<navigation-rule>
+    	<from-view-id>/ustawienia/rola/add.xhtml</from-view-id>
+    	<navigation-case>
+        	<from-outcome>success</from-outcome>
+        	<to-view-id>/ustawienia/rola/list.xhtml</to-view-id>
     	</navigation-case>
 	</navigation-rule>
 	
@@ -195,6 +240,22 @@
 	<converter>
     	<converter-id>kontrahentConverter</converter-id>
     	<converter-class>szgm.kontrahent.KontrahentConverter</converter-class>
+	</converter>
+	<converter>
+    	<converter-id>dokPNConverter</converter-id>
+    	<converter-class>szgm.dokp.nagl.DokPNConverter</converter-class>
+	</converter>
+	<converter>
+    	<converter-id>dokPPConverter</converter-id>
+    	<converter-class>szgm.dokp.poz.DokPPConverter</converter-class>
+	</converter>
+	<converter>
+    	<converter-id>towarConverter</converter-id>
+    	<converter-class>szgm.towar.TowarConverter</converter-class>
+	</converter>
+	<converter>
+    	<converter-id>prawoConverter</converter-id>
+    	<converter-class>szgm.prawo.PrawoConverter</converter-class>
 	</converter>
 	
 </faces-config>

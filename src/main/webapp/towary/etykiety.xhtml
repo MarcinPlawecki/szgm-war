@@ -1,0 +1,128 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="cloneDialogForm">
+					<p:dialog id="cloneDialog" header="Modal Dialog"
+						widgetVar="cloneDialog" modal="true" height="100">
+						<h:outputText value="Podaj nazwę nowego towaru" />
+						<p:inputText value="#{towar.newName}" style="width:100%" />
+						<br />
+						<p:commandButton value="OK"
+							actionListener="#{towar.cloneItem}" ajax="false" />
+					</p:dialog>
+				</h:form>
+
+				<h:form id="form">
+
+					<p:dataTable id="dataTable" var="t" value="#{towar.list}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{towar.filteredList}"
+						selection="#{towar.selectedItem}" rowKey="#{t.id}"
+						selectionMode="single"
+						emptyMessage="Brak danych" styleClass="table">
+
+						<p:ajax event="rowSelect" 
+							oncomplete="etykietyDialog.show()"
+							update=":form:display" />
+
+						<p:column sortBy="#{t.nazwa}" filterBy="#{t.nazwa}"
+							filterMatchMode="contains" headerText="Nazwa">
+							<h:outputText value="#{t.nazwa}" />
+						</p:column>
+
+						<p:column sortBy="#{t.cenaNetto}" filterBy="#{t.cenaNetto}"
+							filterMatchMode="contains" headerText="Cena netto">
+							<h:outputText value="#{t.cenaNetto}" />
+						</p:column>
+
+						<p:column sortBy="#{t.vat.stawka}" filterBy="#{t.vat.stawka}"
+							filterMatchMode="contains" headerText="Stawka VAT">
+							<h:outputText value="#{t.vat.nazwa}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.kodKreskowy}" filterBy="#{t.kodKreskowy}"
+							filterMatchMode="contains" headerText="Kod kreskowy">
+							<h:outputText value="#{t.kodKreskowy}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.jednostka.nazwa}" filterBy="#{t.jednostka.nazwa}"
+							filterMatchMode="contains" headerText="Jednostka">
+							<h:outputText value="#{t.jednostka.nazwa}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.waluta.symbol}" filterBy="#{t.waluta.symbol}"
+							filterMatchMode="contains" headerText="Waluta">
+							<h:outputText value="#{t.waluta.symbol}" />
+						</p:column>
+    				
+    					<p:column sortBy="#{t.aktywny}" filterBy="#{t.aktywny}"
+							filterMatchMode="contains" headerText="Aktywny">
+							<h:outputLabel value="Tak" rendered="#{t.aktywny == 1}" /> 
+ 							<h:outputLabel value="Nie" rendered="#{t.aktywny == 0}" />
+						</p:column>
+					</p:dataTable>
+					
+					<p:dialog id="dialog" widgetVar="etykietyDialog" resizable="false"
+                		showEffect="fade" hideEffect="fade">
+        				<h:panelGrid id="display" columns="2" cellpadding="4">
+  
+            				<h:outputText value="Towar: " />
+            				<h:outputText value="#{towar.selectedItem.nazwa}" />
+            				
+            				<h:outputText value="Liczba etykiet do wydruku: " />
+            				<p:inputText value="#{towar.liczbaEtykiet}"  style="width:100%" />
+							
+							<p:commandButton value="Dodaj" id="dodajEtykieteBtn" update=":form:doWydrukuTable"
+								actionListener="#{towar.dodajEtykiete()}" ajax="false" />
+        				
+        				</h:panelGrid>
+    				</p:dialog>
+    				
+    				<p:dataTable id="doWydrukuTable" var="t" value="#{towar.doWydruku}"
+						rows="15" paginator="true"
+						emptyMessage="Brak etykiet do wydruku" styleClass="table">
+
+						<p:column sortBy="#{t.value}" filterBy="#{t.value}"
+							filterMatchMode="contains" headerText="Liczba" width="10%" >
+							<h:outputText value="#{t.value}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.key.nazwa}" filterBy="#{t.key.nazwa}"
+							filterMatchMode="contains" headerText="Towar">
+							<h:outputText value="#{t.key.nazwa}" />
+						</p:column>
+					</p:dataTable>
+    				
+    				<p:commandButton value="Drukuj" id="drukujEtykietyBtn"
+								actionListener="#{towar.drukujEtykiety()}" ajax="false" />
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>

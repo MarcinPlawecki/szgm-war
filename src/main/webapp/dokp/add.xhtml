@@ -1,15 +1,16 @@
 ﻿<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"   
-      xmlns:h="http://java.sun.com/jsf/html"
-      xmlns:f="http://java.sun.com/jsf/core"
-	  xmlns:ui="http://java.sun.com/jsf/facelets"
-      >
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
 
 <ui:composition template="/resources/layout.xhtml"
-    xmlns="http://www.w3.org/1999/xhtml"
-    xmlns:ui="http://java.sun.com/jsf/facelets">
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
     
     <ui:define name="body_content">
 		<div id="container">
@@ -20,18 +21,18 @@
 				Nazwa: <h:inputText value="#{towar.nazwa}" />
 				Cena Netto: <h:inputText value="#{towar.cenaNetto}" />
 				Vat: <h:selectOneMenu value="#{towar.vat}">
-   						<f:selectItems value="#{vat.getVatList()}" var="v"
-   						itemLabel="#{v.stawka}" itemValue="#{v}" />
+   						<f:selectItems value="#{vat.getList()}" var="v"
+   						itemLabel="#{v.nazwa}" itemValue="#{v}" />
    						<f:converter converterId="vatConverter" />
    					</h:selectOneMenu>
 				PKWiU: <h:inputText value="#{towar.pkwiu}" />
 				Jednostka: <h:selectOneMenu value="#{towar.jednostka}">
-   						<f:selectItems value="#{jednostka.getJednostkaList()}" var="j"
+   						<f:selectItems value="#{jednostka.getList()}" var="j"
    						itemLabel="#{j.nazwa}" itemValue="#{j}" />
    						<f:converter converterId="jednostkaConverter" />
    					</h:selectOneMenu>
 				Waluta: <h:selectOneMenu value="#{towar.waluta}">
-   						<f:selectItems value="#{waluta.getWalutaList()}" var="w"
+   						<f:selectItems value="#{waluta.getList()}" var="w"
    						itemLabel="#{w.nazwa}" itemValue="#{w}" />
    						<f:converter converterId="walutaConverter" />
    					</h:selectOneMenu>
@@ -49,7 +50,7 @@
 					   	<f:selectItem itemValue="0" itemLabel="Nie" />
 					</h:selectOneMenu>
 				Grupa: <h:selectOneMenu value="#{towar.grupa}">
-   						<f:selectItems value="#{grupa.getGrupaList()}" var="g"
+   						<f:selectItems value="#{grupa.getList()}" var="g"
    						itemLabel="#{g.nazwa}" itemValue="#{g}" />
    						<f:converter converterId="grupaConverter" />
    					</h:selectOneMenu>
@@ -63,10 +64,11 @@
 
 		<aside id="sideLeft">
 		<ul>
-			<li><h:outputLink value="/SZGM/towary/dodaj.xhtml">Dodaj Nowy</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/etykiety.xhtml">Wydruk Etykiet</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
+			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/dodaj.xhtml"><li>Dodaj Nowy</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/etykiety.xhtml"><li>Wydruk Etykiet</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/eksport.xhtml"><li>Eksport</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/import.xhtml"><li>Import</li></h:outputLink>
 		</ul>
 		</aside><!-- #sideLeft -->
     </ui:define>

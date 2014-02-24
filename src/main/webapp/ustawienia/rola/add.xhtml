@@ -1,0 +1,122 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+			
+    <script type="text/javascript">
+            PrimeFaces.locales['pl'] = {
+            closeText: 'Zamknij',
+            prevText: 'Poprzedni',
+            nextText: 'Następny',
+            nextLabel: 'Następny',
+           	backLabel: 'Poprzedni',
+            currentText: 'Bieżący',
+            monthNames: ['Styczeń','Luty','Marzec','Kwiecień','Maj','Czerwiec','Lipiec','Sierpień','Wrzesień','Październik','Listopad','Grudzień'],
+            monthNamesShort: ['Sty','Lut','Mar','Kwi','Maj','Cze', 'Lip','Sie','Wrz','Paź','Lis','Gru'],
+            dayNames: ['Niedziela','Poniedziałek','Wtorek','Środa','Czwartek','Piątek','Sobota'],
+            dayNamesShort: ['Nie','Pon','Wt','Śr','Czw','Pt','So'],
+            dayNamesMin: ['N','P','W','Ś','Cz','P','S'],
+            weekHeader: 'Tydzień',
+            firstDay: 1,
+            isRTL: true,
+            showMonthAfterYear: false,
+            yearSuffix: 'r',
+            timeOnlyTitle: 'Tylko czas',
+            timeText: 'Czas',
+            hourText: 'Godzina',
+            minuteText: 'Minuta',
+            secondText: 'Sekunda',
+            currentText: 'Teraz',
+            ampm: false,
+            month: 'Miesiąc',
+            week: 'Tydzień',
+            day: 'Dzień',
+            allDayText : 'Cały dzień'
+        };
+	</script>
+	
+				<h:form>
+					<p:growl id="growl" sticky="true" showDetail="true" />
+
+					<p:wizard flowListener="#{rola.onFlowProcess}" locale="pl">
+
+						<p:tab id="nazwa" title="Nazwa" locale="pl">
+							<p:panel>
+							
+								<h:messages errorClass="error" />
+
+								<h:panelGrid columns="2" columnClasses="label, value"
+									styleClass="grid">
+									<h:outputText value="Nazwa" />
+									<p:inputText required="true" label="nazwa"
+										value="#{rola.nazwa}" />
+								</h:panelGrid>
+								
+							</p:panel>
+						</p:tab>
+
+						<p:tab id="prawa" title="Prawa Dostępu" locale="pl">
+							<p:panel>
+							
+								<h:messages errorClass="error" />
+
+								<p:dataTable id="prawaTable" var="p" value="#{prawo.list}"
+									rows="15" paginator="true" sortMode="multiple"
+									filteredValue="#{prawo.filteredList}"
+									selection="#{prawo.selectedItems}" rowKey="#{p.id}"
+									styleClass="table">
+									
+									<p:column selectionMode="multiple" style="width:2%" />
+
+									<p:column sortBy="#{p.nazwa}" filterBy="#{p.nazwa}"
+										filterMatchMode="contains" headerText="Nazwa">
+										<h:outputText value="#{p.nazwa}" />
+									</p:column>
+									
+									<p:column sortBy="#{p.opis}" filterBy="#{p.opis}"
+										filterMatchMode="contains" headerText="Opis">
+										<h:outputText value="#{p.opis}" />
+									</p:column>
+								</p:dataTable>
+
+								<p:commandButton value="Dodaj" update="growl"
+									actionListener="#{rola.addRola(prawo.selectedItems)}" />
+									
+							</p:panel>
+						</p:tab>
+						
+					</p:wizard>
+				</h:form>
+
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink
+					value="/SZGM/ustawienia/konfiguracja/list.xhtml"
+					rendered="#{p:ifGranted('KONFIGURACJA_LISTA')}"><li>Konfiguracja</li></h:outputLink>
+			<h:outputLink value="/SZGM/ustawienia/uzytkownik/list.xhtml"
+					rendered="#{p:ifGranted('UZYTKOWNIK_LISTA')}"><li>Użytkownicy</li></h:outputLink>
+			<h:outputLink value="/SZGM/ustawienia/rola/list.xhtml"
+					rendered="#{p:ifGranted('ROLA_LISTA')}"><li>Role</li></h:outputLink>
+		</ul>
+		</aside>
+	</ui:define>
+
+</ui:composition>
+
+</html>

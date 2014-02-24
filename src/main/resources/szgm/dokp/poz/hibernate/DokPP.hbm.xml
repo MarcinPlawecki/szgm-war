@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.dokp.poz.model.DokPP" 
+        table="dok_p_p" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">dok_p_p_seq</param>
+            </generator>
+        </id>
+
+		<property name="iloscCalosc" type="double">
+            <column name="ilosc_calosc" not-null="true" />
+        </property>
+        
+		<property name="iloscPozostala" type="double">
+            <column name="ilosc_pozostala" not-null="true" />
+        </property>
+        
+		<property name="iloscDoSciagniecia" type="double">
+            <column name="ilosc_do_sciagniecia" not-null="true" />
+        </property>
+        
+		<property name="cenaZakupuNetto" type="double">
+            <column name="cena_zakupu_netto" not-null="true" />
+        </property>
+        
+		<property name="aktywny" type="int">
+            <column name="akt" not-null="true" />
+        </property>
+
+        <many-to-one name="towar" class="szgm.towar.model.Towar" fetch="select" lazy="false">
+			<column name="towar" not-null="true" />
+		</many-to-one>
+		
+        <many-to-one name="dokPN" class="szgm.dokp.nagl.model.DokPN" fetch="select" lazy="false">
+			<column name="dok_p_n" not-null="true" />
+		</many-to-one>
+		
+    </class>
+</hibernate-mapping>

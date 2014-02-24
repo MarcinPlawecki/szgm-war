@@ -13,16 +13,17 @@ import szgm.konfiguracja.model.Konfiguracja;
 
 @ManagedBean(name = "konfiguracja")
 @ViewScoped
-public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements Serializable {
+public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements
+		Serializable {
 
 	private static final long serialVersionUID = 1L;
 
 	@PostConstruct
 	@Override
 	public void refreshList() {
-			list = bo.findAllByNazwa(Konfiguracja.class);
+		list = bo.findAllByNazwa(Konfiguracja.class);
 	}
-	
+
 	public String addKonfiguracja() {
 		Konfiguracja k = new Konfiguracja();
 		k.setNazwa(nazwa);
@@ -36,7 +37,7 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements Ser
 
 		return "success";
 	}
-	
+
 	@Override
 	protected void clearForm() {
 		setNazwa("");
@@ -44,32 +45,32 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements Ser
 		setWartosc("");
 		setNewName("");
 	}
-    
-    public void cloneItem() {
-    	FacesMessage msg;
-    	if(null != selectedItem) {
-    		Konfiguracja newK = new Konfiguracja();
-    		newK.setNazwa(this.getNewName());
-    		newK.setOpis(selectedItem.getOpis());
-    		newK.setWartosc(selectedItem.getWartosc());
-    		
-    		bo.add(newK);
-    		refreshList();
-    		clearForm();
-    		
-    		msg = new FacesMessage("Zmiany zosta³y anulowane");
-    	} else {
-    		msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
-    		
-    	}
-    	
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }
+
+	public void cloneItem() {
+		FacesMessage msg;
+		if (null != selectedItem) {
+			Konfiguracja newK = new Konfiguracja();
+			newK.setNazwa(this.getNewName());
+			newK.setOpis(selectedItem.getOpis());
+			newK.setWartosc(selectedItem.getWartosc());
+
+			bo.add(newK);
+			refreshList();
+			clearForm();
+
+			msg = new FacesMessage("Zmiany zosta³y zapisane");
+		} else {
+			msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
+
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	private String nazwa;
 	private String opis;
 	private String wartosc;
-	
+
 	public String getNazwa() {
 		return nazwa;
 	}
@@ -93,5 +94,5 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements Ser
 	public void setWartosc(String wartosc) {
 		this.wartosc = wartosc;
 	}
-    
+
 }

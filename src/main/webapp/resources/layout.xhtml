@@ -19,7 +19,7 @@
 		<div id="topBtns">
 			Zalogowany jako: <h:outputText value="#{loggedUser.login}" />
 		
-			<a href="/SZGM/ustawienia/index.xhtml" title="Ustawienia">
+			<a href="/SZGM/ustawienia/konfiguracja/list.xhtml" title="Ustawienia">
 				Ustawienia
 				<h:graphicImage class="image" url="/resources/img/ustawienia.png" width="16" height="16" />
 			</a>
@@ -38,9 +38,9 @@
 			<a href="#" title="Faktury Sprzedaży"><h:graphicImage class="image" url="/resources/img/fv.png" /></a>
 			<a href="#" title="Faktury Zakupu"><h:graphicImage class="image" url="/resources/img/fz.png" /></a>
 			<a href="#" title="Dokumenty Wychodzące"><h:graphicImage class="image" url="/resources/img/dw.png" /></a>
-			<h:outputLink value="/SZGM/dokp/index.xhtml"><h:graphicImage class="image" url="/resources/img/dp.png" /></h:outputLink>
-			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
-			<h:outputLink value="/SZGM/kontrahenci/list.xhtml" rendered="#{p:ifGranted('KONTRAHENT_LISTA')}"><h:graphicImage class="image" url="/resources/img/kontr.png" /></h:outputLink>
+			<h:outputLink title="Dokumenty Przychodzące" value="/SZGM/dokp/list.xhtml" rendered="#{p:ifGranted('DOKP_LISTA')}"><h:graphicImage class="image" url="/resources/img/dp.png" /></h:outputLink>
+			<h:outputLink title="Towary" value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
+			<h:outputLink title="Kontrahenci" value="/SZGM/kontrahenci/list.xhtml" rendered="#{p:ifGranted('KONTRAHENT_LISTA')}"><h:graphicImage class="image" url="/resources/img/kontr.png" /></h:outputLink>
 			<a href="#" title="Statystyki"><h:graphicImage class="image" url="/resources/img/stat.png" /></a>
 		</div>
 	</header><!-- #header-->

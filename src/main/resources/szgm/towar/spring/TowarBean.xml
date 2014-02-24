@@ -12,4 +12,9 @@
    		<property name="sessionFactory" ref="sessionFactory" />
    	</bean>
  
+    <bean id="towarConverter" 
+         class="szgm.towar.TowarConverter" >
+   		<property name="dao" ref="towarDao" />
+   	</bean>
+   	
 </beans>

@@ -64,11 +64,8 @@
 
 		<aside id="sideLeft">
 		<ul>
-			<li><h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}">Lista Towarów</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/dodaj.xhtml">Dodaj Nowy</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/etykiety.xhtml">Wydruk Etykiet</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/eksport.xhtml">Eksport</h:outputLink></li>
-			<li><h:outputLink value="/SZGM/towary/import.xhtml">Import</h:outputLink></li>
+			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
 		</ul>
 		</aside><!-- #sideLeft -->
     </ui:define>

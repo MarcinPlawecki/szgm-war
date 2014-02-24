@@ -1,7 +1,12 @@
 package szgm.towar;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
@@ -15,22 +20,69 @@ import org.springframework.util.Assert;
 import szgm.core.BaseFacesBean;
 import szgm.grupa.model.Grupa;
 import szgm.jednostka.model.Jednostka;
+import szgm.towar.bo.TowarBo;
 import szgm.towar.model.Towar;
 import szgm.vat.model.Vat;
 import szgm.waluta.model.Waluta;
 
 @ManagedBean(name = "towar")
 @SessionScoped
-public class TowarBean extends BaseFacesBean<Towar> implements Serializable, InitializingBean {
+public class TowarBean extends BaseFacesBean<Towar> implements Serializable,
+		InitializingBean {
 
 	private static final long serialVersionUID = 1L;
+
+	private TowarBo towarBo;
+
+	public TowarBo getTowarBo() {
+		return towarBo;
+	}
+
+	public void setTowarBo(TowarBo towarBo) {
+		this.towarBo = towarBo;
+	}
+
+	private int liczbaEtykiet;
+	private Map<Towar, Integer> doWydruku = new HashMap<Towar, Integer>();
+
+	public List<Map.Entry<Towar, Integer>> getDoWydruku() {
+		Set<Map.Entry<Towar, Integer>> productSet = doWydruku.entrySet();
+		return new ArrayList<Map.Entry<Towar, Integer>>(productSet);
+	}
+
+	public void setDoWydruku(Map<Towar, Integer> doWydruku) {
+		this.doWydruku = doWydruku;
+	}
+
+	public int getLiczbaEtykiet() {
+		return liczbaEtykiet;
+	}
+
+	public void setLiczbaEtykiet(int liczbaEtykiet) {
+		this.liczbaEtykiet = liczbaEtykiet;
+	}
+
+	public void dodajEtykiete() {
+		if (doWydruku == null) {
+			doWydruku = new HashMap<Towar, Integer>();
+		}
+		// if (selectedItem != null) {
+		doWydruku.put(selectedItem, liczbaEtykiet);
+		// }
+	}
+
+	public void drukujEtykiety() {
+		towarBo.drukuj(doWydruku);
+		refreshList();
+		clearForm();
+	}
 
 	@PostConstruct
 	@Override
 	public void refreshList() {
-			list = bo.findAllByNazwa(Towar.class);
+		list = towarBo.findAllByNazwa(Towar.class);
 	}
-	
+
 	public String addTowar() {
 		Towar t = new Towar();
 		t.setNazwa(nazwa);
@@ -52,12 +104,12 @@ public class TowarBean extends BaseFacesBean<Towar> implements Serializable, Ini
 		t.setWaluta(waluta);
 		t.setZmodyfikowany(1);
 
-		bo.add(t);
+		towarBo.add(t);
 		refreshList();
 		clearForm();
 		return "success";
 	}
-	
+
 	@Override
 	protected void clearForm() {
 		setNazwa("");
@@ -80,47 +132,47 @@ public class TowarBean extends BaseFacesBean<Towar> implements Serializable, Ini
 		setZmodyfikowany(1);
 		setNewName("");
 	}
-	
-    public void cloneItem() {
-    	FacesMessage msg;
-    	if(null != selectedItem) {
-    		Towar newT = new Towar();
-    		newT.setNazwa(this.getNewName());
-    		newT.setAktywny(selectedItem.getAktywny());
-    		newT.setCenaNetto(selectedItem.getCenaNetto());
-    		newT.setCenaPromocyjna(selectedItem.getCenaPromocyjna());
-    		newT.setCenaPrzedPromocja(selectedItem.getCenaPrzedPromocja());
-    		newT.setCenaZakupu(selectedItem.getCenaZakupu());
-    		newT.setGrupa(selectedItem.getGrupa());
-    		newT.setJednostka(selectedItem.getJednostka());
-    		newT.setKodKreskowy(selectedItem.getKodKreskowy());
-    		newT.setPkwiu(selectedItem.getPkwiu());
-    		newT.setPromocja(selectedItem.getPromocja());
-    		newT.setPromocjaDo(selectedItem.getPromocjaDo());
-    		newT.setPromocjaOd(selectedItem.getPromocjaOd());
-    		newT.setPytajOCene(selectedItem.getPytajOCene());
-    		newT.setVat(selectedItem.getVat());
-    		newT.setWaluta(selectedItem.getWaluta());
-    		newT.setZmodyfikowany(selectedItem.getZmodyfikowany());
-    		
-    		bo.add(newT);
-    		refreshList();
-    		clearForm();
-    		
-    		msg = new FacesMessage("Zmiany zosta³y anulowane");
-    	} else {
-    		msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
-    		
-    	}
-    	
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }
+
+	public void cloneItem() {
+		FacesMessage msg;
+		if (null != selectedItem) {
+			Towar newT = new Towar();
+			newT.setNazwa(this.getNewName());
+			newT.setAktywny(selectedItem.getAktywny());
+			newT.setCenaNetto(selectedItem.getCenaNetto());
+			newT.setCenaPromocyjna(selectedItem.getCenaPromocyjna());
+			newT.setCenaPrzedPromocja(selectedItem.getCenaPrzedPromocja());
+			newT.setCenaZakupu(selectedItem.getCenaZakupu());
+			newT.setGrupa(selectedItem.getGrupa());
+			newT.setJednostka(selectedItem.getJednostka());
+			newT.setKodKreskowy(selectedItem.getKodKreskowy());
+			newT.setPkwiu(selectedItem.getPkwiu());
+			newT.setPromocja(selectedItem.getPromocja());
+			newT.setPromocjaDo(selectedItem.getPromocjaDo());
+			newT.setPromocjaOd(selectedItem.getPromocjaOd());
+			newT.setPytajOCene(selectedItem.getPytajOCene());
+			newT.setVat(selectedItem.getVat());
+			newT.setWaluta(selectedItem.getWaluta());
+			newT.setZmodyfikowany(selectedItem.getZmodyfikowany());
+
+			towarBo.add(newT);
+			refreshList();
+			clearForm();
+
+			msg = new FacesMessage("Zmiany zosta³y zapisane");
+		} else {
+			msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
+
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	@Override
 	public void afterPropertiesSet() throws Exception {
 		Assert.notNull(bo, "towarBo can't be null");
 	}
-	
+
 	public String nazwa;
 	public double cenaNetto;
 	public Vat vat;

@@ -24,6 +24,9 @@
         <property name="nazwisko" type="string">
             <column name="NAZWISKO" length="50" not-null="true" />
         </property>
+        <property name="zaszyfrowany" type="int">
+            <column name="zaszyfrowany" not-null="true" />
+        </property>
         <many-to-one name="rola" class="szgm.rola.model.Rola" fetch="select" lazy="false">
 			<column name="ROLA" not-null="true" />
 		</many-to-one>

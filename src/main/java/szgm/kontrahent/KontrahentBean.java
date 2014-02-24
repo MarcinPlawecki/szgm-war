@@ -16,16 +16,17 @@ import szgm.kontrahent.model.Kontrahent;
 
 @ManagedBean(name = "kontrahent")
 @SessionScoped
-public class KontrahentBean extends BaseFacesBean<Kontrahent> implements Serializable, InitializingBean {
+public class KontrahentBean extends BaseFacesBean<Kontrahent> implements
+		Serializable, InitializingBean {
 
 	private static final long serialVersionUID = 1L;
-	
+
 	@PostConstruct
 	@Override
 	public void refreshList() {
-			list = bo.findAllByNazwa(Kontrahent.class);
+		list = bo.findAllByNazwa(Kontrahent.class);
 	}
-	
+
 	public String addTowar() {
 		Kontrahent t = new Kontrahent();
 		t.setNazwa(nazwa);
@@ -48,7 +49,7 @@ public class KontrahentBean extends BaseFacesBean<Kontrahent> implements Seriali
 		clearForm();
 		return "success";
 	}
-	
+
 	@Override
 	protected void clearForm() {
 		setNazwa("");
@@ -67,44 +68,44 @@ public class KontrahentBean extends BaseFacesBean<Kontrahent> implements Seriali
 		setAktywny(0);
 		setNewName("");
 	}
-	
-    public void cloneItem() {
-    	FacesMessage msg;
-    	if(null != selectedItem) {
-    		Kontrahent newT = new Kontrahent();
-    		newT.setNazwa(this.getNewName());
-    		newT.setAktywny(selectedItem.getAktywny());
-    		newT.setNip(selectedItem.getNip());
-    		newT.setKontoBankowe(selectedItem.getKontoBankowe());
-    		newT.setEmail(selectedItem.getEmail());
-    		newT.setKraj(selectedItem.getKraj());
-    		newT.setMiasto(selectedItem.getMiasto());
-    		newT.setUlica(selectedItem.getUlica());
-    		newT.setNumerMieszkania(selectedItem.getNumerMieszkania());
-    		newT.setKodPocztowy(selectedItem.getKodPocztowy());
-    		newT.setRegon(selectedItem.getRegon());
-    		newT.setTelefon(selectedItem.getTelefon());
-    		newT.setNazwaSkrocona(selectedItem.getNazwaSkrocona());
-    		newT.setLiczbaDni(selectedItem.getLiczbaDni());
-    		
-    		bo.add(newT);
-    		refreshList();
-    		clearForm();
-    		
-    		msg = new FacesMessage("Zmiany zosta³y anulowane");
-    	} else {
-    		msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
-    		
-    	}
-    	
-        FacesContext.getCurrentInstance().addMessage(null, msg);  
-    }
-    
+
+	public void cloneItem() {
+		FacesMessage msg;
+		if (null != selectedItem) {
+			Kontrahent newT = new Kontrahent();
+			newT.setNazwa(this.getNewName());
+			newT.setAktywny(selectedItem.getAktywny());
+			newT.setNip(selectedItem.getNip());
+			newT.setKontoBankowe(selectedItem.getKontoBankowe());
+			newT.setEmail(selectedItem.getEmail());
+			newT.setKraj(selectedItem.getKraj());
+			newT.setMiasto(selectedItem.getMiasto());
+			newT.setUlica(selectedItem.getUlica());
+			newT.setNumerMieszkania(selectedItem.getNumerMieszkania());
+			newT.setKodPocztowy(selectedItem.getKodPocztowy());
+			newT.setRegon(selectedItem.getRegon());
+			newT.setTelefon(selectedItem.getTelefon());
+			newT.setNazwaSkrocona(selectedItem.getNazwaSkrocona());
+			newT.setLiczbaDni(selectedItem.getLiczbaDni());
+
+			bo.add(newT);
+			refreshList();
+			clearForm();
+
+			msg = new FacesMessage("Zmiany zosta³y zapisane");
+		} else {
+			msg = new FacesMessage("Nie wybrano wiersza do sklonowania");
+
+		}
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
+
 	@Override
 	public void afterPropertiesSet() throws Exception {
-		Assert.notNull(bo, "towarBo can't be null");
+		Assert.notNull(bo, "bo can't be null");
 	}
-	
+
 	public long id;
 	public String nazwa;
 	public String nip;
@@ -240,5 +241,5 @@ public class KontrahentBean extends BaseFacesBean<Kontrahent> implements Seriali
 	public void setAktywny(Integer aktywny) {
 		this.aktywny = aktywny;
 	}
-	
+
 }

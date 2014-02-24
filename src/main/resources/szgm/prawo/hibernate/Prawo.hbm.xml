@@ -1,0 +1,33 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC 
+"-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+"http://hibernate.sourceforge.net/hibernate-mapping-3.0.dtd">
+<hibernate-mapping>
+    <class name="szgm.prawo.model.Prawo" 
+        table="prawo" catalog="gm">
+ 
+        <id name="id" type="long">
+            <column name="ID" />
+            <generator class="sequence" >
+                <param name="sequence">prawo_seq</param>
+            </generator>
+        </id>
+        <property name="nazwa" type="string">
+            <column name="NAZWA" length="100" not-null="true" />
+        </property>
+        <property name="opis" type="string">
+            <column name="opis" length="100" not-null="true" />
+        </property>
+        
+        <set name="role" table="rola_prawo" 
+        	inverse="false" lazy="false" fetch="select">
+            <key>
+                <column name="prawo" not-null="true" />
+            </key>
+            <many-to-many entity-name="szgm.rola.model.Rola">
+                <column name="rola" not-null="true" />
+            </many-to-many>
+        </set>
+        
+    </class>
+</hibernate-mapping>

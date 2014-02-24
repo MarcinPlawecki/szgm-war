@@ -1,0 +1,144 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+
+	<ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+
+				<h:form id="cloneDialogForm">
+					<p:dialog id="cloneDialog" header="Modal Dialog"
+						widgetVar="cloneDialog" modal="true" height="100">
+						<h:outputText value="Podaj nazwę nowego użytkownika" />
+						<p:inputText value="#{uzytkownik.newName}" style="width:100%" />
+						<br />
+						<p:commandButton value="OK"
+							actionListener="#{uzytkownik.cloneItem}" ajax="false" />
+					</p:dialog>
+				</h:form>
+
+				<h:form id="form">
+					<h:outputLink
+						styleClass="ui-button ui-widget ui-state-default ui-corner-all ui-button-text-only"
+						value="/SZGM/ustawienia/uzytkownik/add.xhtml"
+						onmouseover="$(this).addClass('ui-state-hover')"
+						onmouseout="$(this).removeClass('ui-state-hover')">
+						<h:outputText styleClass="ui-button-text" value="Dodaj" rendered="#{p:ifGranted('UZYTKOWNIK_DODAWANIE')}" />
+					</h:outputLink>
+					<p:commandButton value="Usuń" id="deleteBtn" disabled="#{uzytkownik.selectedItem == null}"
+						actionListener="#{uzytkownik.delete}" ajax="false" rendered="#{p:ifGranted('UZYTKOWNIK_EDYCJA')}" />
+					<p:commandButton id="cloneDialogButton" value="Klonuj" disabled="#{uzytkownik.selectedItem == null}"
+						onclick="cloneDialog.show();" type="button" rendered="#{p:ifGranted('UZYTKOWNIK_DODAWANIE')}" />
+
+					<p:growl id="messages" showDetail="true" />
+
+					<p:dataTable id="dataTable" var="u" value="#{uzytkownik.list}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{uzytkownik.filteredList}"
+						selection="#{uzytkownik.selectedItem}" rowKey="#{u.id}"
+						selectionMode="single" editable="#{p:ifGranted('UZYTKOWNIK_EDYCJA')}"
+						emptyMessage="Brak danych" styleClass="table">
+
+						<p:ajax event="rowEdit" listener="#{uzytkownik.onEdit}"
+							update=":form:messages" />
+						<p:ajax event="rowEditCancel" listener="#{uzytkownik.onCancel}"
+							update=":form:messages" />
+						<p:ajax event="rowSelect" update=":form:deleteBtn,:form:cloneDialogButton" />
+						<p:ajax event="rowUnselect" update=":form:deleteBtn,:form:cloneDialogButton" />
+
+						<p:column sortBy="#{u.login}" filterBy="#{u.login}"
+							filterMatchMode="contains" headerText="Login">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{u.login}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{u.login}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{u.haslo}" filterBy="#{u.haslo}"
+							filterMatchMode="contains" headerText="Hasło">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="***" />
+								</f:facet>
+								<f:facet name="input">
+									<p:password id="inlineFeedback" value="#{u.haslo}" feedback="true" inline="true" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{u.imie}" filterBy="#{u.imie}"
+							filterMatchMode="contains" headerText="Imię">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{u.imie}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{u.imie}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{u.nazwisko}" filterBy="#{u.nazwisko}"
+							filterMatchMode="contains" headerText="Nazwisko">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{u.nazwisko}" />
+								</f:facet>
+								<f:facet name="input">
+									<p:inputText value="#{u.nazwisko}" style="width:100%" />
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column sortBy="#{u.rola.nazwa}" filterBy="#{u.rola.nazwa}"
+							filterMatchMode="contains" headerText="Rola">
+							<p:cellEditor>
+								<f:facet name="output">
+									<h:outputText value="#{u.rola.nazwa}" />
+								</f:facet>
+								<f:facet name="input">
+									<h:selectOneMenu value="#{u.rola}">
+   										<f:selectItems value="#{rola.getList()}" var="r"
+   											itemLabel="#{r.nazwa}" itemValue="#{r}" />
+   										<f:converter converterId="rolaConverter" />
+   									</h:selectOneMenu>
+								</f:facet>
+							</p:cellEditor>
+						</p:column>
+
+						<p:column style="width:2%" rendered="#{p:ifGranted('UZYTKOWNIK_EDYCJA')}">
+							<p:rowEditor />
+						</p:column>
+
+					</p:dataTable>
+				</h:form>
+			</div>
+		</div>
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/ustawienia/konfiguracja/list.xhtml" rendered="#{p:ifGranted('KONFIGURACJA_LISTA')}"><li>Konfiguracja</li></h:outputLink>
+			<h:outputLink value="/SZGM/ustawienia/uzytkownik/list.xhtml" rendered="#{p:ifGranted('UZYTKOWNIK_LISTA')}"><li>Użytkownicy</li></h:outputLink>
+			<h:outputLink value="/SZGM/ustawienia/rola/list.xhtml" rendered="#{p:ifGranted('ROLA_LISTA')}"><li>Role</li></h:outputLink>
+		</ul>
+		</aside>
+
+	</ui:define>
+
+</ui:composition>
+
+</html>
