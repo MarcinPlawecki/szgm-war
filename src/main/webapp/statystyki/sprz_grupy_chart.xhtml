@@ -1,0 +1,49 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+    
+    <ui:define name="body_content">
+    
+<script type="text/javascript">
+function exportChart() {
+    $('#output').empty().append(chart.exportAsImage());
+
+    dlg.show();
+}
+</script>
+    
+		<div id="container">
+			<div id="content">
+    		<p:barChart id="basic" value="#{raport.marzaModel}" legendPosition="ne"  
+            			title="Sprzedaż wg. grup" style="width:600px;height:400px" widgetVar="chart"/> 
+             
+			<p:commandButton type="button" value="Eksport" icon="ui-icon-extlink" onclick="exportChart()"/>
+
+			<p:dialog widgetVar="dlg" showEffect="fade" modal="true" header="Obraz">
+			    <p:outputPanel id="output" layout="block" style="width:600px;height:400px"/>
+			</p:dialog>
+
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/statystyki/sprz_grupy.xhtml" rendered="#{p:ifGranted('STATYSTYKI')}"><li>Sprzedaż wg. grup</li></h:outputLink>
+			<h:outputLink value="/SZGM/statystyki/marza_grupy.xhtml" rendered="#{p:ifGranted('STATYSTYKI')}"><li>Marża wg. grup</li></h:outputLink>
+		</ul>
+		</aside>
+    </ui:define>
+
+</ui:composition>
+
+</html>

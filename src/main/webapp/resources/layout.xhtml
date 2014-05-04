@@ -35,13 +35,11 @@
 			<h:outputLink value="/SZGM/index.xhtml"><h:graphicImage class="image" url="/resources/img/logo.png" height="60" /></h:outputLink>
 		</div>
 		<div id="mainMenu">
-			<a href="#" title="Faktury Sprzedaży"><h:graphicImage class="image" url="/resources/img/fv.png" /></a>
-			<a href="#" title="Faktury Zakupu"><h:graphicImage class="image" url="/resources/img/fz.png" /></a>
-			<a href="#" title="Dokumenty Wychodzące"><h:graphicImage class="image" url="/resources/img/dw.png" /></a>
+			<h:outputLink title="Dokumenty Wychodzące" value="/SZGM/dokw/list.xhtml" rendered="#{p:ifGranted('DOKW_LISTA')}"><h:graphicImage class="image" url="/resources/img/dw.png" /></h:outputLink>
 			<h:outputLink title="Dokumenty Przychodzące" value="/SZGM/dokp/list.xhtml" rendered="#{p:ifGranted('DOKP_LISTA')}"><h:graphicImage class="image" url="/resources/img/dp.png" /></h:outputLink>
 			<h:outputLink title="Towary" value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><h:graphicImage class="image" url="/resources/img/tow.png" /></h:outputLink>
 			<h:outputLink title="Kontrahenci" value="/SZGM/kontrahenci/list.xhtml" rendered="#{p:ifGranted('KONTRAHENT_LISTA')}"><h:graphicImage class="image" url="/resources/img/kontr.png" /></h:outputLink>
-			<a href="#" title="Statystyki"><h:graphicImage class="image" url="/resources/img/stat.png" /></a>
+			<h:outputLink title="Statystyki" value="/SZGM/statystyki/list.xhtml" rendered="#{p:ifGranted('STATYSTYKI')}"><h:graphicImage class="image" url="/resources/img/stat.png" /></h:outputLink>
 		</div>
 	</header><!-- #header-->
 

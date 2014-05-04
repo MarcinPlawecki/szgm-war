@@ -262,6 +262,8 @@
 		<ul>
 			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
 			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/import.xhtml" rendered="#{p:ifGranted('TOWARY_IMPORT')}"><li>Import</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/export.xhtml" rendered="#{p:ifGranted('TOWARY_EXPORT')}"><li>Export</li></h:outputLink>
 		</ul>
 		</aside>
 

@@ -6,7 +6,7 @@
  
    	<bean id="dokPNBo" 
          class="szgm.dokp.nagl.bo.DokPNBoImpl" >
-   		<property name="dao" ref="grupaDao" />
+   		<property name="dao" ref="dokPNDao" />
    	</bean>
  
    	<bean id="dokPNDao" 

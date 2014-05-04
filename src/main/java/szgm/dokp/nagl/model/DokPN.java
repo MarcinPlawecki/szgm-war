@@ -2,8 +2,10 @@ package szgm.dokp.nagl.model;
 
 import java.io.Serializable;
 import java.util.Date;
+import java.util.Set;
 
 import szgm.core.BaseModel;
+import szgm.dokp.poz.model.DokPP;
 import szgm.kontrahent.model.Kontrahent;
 import szgm.sklep.model.Sklep;
 import szgm.typDokumentu.model.TypDokumentu;
@@ -22,8 +24,8 @@ public class DokPN extends BaseModel implements Serializable {
 	public String komentarz;
 	public Date dataUtworzenia;
 	public Date dataModyfikacji;
-	// public FZN fzn;
 	public Kontrahent kontrahent;
+	public Set<DokPP> pozycje;
 
 	public long getId() {
 		return id;
@@ -105,6 +107,14 @@ public class DokPN extends BaseModel implements Serializable {
 		this.kontrahent = kontrahent;
 	}
 
+	public Set<DokPP> getPozycje() {
+		return pozycje;
+	}
+
+	public void setPozycje(Set<DokPP> pozycje) {
+		this.pozycje = pozycje;
+	}
+
 	@Override
 	public Object getIdentifier() {
 		return this.getNumer();
@@ -114,4 +124,5 @@ public class DokPN extends BaseModel implements Serializable {
 	public String getIdentifierAsString() {
 		return this.getNumer();
 	}
+
 }

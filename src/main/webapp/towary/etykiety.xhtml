@@ -107,10 +107,28 @@
 							<h:outputText value="#{t.key.nazwa}" />
 						</p:column>
 					</p:dataTable>
-    				
-    				<p:commandButton value="Drukuj" id="drukujEtykietyBtn"
-								actionListener="#{towar.drukujEtykiety()}" ajax="false" />
+					
+    				<p:commandButton id="downloadLink" value="Drukuj" ajax="false" 
+    					onclick="PrimeFaces.monitorDownload(start, stop)"   
+        					icon="ui-icon-arrowthichk-s">  
+    					<p:fileDownload value="#{towar.drukujEtykiety()}" />  
+					</p:commandButton> 
+					
+					<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+    					<p:graphicImage value="/design/ajaxloadingbar.gif" />  
+					</p:dialog>
+					
 				</h:form>
+				
+				<script type="text/javascript">  
+function start() {  
+    statusDialog.show();  
+}  
+  
+function stop() {  
+    statusDialog.hide();  
+}  
+        		</script> 
 			</div>
 		</div>
 
@@ -118,6 +136,8 @@
 		<ul>
 			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
 			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/import.xhtml" rendered="#{p:ifGranted('TOWARY_IMPORT')}"><li>Import</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/export.xhtml" rendered="#{p:ifGranted('TOWARY_EXPORT')}"><li>Export</li></h:outputLink>
 		</ul>
 		</aside>
 

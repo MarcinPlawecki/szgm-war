@@ -1,0 +1,43 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+				<h:form id="form">
+  
+    				<p:fileUpload fileUploadListener="#{towar.handleFileUpload}" label="Wybierz plik"
+    					mode="advanced" auto="true" update="messages" sizeLimit="10000000" allowTypes="/(\.|\/)(xml)$/" />  
+  
+    				<p:growl id="messages" showDetail="true"/>  
+  
+				</h:form>
+
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/import.xhtml" rendered="#{p:ifGranted('TOWARY_IMPORT')}"><li>Import</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/export.xhtml" rendered="#{p:ifGranted('TOWARY_EXPORT')}"><li>Export</li></h:outputLink>
+		</ul>
+		</aside><!-- #sideLeft -->
+    </ui:define>
+
+</ui:composition>
+
+</html>

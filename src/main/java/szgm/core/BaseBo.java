@@ -2,7 +2,7 @@ package szgm.core;
 
 import java.util.List;
 
-public interface BaseBo<T> {
+public interface BaseBo<T extends BaseModel> {
 
 	public List<T> findAll(Class<T> clazz);
 

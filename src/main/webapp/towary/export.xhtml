@@ -1,0 +1,102 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+				<h:form id="form">
+
+					<p:dataTable id="dataTable" var="t" value="#{towar.list}"
+						rows="15" paginator="true" sortMode="multiple"
+						filteredValue="#{towar.filteredList}"
+						selection="#{towar.selectedItems}" rowKey="#{t.id}"
+						selectionMode="multiple"
+						emptyMessage="Brak danych" styleClass="table">
+						
+						<p:column sortBy="#{t.nazwa}" filterBy="#{t.nazwa}"
+							filterMatchMode="contains" headerText="Nazwa">
+							<h:outputText value="#{t.nazwa}" />
+						</p:column>
+
+						<p:column sortBy="#{t.cenaNetto}" filterBy="#{t.cenaNetto}"
+							filterMatchMode="contains" headerText="Cena netto">
+							<h:outputText value="#{t.cenaNetto}" />
+						</p:column>
+
+						<p:column sortBy="#{t.vat.stawka}" filterBy="#{t.vat.stawka}"
+							filterMatchMode="contains" headerText="Stawka VAT">
+							<h:outputText value="#{t.vat.nazwa}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.kodKreskowy}" filterBy="#{t.kodKreskowy}"
+							filterMatchMode="contains" headerText="Kod kreskowy">
+							<h:outputText value="#{t.kodKreskowy}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.jednostka.nazwa}" filterBy="#{t.jednostka.nazwa}"
+							filterMatchMode="contains" headerText="Jednostka">
+							<h:outputText value="#{t.jednostka.nazwa}" />
+						</p:column>
+						
+						<p:column sortBy="#{t.waluta.symbol}" filterBy="#{t.waluta.symbol}"
+							filterMatchMode="contains" headerText="Waluta">
+							<h:outputText value="#{t.waluta.symbol}" />
+						</p:column>
+    				
+    					<p:column sortBy="#{t.aktywny}" filterBy="#{t.aktywny}"
+							filterMatchMode="contains" headerText="Aktywny">
+							<h:outputLabel value="Tak" rendered="#{t.aktywny == 1}" /> 
+ 							<h:outputLabel value="Nie" rendered="#{t.aktywny == 0}" />
+						</p:column>
+					</p:dataTable>
+					
+    				<p:commandButton id="downloadLink" value="Pobierz" ajax="false" 
+    					onclick="PrimeFaces.monitorDownload(start, stop)"   
+        					icon="ui-icon-arrowthichk-s">  
+    					<p:fileDownload value="#{towar.export()}" />  
+					</p:commandButton> 
+					
+					<p:dialog modal="true" widgetVar="statusDialog" header="Status" draggable="false" closable="false" resizable="false">  
+    					<p:graphicImage value="/design/ajaxloadingbar.gif" />  
+					</p:dialog>
+					
+				</h:form>
+    			
+    			<script type="text/javascript">  
+function start() {  
+    statusDialog.show();  
+}  
+  
+function stop() {  
+    statusDialog.hide();  
+}  
+        		</script>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/towary/list.xhtml" rendered="#{p:ifGranted('TOWARY_LISTA')}"><li>Lista Towarów</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/etykiety.xhtml" rendered="#{p:ifGranted('WYDRUK_ETYKIET')}"><li>Wydruk Etykiet</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/import.xhtml" rendered="#{p:ifGranted('TOWARY_IMPORT')}"><li>Import</li></h:outputLink>
+			<h:outputLink value="/SZGM/towary/export.xhtml" rendered="#{p:ifGranted('TOWARY_EXPORT')}"><li>Export</li></h:outputLink>
+		</ul>
+		</aside><!-- #sideLeft -->
+    </ui:define>
+
+</ui:composition>
+
+</html>

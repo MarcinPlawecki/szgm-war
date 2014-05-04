@@ -4,7 +4,8 @@ import java.util.List;
 
 import org.springframework.beans.factory.InitializingBean;
 
-public class BaseBoImpl<T> implements BaseBo<T>, InitializingBean {
+public class BaseBoImpl<T extends BaseModel> implements BaseBo<T>,
+		InitializingBean {
 
 	protected BaseDao<T> dao;
 

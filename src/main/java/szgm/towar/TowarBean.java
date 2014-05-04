@@ -1,5 +1,9 @@
 package szgm.towar;
 
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.IOException;
+import java.io.InputStream;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Date;
@@ -11,9 +15,12 @@ import java.util.Set;
 import javax.annotation.PostConstruct;
 import javax.faces.application.FacesMessage;
 import javax.faces.bean.ManagedBean;
-import javax.faces.bean.SessionScoped;
+import javax.faces.bean.RequestScoped;
 import javax.faces.context.FacesContext;
 
+import org.primefaces.event.FileUploadEvent;
+import org.primefaces.model.DefaultStreamedContent;
+import org.primefaces.model.StreamedContent;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.util.Assert;
 
@@ -25,8 +32,10 @@ import szgm.towar.model.Towar;
 import szgm.vat.model.Vat;
 import szgm.waluta.model.Waluta;
 
+import com.lowagie.text.DocumentException;
+
 @ManagedBean(name = "towar")
-@SessionScoped
+@RequestScoped
 public class TowarBean extends BaseFacesBean<Towar> implements Serializable,
 		InitializingBean {
 
@@ -42,8 +51,49 @@ public class TowarBean extends BaseFacesBean<Towar> implements Serializable,
 		this.towarBo = towarBo;
 	}
 
-	private int liczbaEtykiet;
+	private int liczbaEtykiet = 1;
 	private Map<Towar, Integer> doWydruku = new HashMap<Towar, Integer>();
+
+	private List<Towar> selectedItems = new ArrayList<Towar>();
+
+	public List<Towar> getSelectedItems() {
+		return selectedItems;
+	}
+
+	public void setSelectedItems(List<Towar> selectedItems) {
+		this.selectedItems = selectedItems;
+	}
+
+	public StreamedContent export() {
+		StreamedContent file = null;
+		ByteArrayOutputStream oStream = towarBo.export(selectedItems);
+
+		InputStream stream = new ByteArrayInputStream(oStream.toByteArray());
+		file = new DefaultStreamedContent(stream, "application/xml",
+				"towary.xml");
+		refreshList();
+		clearForm();
+
+		return file;
+	}
+
+	public void handleFileUpload(FileUploadEvent event) {
+		FacesMessage msg;
+		try {
+			towarBo.importTowary(event.getFile().getContents());
+
+			msg = new FacesMessage("Sukces", event.getFile().getFileName()
+					+ " zosta³ wys³any.");
+		} catch (Exception e) {
+			e.printStackTrace();
+			msg = new FacesMessage("B³¹d", event.getFile().getFileName()
+					+ " nie zosta³ wys³any.");
+		}
+
+		refreshList();
+
+		FacesContext.getCurrentInstance().addMessage(null, msg);
+	}
 
 	public List<Map.Entry<Towar, Integer>> getDoWydruku() {
 		Set<Map.Entry<Towar, Integer>> productSet = doWydruku.entrySet();
@@ -71,10 +121,23 @@ public class TowarBean extends BaseFacesBean<Towar> implements Serializable,
 		// }
 	}
 
-	public void drukujEtykiety() {
-		towarBo.drukuj(doWydruku);
+	public StreamedContent drukujEtykiety() {
+		StreamedContent file = null;
+		try {
+			ByteArrayOutputStream oStream = towarBo.drukuj(doWydruku);
+
+			InputStream stream = new ByteArrayInputStream(oStream.toByteArray());
+			file = new DefaultStreamedContent(stream, "application/pdf",
+					"etykiety.pdf");
+		} catch (DocumentException e) {
+			e.printStackTrace();
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
 		refreshList();
 		clearForm();
+
+		return file;
 	}
 
 	@PostConstruct

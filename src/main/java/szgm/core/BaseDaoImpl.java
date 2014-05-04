@@ -6,8 +6,8 @@ import java.util.List;
 import org.springframework.beans.factory.InitializingBean;
 import org.springframework.orm.hibernate3.support.HibernateDaoSupport;
 
-public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>,
-		Serializable, InitializingBean {
+public class BaseDaoImpl<T extends BaseModel> extends HibernateDaoSupport
+		implements BaseDao<T>, Serializable, InitializingBean {
 
 	private static final long serialVersionUID = 1L;
 
@@ -40,7 +40,7 @@ public class BaseDaoImpl<T> extends HibernateDaoSupport implements BaseDao<T>,
 	}
 
 	@Override
-	public void add(T t) {
+	public void add(BaseModel t) {
 		getHibernateTemplate().save(t);
 
 	}

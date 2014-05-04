@@ -1,0 +1,46 @@
+﻿<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:p="http://primefaces.org/ui">
+
+<ui:composition template="/resources/layout.xhtml"
+	xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:h="http://java.sun.com/jsf/html"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:ui="http://java.sun.com/jsf/facelets"
+	xmlns:p="http://primefaces.org/ui"
+	xmlns:fn="java.sun.com/jsp/jstl/functions">
+    
+    <ui:define name="body_content">
+		<div id="container">
+			<div id="content">
+    		
+			<h:form>
+			<h:panelGrid columns="2">
+
+				<h:outputText value="Data od:* " />
+				<p:calendar required="true" value="#{raport.dataOd}" id="popupCal1" />
+            	
+    			<h:outputText value="Data do:* " />
+    			<p:calendar required="true" value="#{raport.dataDo}" id="popupCal2" />
+            	
+    			<h:commandButton value="Generuj" action="#{raport.generujMarze}" />
+    	  	
+    	  	</h:panelGrid>
+    	  	</h:form>
+    		
+			</div><!-- #content-->
+		</div><!-- #container-->
+
+		<aside id="sideLeft">
+		<ul>
+			<h:outputLink value="/SZGM/statystyki/sprz_grupy.xhtml" rendered="#{p:ifGranted('STATYSTYKI')}"><li>Sprzedaż wg. grup</li></h:outputLink>
+			<h:outputLink value="/SZGM/statystyki/marza_grupy.xhtml" rendered="#{p:ifGranted('STATYSTYKI')}"><li>Marża wg. grup</li></h:outputLink>
+		</ul>
+		</aside>
+    </ui:define>
+
+</ui:composition>
+
+</html>

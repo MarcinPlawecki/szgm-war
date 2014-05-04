@@ -48,5 +48,13 @@
 		<many-to-one name="kontrahent" class="szgm.kontrahent.model.Kontrahent" fetch="select" lazy="false">
 			<column name="kontrahent" not-null="true" />
 		</many-to-one>
+		
+		<set name="pozycje" table="dok_p_p" 
+				inverse="false" lazy="false" fetch="select">
+            <key>
+                <column name="DOK_P_N" not-null="true" />
+            </key>
+            <one-to-many class="szgm.dokp.poz.model.DokPP" />
+        </set>
     </class>
 </hibernate-mapping>

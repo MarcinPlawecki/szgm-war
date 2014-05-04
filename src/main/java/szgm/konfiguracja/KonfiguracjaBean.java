@@ -9,6 +9,7 @@ import javax.faces.bean.ViewScoped;
 import javax.faces.context.FacesContext;
 
 import szgm.core.BaseFacesBean;
+import szgm.konfiguracja.bo.KonfiguracjaBo;
 import szgm.konfiguracja.model.Konfiguracja;
 
 @ManagedBean(name = "konfiguracja")
@@ -17,6 +18,8 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements
 		Serializable {
 
 	private static final long serialVersionUID = 1L;
+
+	private KonfiguracjaBo konfBo;
 
 	@PostConstruct
 	@Override
@@ -67,6 +70,16 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements
 		FacesContext.getCurrentInstance().addMessage(null, msg);
 	}
 
+	public String getFieldRegex(String fieldName) {
+		Konfiguracja k = konfBo.getByNazwa(fieldName);
+
+		if (null == k) {
+			return ".*";
+		} else {
+			return k.getWartosc();
+		}
+	}
+
 	private String nazwa;
 	private String opis;
 	private String wartosc;
@@ -93,6 +106,14 @@ public class KonfiguracjaBean extends BaseFacesBean<Konfiguracja> implements
 
 	public void setWartosc(String wartosc) {
 		this.wartosc = wartosc;
+	}
+
+	public KonfiguracjaBo getKonfBo() {
+		return konfBo;
+	}
+
+	public void setKonfBo(KonfiguracjaBo konfBo) {
+		this.konfBo = konfBo;
 	}
 
 }

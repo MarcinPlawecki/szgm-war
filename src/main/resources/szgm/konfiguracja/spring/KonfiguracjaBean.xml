@@ -7,6 +7,8 @@
    	<bean id="konfiguracjaBo" 
          class="szgm.konfiguracja.bo.KonfiguracjaBoImpl" >
    		<property name="dao" ref="konfiguracjaDao" />
+   		<property name="konfDao" ref="konfiguracjaDao" />
+   		
    	</bean>
  
    	<bean id="konfiguracjaDao" 

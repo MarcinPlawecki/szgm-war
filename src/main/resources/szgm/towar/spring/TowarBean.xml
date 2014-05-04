@@ -3,18 +3,31 @@
 	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
 	xsi:schemaLocation="http://www.springframework.org/schema/beans 
 	http://www.springframework.org/schema/beans/spring-beans-3.1.xsd">
- 
-   	<bean id="towarBo" class="szgm.towar.bo.TowarBoImpl" parent="baseBo">
-   		<property name="dao" ref="towarDao" />
-   	</bean>
- 
-   	<bean id="towarDao" class="szgm.towar.dao.TowarDaoImpl" >
-   		<property name="sessionFactory" ref="sessionFactory" />
-   	</bean>
- 
-    <bean id="towarConverter" 
-         class="szgm.towar.TowarConverter" >
-   		<property name="dao" ref="towarDao" />
-   	</bean>
-   	
+
+	<bean id="towarBo" class="szgm.towar.bo.TowarBoImpl" parent="baseBo">
+		<property name="dao" ref="towarDao" />
+		<property name="towarDao" ref="towarDao" />
+		<property name="etykietyPdfGenerator" ref="etykietyPdfGenerator" />
+	</bean>
+
+	<bean id="towarDao" class="szgm.towar.dao.TowarDaoImpl">
+		<property name="sessionFactory" ref="sessionFactory" />
+	</bean>
+	
+	<bean id="towarBoProxy" class="org.springframework.aop.framework.ProxyFactoryBean">
+		<property name="target" ref="towarBo" />
+		<property name="interceptorNames">
+			<list>
+				<value>transactionInterceptor</value>
+			</list>
+		</property>
+	</bean>
+
+	<bean id="towarConverter" class="szgm.towar.TowarConverter">
+		<property name="dao" ref="towarDao" />
+	</bean>
+
+	<bean id="etykietyPdfGenerator" class="szgm.pdf.etykiety.EtykietyPdfGenerator">
+	</bean>
+
 </beans>
