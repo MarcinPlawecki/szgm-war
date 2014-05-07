@@ -115,6 +115,10 @@
 			<property-name>towarBo</property-name>
 			<value>#{towarBoProxy}</value>
 		</managed-property>
+		<managed-property>
+			<property-name>bo</property-name>
+			<value>#{towarBoProxy}</value>
+		</managed-property>
 	</managed-bean>
 	<managed-bean>
 		<managed-bean-name>kontrahent</managed-bean-name>
